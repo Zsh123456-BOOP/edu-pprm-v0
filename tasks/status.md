@@ -337,3 +337,19 @@
 主要统计结果: compileall passed；boundary lint passed；autolabeled schema 240/240 passed；pytest unavailable。
 失败或不确定点: 真实 DeepSeek 全量标注未完成；fallback 新标签差异比例低于 Go 条件。
 是否需要人工 review: 是，决定重跑真实 DeepSeek、切换更快模型，或先做小样本人核查。
+
+### Card 3.9 Real DeepSeek Throughput + Small-Batch Label Validation
+- [x] 支持 DeepSeek model override
+- [x] 支持 compact prompt throughput probe
+- [x] 修复 thinking disabled 与 reasoning_effort 同时设置导致的 HTTP 400
+- [x] 对 deepseek-v4-flash 做真实小批量验证
+- [x] 对 deepseek-v4-pro 做真实小批量验证
+- [x] 输出 data/reports/deepseek_small_batch_comparison.json
+- [x] 输出 reports/deepseek_small_batch_validation.md
+
+完成内容: 添加真实 API 小批量吞吐验证脚本，并实测 compact prompt 下 flash/pro 可用性；未覆盖现有 240 条 fallback autolabeled 文件。
+生成文件: src/labels/deepseek_small_batch.py, reports/deepseek_small_batch_validation.md, data/reports/deepseek_small_batch_comparison.json, data/reports/deepseek_small_batch_deepseek-v4-flash_summary.json, data/reports/deepseek_small_batch_deepseek-v4-pro_summary.json。
+运行命令: python3 -m src.labels.deepseek_small_batch --limit 20 --models deepseek-v4-flash --timeout-seconds 30 --max-tokens 400; python3 -m src.labels.deepseek_small_batch --limit 2 --models deepseek-v4-pro --timeout-seconds 45 --max-tokens 400; python3 -m compileall -q src。
+主要统计结果: deepseek-v4-flash 20/20 成功，parse/schema 1.0，平均延迟 2.658s，最大 3.71s；deepseek-v4-pro 2/2 成功，parse/schema 1.0，平均延迟 4.23s，最大 4.611s。
+失败或不确定点: 早期小批量尝试因 invalid config 失败，已定位为 reasoning_effort 与 thinking.disabled 冲突并修复；pro 只测 2 条，未跑 20 条。
+是否需要人工 review: 是，建议下一步用 deepseek-v4-flash 跑全量 240 条真实 auto labels，再重跑 Gate 3。

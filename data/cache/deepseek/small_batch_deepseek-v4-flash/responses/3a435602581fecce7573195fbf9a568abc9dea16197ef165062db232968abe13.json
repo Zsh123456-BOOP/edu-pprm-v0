@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0003",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "2695ede4-f201-4b04-a4c3-c71fac8e9462",
+    "object": "chat.completion",
+    "created": 1780736082,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 1,\n  \"earliest_actionable_step\": 1,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_reinterpret_given_quantity\",\n  \"repair_target\": \"step 1\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"can_name_error_type\",\n  \"actionable_diff_reason\": \"Student misinterprets the given quantity '12 pages' as if it described a different object, but it is correctly the pages read yesterday.\",\n  \"confidence\": 0.9,\n  \"short_rationale\": \"Step 1 is wrong because the student misinterprets the given quantity; the rest of the solution is correct based on that misinterpretation.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 801,
+      "completion_tokens": 169,
+      "total_tokens": 970,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 801
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 1,
+    "earliest_actionable_step": 1,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity",
+    "repair_target": "step 1",
+    "hint_level": "low",
+    "leakage_constraint": "can_name_error_type",
+    "actionable_diff_reason": "Student misinterprets the given quantity '12 pages' as if it described a different object, but it is correctly the pages read yesterday.",
+    "confidence": 0.9,
+    "short_rationale": "Step 1 is wrong because the student misinterprets the given quantity; the rest of the solution is correct based on that misinterpretation."
+  },
+  "cache_hit": false
+}

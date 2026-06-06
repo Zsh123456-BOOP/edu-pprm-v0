@@ -14,8 +14,13 @@ from src.data.common import CACHE_DIR, REPORT_DIR, ROOT, append_jsonl, load_json
 from src.llm.json_repair import parse_json_object
 
 
-def load_config(path: Path = ROOT / "configs" / "deepseek.yaml") -> dict[str, Any]:
-    return load_json_yaml(path)["deepseek"]
+def load_config(path: Path = ROOT / "configs" / "deepseek.yaml", *, model: str | None = None, cache_suffix: str | None = None) -> dict[str, Any]:
+    config = load_json_yaml(path)["deepseek"]
+    if model:
+        config["model"] = model
+    if cache_suffix:
+        config["cache_dir"] = str(Path(config["cache_dir"]) / cache_suffix)
+    return config
 
 
 def stable_hash(payload: Any) -> str:
@@ -94,7 +99,11 @@ class DeepSeekClient:
                 append_jsonl(self.response_log, [{"sample_id": sample_id, "payload_hash": cache_path.stem, "model": result["model"], "parsed": parsed}])
                 return result
             except urllib.error.HTTPError as exc:
-                last_error = f"HTTP {exc.code}: {exc.reason}"
+                try:
+                    body = exc.read().decode("utf-8")[:1000]
+                except Exception:
+                    body = ""
+                last_error = f"HTTP {exc.code}: {exc.reason}: {body}"
                 if exc.code == 429:
                     time.sleep(10 * (attempt + 1))
                 else:

@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0005",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "9ab63e21-39cc-4e49-9ba5-cdcb944d9f03",
+    "object": "chat.completion",
+    "created": 1780736060,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 6,\n  \"earliest_actionable_step\": 6,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_check_operation_or_formula\",\n  \"repair_target\": \"step 6\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"Student computed kitchens per cylinder but answered for entire station; needs to multiply by 3.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Student correctly found x=5 kitchens per cylinder but forgot to multiply by 3 for total.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 918,
+      "completion_tokens": 152,
+      "total_tokens": 1070,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 918
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 6,
+    "earliest_actionable_step": 6,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_check_operation_or_formula",
+    "repair_target": "step 6",
+    "hint_level": "low",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "Student computed kitchens per cylinder but answered for entire station; needs to multiply by 3.",
+    "confidence": 0.95,
+    "short_rationale": "Student correctly found x=5 kitchens per cylinder but forgot to multiply by 3 for total."
+  },
+  "cache_hit": false
+}

@@ -1,3 +1,20 @@
 {"sample_id": "pilot_stepverify_0000", "error": "ValueError: no JSON object found"}
 {"sample_id": "pilot_stepverify_0001", "error": "ValueError: no JSON object found"}
 {"sample_id": "pilot_stepverify_0002", "error": "ValueError: no JSON object found"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0000", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0001", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0002", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0003", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0004", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0005", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0006", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0007", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0008", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0009", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0000", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0001", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0000", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0000", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-pro_pilot_stepverify_0000", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-pro_pilot_gsm8k_synthetic_0000", "error": "HTTP 400: Bad Request"}
+{"sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0000", "error": "HTTP 400: Bad Request: {\"error\":{\"message\":\"thinking options type cannot be disabled when reasoning_effort is set\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}

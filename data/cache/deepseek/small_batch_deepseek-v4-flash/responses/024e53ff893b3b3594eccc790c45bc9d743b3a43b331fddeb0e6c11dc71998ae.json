@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0007",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "6944ac18-9562-4ecf-9d6b-ea8e79762a9c",
+    "object": "chat.completion",
+    "created": 1780736094,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": null,\n  \"earliest_actionable_step\": null,\n  \"intervention_needed\": false,\n  \"minimal_repair_type\": \"no_intervention_needed\",\n  \"repair_target\": null,\n  \"hint_level\": \"none\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": null,\n  \"confidence\": 1.0,\n  \"short_rationale\": \"Student's solution is correct and matches reference.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 858,
+      "completion_tokens": 117,
+      "total_tokens": 975,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 858
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": null,
+    "earliest_actionable_step": null,
+    "intervention_needed": false,
+    "minimal_repair_type": "no_intervention_needed",
+    "repair_target": null,
+    "hint_level": "none",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": null,
+    "confidence": 1.0,
+    "short_rationale": "Student's solution is correct and matches reference."
+  },
+  "cache_hit": false
+}

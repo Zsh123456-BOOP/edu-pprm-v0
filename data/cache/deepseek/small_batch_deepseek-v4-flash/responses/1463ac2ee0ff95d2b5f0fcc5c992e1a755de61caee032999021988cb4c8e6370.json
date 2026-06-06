@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0002",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "72409683-0a5d-472b-9c80-7b01f79731f6",
+    "object": "chat.completion",
+    "created": 1780736051,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 2,\n  \"earliest_actionable_step\": 2,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_reinterpret_given_quantity\",\n  \"repair_target\": \"step 2\",\n  \"hint_level\": \"medium\",\n  \"leakage_constraint\": \"can_point_to_local_step_only\",\n  \"actionable_diff_reason\": \"Student incorrectly divides 45 by total ratio 8, treating 45 as total candles instead of red candles only.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Step 2 is first wrong; student misinterprets 45 as total. Intervention needed to correct interpretation.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 880,
+      "completion_tokens": 159,
+      "total_tokens": 1039,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 880
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 2,
+    "earliest_actionable_step": 2,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity",
+    "repair_target": "step 2",
+    "hint_level": "medium",
+    "leakage_constraint": "can_point_to_local_step_only",
+    "actionable_diff_reason": "Student incorrectly divides 45 by total ratio 8, treating 45 as total candles instead of red candles only.",
+    "confidence": 0.95,
+    "short_rationale": "Step 2 is first wrong; student misinterprets 45 as total. Intervention needed to correct interpretation."
+  },
+  "cache_hit": false
+}

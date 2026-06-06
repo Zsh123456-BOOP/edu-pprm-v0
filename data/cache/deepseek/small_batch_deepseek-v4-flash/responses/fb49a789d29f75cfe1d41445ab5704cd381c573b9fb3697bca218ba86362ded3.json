@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0000",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "ea352986-e8e2-4d2f-81f6-0e12f6ef05d6",
+    "object": "chat.completion",
+    "created": 1780736030,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 2,\n  \"earliest_actionable_step\": 2,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_recompute_local_expression\",\n  \"repair_target\": \"step 2\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"can_point_to_local_step_only\",\n  \"actionable_diff_reason\": \"Student states they computed incorrectly but does not correct it; the error is in the local expression computation.\",\n  \"confidence\": 0.9,\n  \"short_rationale\": \"Step 2 is a meta-statement about an error but no correction is made; intervention needed to recompute.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 667,
+      "completion_tokens": 155,
+      "total_tokens": 822,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 667
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 2,
+    "earliest_actionable_step": 2,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_recompute_local_expression",
+    "repair_target": "step 2",
+    "hint_level": "low",
+    "leakage_constraint": "can_point_to_local_step_only",
+    "actionable_diff_reason": "Student states they computed incorrectly but does not correct it; the error is in the local expression computation.",
+    "confidence": 0.9,
+    "short_rationale": "Step 2 is a meta-statement about an error but no correction is made; intervention needed to recompute."
+  },
+  "cache_hit": false
+}

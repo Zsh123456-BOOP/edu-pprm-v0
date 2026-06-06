@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0001",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "b9471f4f-ab8d-4226-b154-ecb98aff542b",
+    "object": "chat.completion",
+    "created": 1780736048,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 1,\n  \"earliest_actionable_step\": 1,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_recompute_local_expression\",\n  \"repair_target\": \"step 1: '7 - 4 = 3 more days'\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"can_point_to_local_step_only\",\n  \"actionable_diff_reason\": \"Student incorrectly computed remaining days as 7-4=3, but Sunday to Thursday is 5 days, so remaining days should be 2.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"First wrong step is step 1 where student miscounts days; earliest intervention is at step 1 to correct the day count.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 938,
+      "completion_tokens": 181,
+      "total_tokens": 1119,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 938
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 1,
+    "earliest_actionable_step": 1,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_recompute_local_expression",
+    "repair_target": "step 1: '7 - 4 = 3 more days'",
+    "hint_level": "low",
+    "leakage_constraint": "can_point_to_local_step_only",
+    "actionable_diff_reason": "Student incorrectly computed remaining days as 7-4=3, but Sunday to Thursday is 5 days, so remaining days should be 2.",
+    "confidence": 0.95,
+    "short_rationale": "First wrong step is step 1 where student miscounts days; earliest intervention is at step 1 to correct the day count."
+  },
+  "cache_hit": false
+}

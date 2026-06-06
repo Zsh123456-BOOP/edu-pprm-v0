@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0006",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "e91d4d75-9c6a-4c3e-bd4c-895ecea14775",
+    "object": "chat.completion",
+    "created": 1780736063,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 4,\n  \"earliest_actionable_step\": 4,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_recompute_local_expression\",\n  \"repair_target\": \"step 4: Mabel has 85 - 17 = 68 more marbles than Katrina.\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"Student incorrectly computed Mabel's marbles relative to Katrina instead of Amanda, leading to a chain of errors.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Step 4 is the first wrong step; student should compute Mabel - Amanda directly.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 798,
+      "completion_tokens": 169,
+      "total_tokens": 967,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 798
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 4,
+    "earliest_actionable_step": 4,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_recompute_local_expression",
+    "repair_target": "step 4: Mabel has 85 - 17 = 68 more marbles than Katrina.",
+    "hint_level": "low",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "Student incorrectly computed Mabel's marbles relative to Katrina instead of Amanda, leading to a chain of errors.",
+    "confidence": 0.95,
+    "short_rationale": "Step 4 is the first wrong step; student should compute Mabel - Amanda directly."
+  },
+  "cache_hit": false
+}

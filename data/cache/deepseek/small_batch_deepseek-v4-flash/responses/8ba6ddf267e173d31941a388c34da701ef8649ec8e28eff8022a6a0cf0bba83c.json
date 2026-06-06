@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0009",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "56955a38-542f-45e9-b6de-5de133826514",
+    "object": "chat.completion",
+    "created": 1780736099,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 1,\n  \"earliest_actionable_step\": 1,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_justify_inference\",\n  \"repair_target\": \"step 1\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"Student provided only final answer without any work, so earliest step is step 1 where intervention is needed to elicit reasoning.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Student only gave final answer 990, which is correct but no steps shown. Intervention needed to ensure understanding.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 924,
+      "completion_tokens": 160,
+      "total_tokens": 1084,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 924
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 1,
+    "earliest_actionable_step": 1,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_justify_inference",
+    "repair_target": "step 1",
+    "hint_level": "low",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "Student provided only final answer without any work, so earliest step is step 1 where intervention is needed to elicit reasoning.",
+    "confidence": 0.95,
+    "short_rationale": "Student only gave final answer 990, which is correct but no steps shown. Intervention needed to ensure understanding."
+  },
+  "cache_hit": false
+}

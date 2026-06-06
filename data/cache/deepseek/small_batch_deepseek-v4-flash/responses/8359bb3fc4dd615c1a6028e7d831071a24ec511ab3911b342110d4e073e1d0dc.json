@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0000",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "f12125f4-c9f5-4595-9b1b-a6c642ae5e7b",
+    "object": "chat.completion",
+    "created": 1780736028,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 6,\n  \"earliest_actionable_step\": 6,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_recompute_local_expression\",\n  \"repair_target\": \"step 6\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"can_point_to_local_step_only\",\n  \"actionable_diff_reason\": \"Student incorrectly set up equation: should be 36 = 2(x+6) not 2(x+6-3).\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Student's equation in step 6 incorrectly subtracts 3 from James's future age; the correct equation is 36 = 2(x+6).\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 933,
+      "completion_tokens": 171,
+      "total_tokens": 1104,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 933
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 6,
+    "earliest_actionable_step": 6,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_recompute_local_expression",
+    "repair_target": "step 6",
+    "hint_level": "low",
+    "leakage_constraint": "can_point_to_local_step_only",
+    "actionable_diff_reason": "Student incorrectly set up equation: should be 36 = 2(x+6) not 2(x+6-3).",
+    "confidence": 0.95,
+    "short_rationale": "Student's equation in step 6 incorrectly subtracts 3 from James's future age; the correct equation is 36 = 2(x+6)."
+  },
+  "cache_hit": false
+}

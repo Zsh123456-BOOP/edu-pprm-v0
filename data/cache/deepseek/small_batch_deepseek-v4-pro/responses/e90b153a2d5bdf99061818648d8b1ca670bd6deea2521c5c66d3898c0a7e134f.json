@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-pro_pilot_gsm8k_synthetic_0000",
+  "model": "deepseek-v4-pro",
+  "raw": {
+    "id": "b72320cd-ef77-408c-8ad5-fd5078ffedaf",
+    "object": "chat.completion",
+    "created": 1780736121,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 2,\n  \"earliest_actionable_step\": 2,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_recompute_local_expression\",\n  \"repair_target\": \"step 2\",\n  \"hint_level\": \"medium\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"Step 2 states an incorrect computation but does not show the actual expression; the student acknowledges an error, so intervention is needed to correct the local expression.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Step 2 explicitly says the intermediate value is off by 2, which is a self-identified error. The tutor should prompt recomputation of the local expression without revealing the final answer.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 667,
+      "completion_tokens": 183,
+      "total_tokens": 850,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 667
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 2,
+    "earliest_actionable_step": 2,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_recompute_local_expression",
+    "repair_target": "step 2",
+    "hint_level": "medium",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "Step 2 states an incorrect computation but does not show the actual expression; the student acknowledges an error, so intervention is needed to correct the local expression.",
+    "confidence": 0.95,
+    "short_rationale": "Step 2 explicitly says the intermediate value is off by 2, which is a self-identified error. The tutor should prompt recomputation of the local expression without revealing the final answer."
+  },
+  "cache_hit": false
+}

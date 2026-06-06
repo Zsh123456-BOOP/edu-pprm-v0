@@ -62,3 +62,53 @@ def build_label_messages(sample: dict[str, Any]) -> list[dict[str, str]]:
             ),
         },
     ]
+
+
+def build_compact_label_messages(sample: dict[str, Any]) -> list[dict[str, str]]:
+    allowed = {
+        "minimal_repair_type": [
+            "no_intervention_needed",
+            "ask_to_recompute_local_expression",
+            "ask_to_reinterpret_given_quantity",
+            "ask_to_rewrite_equation_or_expression",
+            "ask_to_check_operation_or_formula",
+            "ask_to_check_unit_conversion",
+            "ask_to_justify_inference",
+            "ask_to_compare_with_problem_condition",
+            "ask_to_substitute_back",
+            "ask_clarifying_question",
+            "insufficient_information",
+        ],
+        "hint_level": ["none", "low", "medium", "high", "forbidden_full_solution"],
+        "leakage_constraint": [
+            "do_not_reveal_final_answer",
+            "do_not_solve_next_step",
+            "can_point_to_local_step_only",
+            "can_name_error_type",
+            "can_show_micro_example",
+        ],
+    }
+    payload = {
+        "sample_id": sample["sample_id"],
+        "problem": sample["problem"],
+        "student_trace": sample["student_trace"],
+        "known_dataset_annotation": sample["existing_labels"] if sample["problem"]["source"] == "stepverify" else None,
+        "allowed_labels": allowed,
+    }
+    return [
+        {
+            "role": "system",
+            "content": "Return JSON only. Label a math student trace. Do not reveal final answers.",
+        },
+        {
+            "role": "user",
+            "content": (
+                "Definitions: first_wrong_step is the first mathematically wrong step. "
+                "earliest_actionable_step is the earliest step where a tutor should intervene and may differ. "
+                "If self-corrected use intervention_needed=false. If too sparse use uncertain and insufficient_information. "
+                "Return keys: first_wrong_step, earliest_actionable_step, intervention_needed, minimal_repair_type, "
+                "repair_target, hint_level, leakage_constraint, actionable_diff_reason, confidence, short_rationale.\n"
+                + json.dumps(payload, ensure_ascii=False)
+            ),
+        },
+    ]

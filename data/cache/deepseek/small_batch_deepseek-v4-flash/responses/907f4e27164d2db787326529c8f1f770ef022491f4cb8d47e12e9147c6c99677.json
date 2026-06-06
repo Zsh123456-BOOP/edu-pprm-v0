@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0001",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "f59f1cd2-d60a-4961-8953-b54f7ddc69b5",
+    "object": "chat.completion",
+    "created": 1780736075,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 2,\n  \"earliest_actionable_step\": 2,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_justify_inference\",\n  \"repair_target\": 2,\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"can_point_to_local_step_only\",\n  \"actionable_diff_reason\": \"Step 2 is an irrelevant statement about moving terms and signs, which does not follow from step 1 and is not needed for the solution. The student seems confused about a different concept.\",\n  \"confidence\": 0.9,\n  \"short_rationale\": \"Step 2 is mathematically wrong because it introduces an irrelevant algebraic rule not applicable to the problem. The student should be asked to justify why they wrote that step.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 668,
+      "completion_tokens": 180,
+      "total_tokens": 848,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 668
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 2,
+    "earliest_actionable_step": 2,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_justify_inference",
+    "repair_target": 2,
+    "hint_level": "low",
+    "leakage_constraint": "can_point_to_local_step_only",
+    "actionable_diff_reason": "Step 2 is an irrelevant statement about moving terms and signs, which does not follow from step 1 and is not needed for the solution. The student seems confused about a different concept.",
+    "confidence": 0.9,
+    "short_rationale": "Step 2 is mathematically wrong because it introduces an irrelevant algebraic rule not applicable to the problem. The student should be asked to justify why they wrote that step."
+  },
+  "cache_hit": false
+}

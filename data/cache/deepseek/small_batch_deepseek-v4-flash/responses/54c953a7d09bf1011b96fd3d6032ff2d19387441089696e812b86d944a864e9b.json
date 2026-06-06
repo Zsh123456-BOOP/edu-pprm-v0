@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0005",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "f6ebbe2c-4c1c-46a5-becd-2726e4c035ae",
+    "object": "chat.completion",
+    "created": 1780736088,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 1,\n  \"earliest_actionable_step\": 1,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_reinterpret_given_quantity\",\n  \"repair_target\": \"step 1\",\n  \"hint_level\": \"medium\",\n  \"leakage_constraint\": \"can_name_error_type\",\n  \"actionable_diff_reason\": \"Step 1 states an equation that does not match the problem condition; the student misinterprets '80% more' as an equation rather than a calculation.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Step 1 is the first wrong step; the student writes an equation that does not match the relationship. Intervention is needed to correct the misinterpretation of '80% more'.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 854,
+      "completion_tokens": 180,
+      "total_tokens": 1034,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 854
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 1,
+    "earliest_actionable_step": 1,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity",
+    "repair_target": "step 1",
+    "hint_level": "medium",
+    "leakage_constraint": "can_name_error_type",
+    "actionable_diff_reason": "Step 1 states an equation that does not match the problem condition; the student misinterprets '80% more' as an equation rather than a calculation.",
+    "confidence": 0.95,
+    "short_rationale": "Step 1 is the first wrong step; the student writes an equation that does not match the relationship. Intervention is needed to correct the misinterpretation of '80% more'."
+  },
+  "cache_hit": false
+}

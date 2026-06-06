@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0008",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "bc6052f0-66fa-46b6-9c51-1250fa62c71c",
+    "object": "chat.completion",
+    "created": 1780736096,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": null,\n  \"earliest_actionable_step\": null,\n  \"intervention_needed\": false,\n  \"minimal_repair_type\": \"no_intervention_needed\",\n  \"repair_target\": null,\n  \"hint_level\": \"none\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": null,\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Student self-corrected a local error before proceeding; no intervention needed.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 828,
+      "completion_tokens": 123,
+      "total_tokens": 951,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 828
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": null,
+    "earliest_actionable_step": null,
+    "intervention_needed": false,
+    "minimal_repair_type": "no_intervention_needed",
+    "repair_target": null,
+    "hint_level": "none",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": null,
+    "confidence": 0.95,
+    "short_rationale": "Student self-corrected a local error before proceeding; no intervention needed."
+  },
+  "cache_hit": false
+}

@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0002",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "2b0e4312-a84f-4318-8cc5-80bc9cdf14f0",
+    "object": "chat.completion",
+    "created": 1780736079,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 1,\n  \"earliest_actionable_step\": 1,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_check_operation_or_formula\",\n  \"repair_target\": \"step 1\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"can_point_to_local_step_only\",\n  \"actionable_diff_reason\": \"Student incorrectly uses addition instead of multiplication to compute half of $100.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Step 1 is wrong: should compute half of $100 as 100/2=50, but student wrote addition. Step 2 and 3 are correct given the error.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 733,
+      "completion_tokens": 164,
+      "total_tokens": 897,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 733
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 1,
+    "earliest_actionable_step": 1,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_check_operation_or_formula",
+    "repair_target": "step 1",
+    "hint_level": "low",
+    "leakage_constraint": "can_point_to_local_step_only",
+    "actionable_diff_reason": "Student incorrectly uses addition instead of multiplication to compute half of $100.",
+    "confidence": 0.95,
+    "short_rationale": "Step 1 is wrong: should compute half of $100 as 100/2=50, but student wrote addition. Step 2 and 3 are correct given the error."
+  },
+  "cache_hit": false
+}

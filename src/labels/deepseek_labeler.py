@@ -9,7 +9,7 @@ from typing import Any
 
 from src.data.common import CACHE_DIR, PILOT_DIR, REPORT_DIR, ROOT, append_jsonl, read_jsonl_file, write_json, write_jsonl
 from src.data.validate_schema import validate_sample
-from src.labels.deepseek_prompts import build_label_messages
+from src.labels.deepseek_prompts import build_compact_label_messages, build_label_messages
 from src.labels.validate_deepseek_labels import validate_deepseek_label
 from src.llm.deepseek_client import DeepSeekClient, load_config
 
@@ -85,8 +85,11 @@ def apply_label(sample: dict[str, Any], label: dict[str, Any], model_name: str, 
     return updated
 
 
-def label_samples(samples: list[dict[str, Any]], *, use_api: bool, dry_run: bool = False) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
-    config = load_config()
+def label_samples(samples: list[dict[str, Any]], *, use_api: bool, dry_run: bool = False, model: str | None = None, compact_prompt: bool = False) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
+    config = load_config(model=model)
+    if compact_prompt:
+        config["thinking"] = {"type": "disabled"}
+        config["reasoning_effort"] = None
     client = DeepSeekClient(config=config, dry_run=dry_run)
     outputs = []
     failures = []
@@ -95,7 +98,7 @@ def label_samples(samples: list[dict[str, Any]], *, use_api: bool, dry_run: bool
     api_available = use_api and bool(os.environ.get("DEEPSEEK_API_KEY"))
     cache_dir = ROOT / config.get("cache_dir", str(CACHE_DIR / "deepseek"))
     for sample in samples:
-        messages = build_label_messages(sample)
+        messages = build_compact_label_messages(sample) if compact_prompt else build_label_messages(sample)
         label: dict[str, Any]
         model_name = config["model"]
         response_id = None
@@ -127,6 +130,7 @@ def label_samples(samples: list[dict[str, Any]], *, use_api: bool, dry_run: bool
         "failure_count": len(failures),
         "api_available": api_available,
         "model": config["model"],
+        "compact_prompt": compact_prompt,
         "parse_rate": round(parse_ok / len(samples), 4) if samples else 0,
         "schema_validation_pass_rate": round(valid_ok / len(samples), 4) if samples else 0,
         "minimal_repair_type_distribution": dict(Counter(s["pedagogical_labels"]["minimal_repair_type"] for s in outputs)),
@@ -142,9 +146,11 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=PILOT_DIR / "pilot_pool.autolabeled.jsonl")
     parser.add_argument("--use-api", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--model")
+    parser.add_argument("--compact-prompt", action="store_true")
     args = parser.parse_args()
     samples = read_jsonl_file(args.input)
-    outputs, failures, summary = label_samples(samples, use_api=args.use_api, dry_run=args.dry_run)
+    outputs, failures, summary = label_samples(samples, use_api=args.use_api, dry_run=args.dry_run, model=args.model, compact_prompt=args.compact_prompt)
     write_jsonl(args.output, outputs)
     write_jsonl(REPORT_DIR / "deepseek_label_failures.jsonl", failures)
     write_json(REPORT_DIR / "deepseek_label_summary.json", summary)

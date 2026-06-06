@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0008",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "57e4aeca-abf4-4e65-bc0f-f59b3f2b5955",
+    "object": "chat.completion",
+    "created": 1780736070,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 1,\n  \"earliest_actionable_step\": 1,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_recompute_local_expression\",\n  \"repair_target\": \"step 1\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"can_point_to_local_step_only\",\n  \"actionable_diff_reason\": \"Student incorrectly added 3 + 5 + 2 instead of computing 3*2 + 5 + 2.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"First wrong step is step 1 where student misinterprets couples. Earliest actionable step is step 1 to correct the count.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 874,
+      "completion_tokens": 165,
+      "total_tokens": 1039,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 874
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 1,
+    "earliest_actionable_step": 1,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_recompute_local_expression",
+    "repair_target": "step 1",
+    "hint_level": "low",
+    "leakage_constraint": "can_point_to_local_step_only",
+    "actionable_diff_reason": "Student incorrectly added 3 + 5 + 2 instead of computing 3*2 + 5 + 2.",
+    "confidence": 0.95,
+    "short_rationale": "First wrong step is step 1 where student misinterprets couples. Earliest actionable step is step 1 to correct the count."
+  },
+  "cache_hit": false
+}

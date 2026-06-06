@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0009",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "ba726628-d1e4-437d-b2e7-dbc110e99222",
+    "object": "chat.completion",
+    "created": 1780736073,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 2,\n  \"earliest_actionable_step\": 2,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_recompute_local_expression\",\n  \"repair_target\": \"step 2\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"can_point_to_local_step_only\",\n  \"actionable_diff_reason\": \"Student incorrectly computed total before adding the additional teddies, missing the extra teddies from mom.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Step 2 prematurely sums initial mascots without accounting for the additional teddies given per bunny.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 889,
+      "completion_tokens": 154,
+      "total_tokens": 1043,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 889
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 2,
+    "earliest_actionable_step": 2,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_recompute_local_expression",
+    "repair_target": "step 2",
+    "hint_level": "low",
+    "leakage_constraint": "can_point_to_local_step_only",
+    "actionable_diff_reason": "Student incorrectly computed total before adding the additional teddies, missing the extra teddies from mom.",
+    "confidence": 0.95,
+    "short_rationale": "Step 2 prematurely sums initial mascots without accounting for the additional teddies given per bunny."
+  },
+  "cache_hit": false
+}

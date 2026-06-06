@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0004",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "9cefccaa-785f-4544-a31e-00c1324189ca",
+    "object": "chat.completion",
+    "created": 1780736085,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 1,\n  \"earliest_actionable_step\": 1,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_check_unit_conversion\",\n  \"repair_target\": \"step 1\",\n  \"hint_level\": \"medium\",\n  \"leakage_constraint\": \"can_name_error_type\",\n  \"actionable_diff_reason\": \"Student incorrectly converts units in step 1, but the error is not visible in later steps; intervention needed at step 1 to correct the unit conversion.\",\n  \"confidence\": 0.9,\n  \"short_rationale\": \"Step 1 states using wrong scale factor, but no explicit calculation; step 2 and 3 are correct given step 1's result. The error is in the unit conversion assumption.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 669,
+      "completion_tokens": 178,
+      "total_tokens": 847,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 669
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 1,
+    "earliest_actionable_step": 1,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_check_unit_conversion",
+    "repair_target": "step 1",
+    "hint_level": "medium",
+    "leakage_constraint": "can_name_error_type",
+    "actionable_diff_reason": "Student incorrectly converts units in step 1, but the error is not visible in later steps; intervention needed at step 1 to correct the unit conversion.",
+    "confidence": 0.9,
+    "short_rationale": "Step 1 states using wrong scale factor, but no explicit calculation; step 2 and 3 are correct given step 1's result. The error is in the unit conversion assumption."
+  },
+  "cache_hit": false
+}

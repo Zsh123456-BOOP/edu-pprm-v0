@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_stepverify_0003",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "5f3f7610-d8ba-4049-96d8-5560c7e9f4c9",
+    "object": "chat.completion",
+    "created": 1780736054,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 3,\n  \"earliest_actionable_step\": 3,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_reinterpret_given_quantity\",\n  \"repair_target\": \"step 3\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"can_point_to_local_step_only\",\n  \"actionable_diff_reason\": \"Student misinterprets 'pants and shirt cost $100' as 'shirt + coat = 100' and 'pants and coat cost $244' as 'coat + shirt = 244', ignoring pants and mislabeling variables.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Student incorrectly assigns equations: step 3 should be pants + shirt = 100, not S + C = 100; step 5 should be pants + coat = 244, not C + S = 244.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1038,
+      "completion_tokens": 209,
+      "total_tokens": 1247,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 1038
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 3,
+    "earliest_actionable_step": 3,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity",
+    "repair_target": "step 3",
+    "hint_level": "low",
+    "leakage_constraint": "can_point_to_local_step_only",
+    "actionable_diff_reason": "Student misinterprets 'pants and shirt cost $100' as 'shirt + coat = 100' and 'pants and coat cost $244' as 'coat + shirt = 244', ignoring pants and mislabeling variables.",
+    "confidence": 0.95,
+    "short_rationale": "Student incorrectly assigns equations: step 3 should be pants + shirt = 100, not S + C = 100; step 5 should be pants + coat = 244, not C + S = 244."
+  },
+  "cache_hit": false
+}

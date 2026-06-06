@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0006",
+  "model": "deepseek-v4-flash",
+  "raw": {
+    "id": "7f7daa74-704f-4104-b74f-d484d21b179d",
+    "object": "chat.completion",
+    "created": 1780736091,
+    "model": "deepseek-v4-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 2,\n  \"earliest_actionable_step\": 2,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_reinterpret_given_quantity\",\n  \"repair_target\": \"step 2\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"can_name_error_type\",\n  \"actionable_diff_reason\": \"Student inserted a generic error statement instead of a calculation, indicating confusion about the given values.\",\n  \"confidence\": 0.9,\n  \"short_rationale\": \"Step 2 is a placeholder error, not a mathematical step; earliest intervention needed to clarify the given quantities.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 750,
+      "completion_tokens": 151,
+      "total_tokens": 901,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 750
+    },
+    "system_fingerprint": "fp_8b330d02d0_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 2,
+    "earliest_actionable_step": 2,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity",
+    "repair_target": "step 2",
+    "hint_level": "low",
+    "leakage_constraint": "can_name_error_type",
+    "actionable_diff_reason": "Student inserted a generic error statement instead of a calculation, indicating confusion about the given values.",
+    "confidence": 0.9,
+    "short_rationale": "Step 2 is a placeholder error, not a mathematical step; earliest intervention needed to clarify the given quantities."
+  },
+  "cache_hit": false
+}

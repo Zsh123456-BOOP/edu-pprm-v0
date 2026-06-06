@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-pro_pilot_stepverify_0000",
+  "model": "deepseek-v4-pro",
+  "raw": {
+    "id": "79b9bf26-3c08-409d-8e11-b47ae5adc24e",
+    "object": "chat.completion",
+    "created": 1780736117,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 6,\n  \"earliest_actionable_step\": 6,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_rewrite_equation_or_expression\",\n  \"repair_target\": \"step 6\",\n  \"hint_level\": \"medium\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"The equation in step 6 incorrectly subtracts 3 from the future age; the correct equation should be 36 = 2(x + 6).\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Step 6 sets up the equation incorrectly by subtracting 3 from (x+6), misinterpreting the relationship. The correct equation is 36 = 2(x+6).\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 933,
+      "completion_tokens": 187,
+      "total_tokens": 1120,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 933
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 6,
+    "earliest_actionable_step": 6,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_rewrite_equation_or_expression",
+    "repair_target": "step 6",
+    "hint_level": "medium",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "The equation in step 6 incorrectly subtracts 3 from the future age; the correct equation should be 36 = 2(x + 6).",
+    "confidence": 0.95,
+    "short_rationale": "Step 6 sets up the equation incorrectly by subtracting 3 from (x+6), misinterpreting the relationship. The correct equation is 36 = 2(x+6)."
+  },
+  "cache_hit": false
+}
