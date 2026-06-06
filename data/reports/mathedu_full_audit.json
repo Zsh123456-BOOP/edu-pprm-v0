@@ -1,0 +1,59 @@
+{
+  "source": "mathedu",
+  "raw_root": "/Users/zhongsuhua/Desktop/CodexProjects/LLM过程奖励与推理验证/data/raw/mathedu",
+  "total_rows_scanned": 28336,
+  "counts": {
+    "problem_text_direct": 0,
+    "recoverable_question": 0,
+    "student_solution_raw": 28336,
+    "teacher_feedback": 6992,
+    "error_type_or_reason": 706,
+    "step_level_pilot_candidate": 0,
+    "missing_question_but_matchable_id": 28336,
+    "fully_unrecoverable": 0
+  },
+  "ratios": {
+    "problem_text_direct": 0.0,
+    "recoverable_question": 0.0,
+    "student_solution_raw": 1.0,
+    "teacher_feedback": 0.2468,
+    "error_type_or_reason": 0.0249,
+    "step_level_pilot_candidate": 0.0,
+    "missing_question_but_matchable_id": 1.0,
+    "fully_unrecoverable": 0.0
+  },
+  "field_hits": {
+    "problem_text": 0,
+    "problem": 0,
+    "question": 0,
+    "prompt": 0,
+    "original_question": 0,
+    "problem_id": 0,
+    "source_id": 0,
+    "image_id": 0,
+    "worksheet_id": 0,
+    "id": 28336,
+    "student_solution_raw": 0,
+    "student_process": 27762,
+    "student_solution": 0,
+    "student_answer": 28336,
+    "teacher_feedback": 0,
+    "teacher_review": 6992,
+    "feedback": 0,
+    "error_type": 0,
+    "reason": 0,
+    "the_reason_why_student_cant_solve_en": 706,
+    "the_reason_why_student_cant_solve_ch": 706
+  },
+  "decision_rule": {
+    "candidate_for_phase3_pilot": "recoverable question ratio >= 0.50",
+    "small_real_student_auxiliary_subset": "0.10 <= recoverable question ratio < 0.50",
+    "exclude_from_phase3_pilot_keep_for_later_enhancement": "recoverable question ratio < 0.10"
+  },
+  "recommendation": "exclude_from_phase3_pilot_keep_for_later_enhancement",
+  "notes": [
+    "Audited local raw JSON synced from NYCU-NLP-Lab/MathEDU dataset directory.",
+    "The field named id is counted as a matchable source row id, not as a recovered problem id.",
+    "No problem text is inferred from student process or teacher feedback."
+  ]
+}

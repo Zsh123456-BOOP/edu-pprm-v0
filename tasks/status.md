@@ -101,10 +101,102 @@
 失败或不确定点: PRM800K 是通用 PRM supervision，不能当 pedagogical repair 标签；ProcessBench 不含 error_category/error_description/repair labels。
 是否需要人工 review: 是，确认 baseline/external_eval 使用边界。
 
+### Card 1.6 MathEDU 题干可恢复性审计
+- [x] 扫描 MathEDU 全量本地原始数据
+- [x] 检查 problem_text/question/prompt/problem_id/source_id/image_id/worksheet_id/original_question 等字段
+- [x] 统计题干、学生过程、教师反馈、错误原因、step-level pilot、可匹配 ID、不可恢复样本
+- [x] 输出 data/reports/mathedu_full_audit.json
+- [x] 输出 data/reports/mathedu_recoverable_examples.jsonl
+- [x] 输出 data/reports/mathedu_unusable_examples.jsonl
+
+完成内容: 将 MathEDU GitHub 公开 JSON 同步到本地 data/raw/mathedu/ 并审计 21 个 split 文件；raw 文件被 .gitignore 忽略，不提交。
+生成文件: src/data/audit_mathedu.py, data/reports/mathedu_full_audit.json, data/reports/mathedu_recoverable_examples.jsonl, data/reports/mathedu_unusable_examples.jsonl。
+运行命令: python3 -m src.data.audit_mathedu。
+主要统计结果: 扫描 28,336 行；problem_text 直接存在 0/28,336；可恢复 question/problem/prompt/original_question 0/28,336；student_solution_raw 28,336/28,336；teacher_feedback/review 6,992/28,336；error_type/reason 706/28,336；step-level pilot candidate 0；缺题干但有可匹配 ID 28,336；完全不可恢复 0。
+失败或不确定点: 行级 id 只能说明后续可能外部匹配，当前没有题干恢复表；按规则 MathEDU 暂不进入 Phase 3 core pilot。
+是否需要人工 review: 是，确认 MathEDU 是否按建议排除出核心 pilot。
+
 ## Phase 2
 
 ### Card 2.1 Edu-PPRM schema
-- [ ] 未开始，Review Gate 1 后再决定
+- [x] 创建 schemas/edu_pprm.schema.json
+- [x] 实现 src/data/validate_schema.py
+- [x] 所有 schema conversion examples 通过 schema 校验
+- [x] reserved 保留 budget_data/distillation_data/handwrite_data 且显式为 null
+- [x] MathEDU 不脑补题干，审计失败样本写 excluded_reason
+- [x] 添加 ProcessBench 路径守卫，禁止进入 train/interim
+
+完成内容: 定义 problem、student_trace、existing_labels、pedagogical_labels、label_metadata、reserved 六块 schema；生成 20 条 conversion examples 并通过 validator。
+生成文件: schemas/edu_pprm.schema.json, src/data/validate_schema.py, data/reports/schema_conversion_examples.jsonl, tests/test_schema.py。
+运行命令: python3 -m src.data.validate_schema --write-examples --jsonl data/reports/schema_conversion_examples.jsonl。
+主要统计结果: schema examples 共 20 条；StepVerify 5；GSM8K placeholder 5；MATH placeholder 5；MathEDU excluded 5；20/20 通过 validate_schema。
+失败或不确定点: MathEDU examples 仅用于记录 excluded_reason，不作为 Phase 3 pilot eligible 样本。
+是否需要人工 review: 是，确认 schema 是否足够支持 Phase 3 标注。
 
 ### Card 2.2 标签 taxonomy
-- [ ] 未开始，Review Gate 1 后再决定
+- [x] 创建 configs/label_taxonomy.yaml
+- [x] 实现 src/labels/taxonomy.py
+- [x] 添加 tests/test_label_taxonomy.py
+- [x] 每个 label 写 definition
+- [x] 每个 label 写 positive_examples
+- [x] 每个 label 写 negative_examples
+- [x] 每个 label 写 common_confusions
+- [x] 输出 docs/label_taxonomy_readable.md
+
+完成内容: 按指定 taxonomy 定义 3 个 intervention states、11 个 minimal repair types、5 个 hint levels、5 个 leakage constraints，并生成可读文档。
+生成文件: configs/label_taxonomy.yaml, src/labels/taxonomy.py, docs/label_taxonomy_readable.md, tests/test_label_taxonomy.py。
+运行命令: python3 -m src.labels.taxonomy --check。
+主要统计结果: taxonomy check 通过；minimal_repair_type 控制为 11 类。
+失败或不确定点: 最可能过细或分歧的是 minimal_repair_type 中 quantity reinterpretation vs equation rewrite。
+是否需要人工 review: 是，确认标签粒度。
+
+### Card 2.3 annotation guideline
+- [x] 创建 docs/annotation_guideline.md
+- [x] 讲清 first_wrong_step 与 earliest_actionable_step 区别
+- [x] 明确二者可能相同也可能不同
+- [x] 明确不能把 earliest_actionable_step 简单设成 first_wrong_step
+- [x] 明确 uncertain / insufficient_information 使用场景
+- [x] 明确自我修正时 intervention_needed 可以为 false
+- [x] 写 20 个边界例子
+- [x] 输出 data/reports/boundary_cases_20.jsonl
+
+完成内容: 写入 Phase 2 标注指南和 20 个边界案例，覆盖用户指定的 20 类边界情形。
+生成文件: docs/annotation_guideline.md, data/reports/boundary_cases_20.jsonl。
+运行命令: python3 生成 boundary cases 与 guideline。
+主要统计结果: boundary cases 20/20；每条包含 problem sketch、student steps、first_wrong_step、earliest_actionable_step、intervention_needed、minimal_repair_type、hint_level、leakage_constraint、reason。
+失败或不确定点: 这些是 guideline examples，不是 pilot pool，也不是 gold labels。
+是否需要人工 review: 是，确认边界例子是否符合教师标注预期。
+
+### Card 2.4 Phase 3 pilot source policy
+- [x] 创建 docs/pilot_source_policy.md
+- [x] 根据 Review Gate 1 和 MathEDU audit 明确 Phase 3 来源策略
+- [x] StepVerify 约 120 条作为核心来源
+- [x] GSM8K synthetic 约 80 条
+- [x] MATH synthetic 约 40 条
+- [x] MathEDU 审计失败，暂不加入 core pilot
+- [x] PRM800K 不进入 pilot gold
+- [x] ProcessBench 不进入 pilot，只做 external eval
+
+完成内容: 写入 Phase 3 来源策略文档，但未构建 pilot pool。
+生成文件: docs/pilot_source_policy.md。
+运行命令: 无需运行；基于 Review Gate 1 和 MathEDU audit 结果撰写。
+主要统计结果: 建议 Phase 3 默认 120 StepVerify + 80 GSM8K synthetic + 40 MATH synthetic；MathEDU 0；PRM800K 0；ProcessBench 0。
+失败或不确定点: 具体采样和去重策略留到 Phase 3，经 Review Gate 2 批准后再做。
+是否需要人工 review: 是，确认是否按该策略进入 Phase 3。
+
+### Card 2.5 Review Gate 2 report
+- [x] 创建 data/reports/review_gate_2_summary.json
+- [x] 创建 reports/review_gate_2.md
+- [x] 报告 MathEDU 是否进入 Phase 3 pilot 的建议
+- [x] 报告 schema/taxonomy/guideline/boundary cases 路径
+- [x] 报告 schema 转换样例数量
+- [x] 报告标签体系是否过细
+- [x] 报告最可能导致老师分歧的标签
+- [x] 报告是否建议进入 Phase 3 pilot
+
+完成内容: 生成 Review Gate 2 JSON 和 Markdown 报告；明确停止在 Gate 2，不进入 Phase 3，不构建 pilot pool。
+生成文件: data/reports/review_gate_2_summary.json, reports/review_gate_2.md。
+运行命令: python3 -m compileall -q src; python3 -m src.data.validate_schema --jsonl data/reports/schema_conversion_examples.jsonl; python3 -m src.labels.taxonomy --check; python3 -m pytest。
+主要统计结果: compileall 通过；schema examples 20/20 通过；taxonomy check 通过；pytest unavailable。
+失败或不确定点: 本机无 pytest，无法运行 pytest runner；已在 Review Gate 2 报告中注明。
+是否需要人工 review: 是，Review Gate 2 必须人工决定是否进入 Phase 3。

@@ -1,0 +1,72 @@
+{
+  "review_gate": 2,
+  "phase3_started": false,
+  "pilot_pool_built": false,
+  "mathedu_phase3_recommendation": "exclude_from_phase3_pilot_keep_for_later_enhancement",
+  "mathedu_audit": {
+    "path": "data/reports/mathedu_full_audit.json",
+    "total_rows_scanned": 28336,
+    "counts": {
+      "problem_text_direct": 0,
+      "recoverable_question": 0,
+      "student_solution_raw": 28336,
+      "teacher_feedback": 6992,
+      "error_type_or_reason": 706,
+      "step_level_pilot_candidate": 0,
+      "missing_question_but_matchable_id": 28336,
+      "fully_unrecoverable": 0
+    },
+    "ratios": {
+      "problem_text_direct": 0.0,
+      "recoverable_question": 0.0,
+      "student_solution_raw": 1.0,
+      "teacher_feedback": 0.2468,
+      "error_type_or_reason": 0.0249,
+      "step_level_pilot_candidate": 0.0,
+      "missing_question_but_matchable_id": 1.0,
+      "fully_unrecoverable": 0.0
+    }
+  },
+  "paths": {
+    "schema": "schemas/edu_pprm.schema.json",
+    "schema_validator": "src/data/validate_schema.py",
+    "schema_conversion_examples": "data/reports/schema_conversion_examples.jsonl",
+    "taxonomy": "configs/label_taxonomy.yaml",
+    "taxonomy_readable": "docs/label_taxonomy_readable.md",
+    "annotation_guideline": "docs/annotation_guideline.md",
+    "boundary_cases_20": "data/reports/boundary_cases_20.jsonl",
+    "pilot_source_policy": "docs/pilot_source_policy.md"
+  },
+  "schema_conversion_example_counts": {
+    "stepverify": 5,
+    "gsm8k": 5,
+    "math": 5,
+    "mathedu": 5,
+    "mathedu_eligible_for_pilot": 0,
+    "mathedu_excluded_examples": 5
+  },
+  "label_complexity_assessment": {
+    "is_too_fine_grained": false,
+    "rationale": "The taxonomy is intentionally compact: 3 intervention states, 11 repair types, 5 hint levels, and 5 leakage constraints. The highest-risk complexity is minimal_repair_type, which should be monitored during pilot annotation."
+  },
+  "most_likely_teacher_disagreement_labels": [
+    "earliest_actionable_step",
+    "minimal_repair_type.ask_to_reinterpret_given_quantity vs ask_to_rewrite_equation_or_expression",
+    "hint_level.low vs medium",
+    "intervention_needed.false vs uncertain for self-correction or sparse traces",
+    "leakage_constraint.do_not_solve_next_step vs can_point_to_local_step_only"
+  ],
+  "recommend_enter_phase3_pilot": true,
+  "phase3_entry_conditions": [
+    "Human review accepts MathEDU exclusion from core pilot.",
+    "Pilot construction uses StepVerify/GSM8K/MATH only under docs/pilot_source_policy.md.",
+    "No ProcessBench train/interim use.",
+    "No handwritten image data."
+  ],
+  "validation": {
+    "compileall_src": "passed: python3 -m compileall -q src",
+    "schema_examples": "passed: 20 rows validated by python3 -m src.data.validate_schema --jsonl data/reports/schema_conversion_examples.jsonl",
+    "taxonomy": "passed: python3 -m src.labels.taxonomy --check",
+    "pytest": "unavailable: No module named pytest"
+  }
+}

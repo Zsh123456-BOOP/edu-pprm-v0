@@ -1,18 +1,179 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Edu-PPRM v0 Reserved Scope Schema Stub",
+  "title": "Edu-PPRM v0 Sample",
   "type": "object",
-  "required": ["reserved"],
+  "required": [
+    "sample_id",
+    "problem",
+    "student_trace",
+    "existing_labels",
+    "pedagogical_labels",
+    "label_metadata",
+    "reserved"
+  ],
   "properties": {
+    "sample_id": {"type": "string"},
+    "problem": {
+      "type": "object",
+      "required": [
+        "problem_id",
+        "source",
+        "source_split",
+        "problem_text",
+        "reference_solution_steps",
+        "gold_answer",
+        "topic",
+        "difficulty"
+      ],
+      "properties": {
+        "problem_id": {"type": ["string", "null"]},
+        "source": {"type": "string"},
+        "source_split": {"type": ["string", "null"]},
+        "problem_text": {"type": ["string", "null"]},
+        "reference_solution_steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["step_id", "text"],
+            "properties": {
+              "step_id": {"type": "integer"},
+              "text": {"type": ["string", "null"]}
+            },
+            "additionalProperties": false
+          }
+        },
+        "gold_answer": {"type": ["string", "null"]},
+        "topic": {"type": ["string", "null"]},
+        "difficulty": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "student_trace": {
+      "type": "object",
+      "required": [
+        "trace_id",
+        "trace_source",
+        "student_steps",
+        "student_final_answer",
+        "is_correct"
+      ],
+      "properties": {
+        "trace_id": {"type": ["string", "null"]},
+        "trace_source": {"type": "string"},
+        "student_steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["step_id", "text"],
+            "properties": {
+              "step_id": {"type": "integer"},
+              "text": {"type": ["string", "null"]}
+            },
+            "additionalProperties": false
+          }
+        },
+        "student_final_answer": {"type": ["string", "null"]},
+        "is_correct": {"type": ["boolean", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "existing_labels": {
+      "type": "object",
+      "required": [
+        "first_wrong_step",
+        "error_category",
+        "error_description",
+        "teacher_feedback"
+      ],
+      "properties": {
+        "first_wrong_step": {"type": ["integer", "null"]},
+        "error_category": {"type": ["string", "null"]},
+        "error_description": {"type": ["string", "null"]},
+        "teacher_feedback": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "pedagogical_labels": {
+      "type": "object",
+      "required": [
+        "intervention_needed",
+        "earliest_actionable_step",
+        "minimal_repair_type",
+        "repair_target",
+        "hint_level",
+        "leakage_constraint",
+        "actionable_diff_reason"
+      ],
+      "properties": {
+        "intervention_needed": {
+          "enum": [true, false, "uncertain", null]
+        },
+        "earliest_actionable_step": {"type": ["integer", "null"]},
+        "minimal_repair_type": {
+          "enum": [
+            "no_intervention_needed",
+            "ask_to_recompute_local_expression",
+            "ask_to_reinterpret_given_quantity",
+            "ask_to_rewrite_equation_or_expression",
+            "ask_to_check_operation_or_formula",
+            "ask_to_check_unit_conversion",
+            "ask_to_justify_inference",
+            "ask_to_compare_with_problem_condition",
+            "ask_to_substitute_back",
+            "ask_clarifying_question",
+            "insufficient_information",
+            null
+          ]
+        },
+        "repair_target": {"type": ["string", "null"]},
+        "hint_level": {
+          "enum": ["none", "low", "medium", "high", "forbidden_full_solution", null]
+        },
+        "leakage_constraint": {
+          "enum": [
+            "do_not_reveal_final_answer",
+            "do_not_solve_next_step",
+            "can_point_to_local_step_only",
+            "can_name_error_type",
+            "can_show_micro_example",
+            null
+          ]
+        },
+        "actionable_diff_reason": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "label_metadata": {
+      "type": "object",
+      "required": [
+        "quality_tier",
+        "label_source",
+        "annotator_ids",
+        "adjudication_status",
+        "excluded_reason"
+      ],
+      "properties": {
+        "quality_tier": {"enum": ["raw", "silver", "gold", null]},
+        "label_source": {"enum": ["converted", "auto", "teacher", "adjudicated", "excluded", null]},
+        "annotator_ids": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "adjudication_status": {"enum": ["none", "pending", "adjudicated", null]},
+        "excluded_reason": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
     "reserved": {
       "type": "object",
       "required": ["budget_data", "distillation_data", "handwrite_data"],
       "properties": {
-        "budget_data": {"type": ["object", "null"], "default": null},
-        "distillation_data": {"type": ["object", "null"], "default": null},
-        "handwrite_data": {"type": ["object", "null"], "default": null}
+        "budget_data": {"type": "null", "default": null},
+        "distillation_data": {"type": "null", "default": null},
+        "handwrite_data": {"type": "null", "default": null}
       },
       "additionalProperties": false
     }
-  }
+  },
+  "additionalProperties": false
 }
