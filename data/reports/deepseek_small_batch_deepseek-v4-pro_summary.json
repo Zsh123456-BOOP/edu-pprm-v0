@@ -1,19 +1,25 @@
 {
   "model": "deepseek-v4-pro",
-  "input_count": 2,
-  "success_count": 2,
+  "input_count": 20,
+  "success_count": 20,
   "failure_count": 0,
   "parse_rate": 1.0,
   "schema_validation_pass_rate": 1.0,
-  "total_seconds": 8.46,
-  "avg_latency_seconds": 4.23,
-  "max_latency_seconds": 4.611,
+  "total_seconds": 97.704,
+  "avg_latency_seconds": 4.885,
+  "max_latency_seconds": 7.68,
   "minimal_repair_type_distribution": {
-    "ask_to_rewrite_equation_or_expression": 1,
-    "ask_to_recompute_local_expression": 1
+    "ask_to_rewrite_equation_or_expression": 2,
+    "ask_to_reinterpret_given_quantity": 11,
+    "ask_to_recompute_local_expression": 2,
+    "ask_clarifying_question": 1,
+    "ask_to_check_operation_or_formula": 1,
+    "no_intervention_needed": 2,
+    "insufficient_information": 1
   },
   "intervention_needed_distribution": {
-    "True": 2
+    "True": 17,
+    "False": 3
   },
   "compact_prompt": true
 }

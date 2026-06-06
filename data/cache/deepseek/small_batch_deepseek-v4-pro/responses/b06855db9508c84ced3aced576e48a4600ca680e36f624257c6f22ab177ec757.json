@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-pro_pilot_gsm8k_synthetic_0001",
+  "model": "deepseek-v4-pro",
+  "raw": {
+    "id": "2e1b955e-ebbf-4cc0-bdce-62462c44b818",
+    "object": "chat.completion",
+    "created": 1780736579,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": null,\n  \"earliest_actionable_step\": 2,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_clarifying_question\",\n  \"repair_target\": \"Step 2\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"Step 2 is irrelevant to the problem and indicates a possible misunderstanding, but the subsequent step is correct. A tutor should clarify the student's intent.\",\n  \"confidence\": 0.9,\n  \"short_rationale\": \"Step 2 is a non-sequitur about moving terms, which doesn't apply here. The math in steps 1 and 3 is correct, so the error is conceptual or off-task. Intervention is needed to address the irrelevant statement.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 668,
+      "completion_tokens": 191,
+      "total_tokens": 859,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 668
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": null,
+    "earliest_actionable_step": 2,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_clarifying_question",
+    "repair_target": "Step 2",
+    "hint_level": "low",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "Step 2 is irrelevant to the problem and indicates a possible misunderstanding, but the subsequent step is correct. A tutor should clarify the student's intent.",
+    "confidence": 0.9,
+    "short_rationale": "Step 2 is a non-sequitur about moving terms, which doesn't apply here. The math in steps 1 and 3 is correct, so the error is conceptual or off-task. Intervention is needed to address the irrelevant statement."
+  },
+  "cache_hit": false
+}

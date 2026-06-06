@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-pro_pilot_gsm8k_synthetic_0006",
+  "model": "deepseek-v4-pro",
+  "raw": {
+    "id": "5829756b-92c3-4b92-aacd-db7d4ccf290a",
+    "object": "chat.completion",
+    "created": 1780736604,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 2,\n  \"earliest_actionable_step\": 2,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_reinterpret_given_quantity\",\n  \"repair_target\": \"step 2\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"Step 2 is a meta-statement about substituting a wrong value, not a calculation. The student recognizes an error but doesn't correct it. The earliest actionable step is step 2 because the tutor should prompt the student to identify and fix the misinterpretation before proceeding.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Step 2 indicates the student knows they used a wrong value but doesn't specify which. The tutor should ask them to re-read the problem and identify the correct quantity for small pizzas.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 750,
+      "completion_tokens": 207,
+      "total_tokens": 957,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 750
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 2,
+    "earliest_actionable_step": 2,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity",
+    "repair_target": "step 2",
+    "hint_level": "low",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "Step 2 is a meta-statement about substituting a wrong value, not a calculation. The student recognizes an error but doesn't correct it. The earliest actionable step is step 2 because the tutor should prompt the student to identify and fix the misinterpretation before proceeding.",
+    "confidence": 0.95,
+    "short_rationale": "Step 2 indicates the student knows they used a wrong value but doesn't specify which. The tutor should ask them to re-read the problem and identify the correct quantity for small pizzas."
+  },
+  "cache_hit": false
+}

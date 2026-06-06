@@ -344,12 +344,13 @@
 - [x] 修复 thinking disabled 与 reasoning_effort 同时设置导致的 HTTP 400
 - [x] 对 deepseek-v4-flash 做真实小批量验证
 - [x] 对 deepseek-v4-pro 做真实小批量验证
+- [x] 在同一批 20 条样本上比较 flash/pro 标签质量
 - [x] 输出 data/reports/deepseek_small_batch_comparison.json
 - [x] 输出 reports/deepseek_small_batch_validation.md
 
-完成内容: 添加真实 API 小批量吞吐验证脚本，并实测 compact prompt 下 flash/pro 可用性；未覆盖现有 240 条 fallback autolabeled 文件。
-生成文件: src/labels/deepseek_small_batch.py, reports/deepseek_small_batch_validation.md, data/reports/deepseek_small_batch_comparison.json, data/reports/deepseek_small_batch_deepseek-v4-flash_summary.json, data/reports/deepseek_small_batch_deepseek-v4-pro_summary.json。
-运行命令: python3 -m src.labels.deepseek_small_batch --limit 20 --models deepseek-v4-flash --timeout-seconds 30 --max-tokens 400; python3 -m src.labels.deepseek_small_batch --limit 2 --models deepseek-v4-pro --timeout-seconds 45 --max-tokens 400; python3 -m compileall -q src。
-主要统计结果: deepseek-v4-flash 20/20 成功，parse/schema 1.0，平均延迟 2.658s，最大 3.71s；deepseek-v4-pro 2/2 成功，parse/schema 1.0，平均延迟 4.23s，最大 4.611s。
-失败或不确定点: 早期小批量尝试因 invalid config 失败，已定位为 reasoning_effort 与 thinking.disabled 冲突并修复；pro 只测 2 条，未跑 20 条。
-是否需要人工 review: 是，建议下一步用 deepseek-v4-flash 跑全量 240 条真实 auto labels，再重跑 Gate 3。
+完成内容: 添加真实 API 小批量吞吐验证脚本，并在同一批 20 条上比较 flash/pro 质量；未覆盖现有 240 条 fallback autolabeled 文件。
+生成文件: src/labels/deepseek_small_batch.py, src/eval/compare_deepseek_models.py, reports/deepseek_small_batch_validation.md, reports/deepseek_model_quality_comparison.md, data/reports/deepseek_small_batch_comparison.json, data/reports/deepseek_model_quality_comparison.json。
+运行命令: python3 -m src.labels.deepseek_small_batch --limit 20 --models deepseek-v4-flash --timeout-seconds 30 --max-tokens 400; python3 -m src.labels.deepseek_small_batch --limit 20 --models deepseek-v4-pro --timeout-seconds 45 --max-tokens 400; python3 -m src.eval.compare_deepseek_models; python3 -m compileall -q src。
+主要统计结果: deepseek-v4-flash 20/20 成功，平均延迟 2.658s，质量分 0.665；deepseek-v4-pro 20/20 成功，平均延迟 4.885s，质量分 0.76。pro 在 StepVerify first_wrong_step、synthetic earliest_actionable、minimal_repair_type、hint_level 上更好。
+失败或不确定点: 早期小批量尝试因 invalid config 失败，已定位为 reasoning_effort 与 thinking.disabled 冲突并修复；20 条仍是小样本，不能替代全量评估。
+是否需要人工 review: 是，建议下一步用 deepseek-v4-pro 跑全量 240 条真实 auto labels，再重跑 Gate 3。

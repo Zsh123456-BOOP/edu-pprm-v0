@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-pro_pilot_stepverify_0006",
+  "model": "deepseek-v4-pro",
+  "raw": {
+    "id": "35840347-0ee7-4558-b0e6-78f49b4f32e3",
+    "object": "chat.completion",
+    "created": 1780736551,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 4,\n  \"earliest_actionable_step\": 4,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_recompute_local_expression\",\n  \"repair_target\": \"Step 4: 'Mabel has 85 - 17 = 68 more marbles than Katrina.' The student incorrectly computed the difference between Mabel and Katrina, but the problem asks for the difference between Mabel and Amanda.\",\n  \"hint_level\": \"low\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"Step 4 is the first step that deviates from the correct solution path. The student computes Mabel vs. Katrina instead of Mabel vs. Amanda, leading to an incorrect final answer. The error is a misinterpretation of what needs to be computed, but it can be addressed by asking the student to recompute the difference with the correct quantities.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Step 4 incorrectly computes the difference between Mabel and Katrina instead of Mabel and Amanda. The student should be prompted to re-evaluate which quantities to subtract.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 798,
+      "completion_tokens": 260,
+      "total_tokens": 1058,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 798
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 4,
+    "earliest_actionable_step": 4,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_recompute_local_expression",
+    "repair_target": "Step 4: 'Mabel has 85 - 17 = 68 more marbles than Katrina.' The student incorrectly computed the difference between Mabel and Katrina, but the problem asks for the difference between Mabel and Amanda.",
+    "hint_level": "low",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "Step 4 is the first step that deviates from the correct solution path. The student computes Mabel vs. Katrina instead of Mabel vs. Amanda, leading to an incorrect final answer. The error is a misinterpretation of what needs to be computed, but it can be addressed by asking the student to recompute the difference with the correct quantities.",
+    "confidence": 0.95,
+    "short_rationale": "Step 4 incorrectly computes the difference between Mabel and Katrina instead of Mabel and Amanda. The student should be prompted to re-evaluate which quantities to subtract."
+  },
+  "cache_hit": false
+}

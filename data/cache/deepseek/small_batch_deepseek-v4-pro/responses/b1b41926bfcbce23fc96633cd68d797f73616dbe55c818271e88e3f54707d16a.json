@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-pro_pilot_gsm8k_synthetic_0005",
+  "model": "deepseek-v4-pro",
+  "raw": {
+    "id": "f2568411-9ca0-4f83-a884-b40399a83003",
+    "object": "chat.completion",
+    "created": 1780736599,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 1,\n  \"earliest_actionable_step\": 1,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_rewrite_equation_or_expression\",\n  \"repair_target\": \"step 1\",\n  \"hint_level\": \"medium\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"Step 1 states 'I write an equation that does not match the relationship in the problem' without showing the equation, but the subsequent step uses 8, which is correct for 80% more purple than yellow. However, the student's description indicates a mismatch, so intervention is needed to clarify the equation.\",\n  \"confidence\": 0.9,\n  \"short_rationale\": \"Step 1 is vague and indicates a potential misunderstanding, even though the computed number 8 is correct. The earliest actionable step is step 1 to ensure the equation matches the problem.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 854,
+      "completion_tokens": 217,
+      "total_tokens": 1071,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 854
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 1,
+    "earliest_actionable_step": 1,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_rewrite_equation_or_expression",
+    "repair_target": "step 1",
+    "hint_level": "medium",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "Step 1 states 'I write an equation that does not match the relationship in the problem' without showing the equation, but the subsequent step uses 8, which is correct for 80% more purple than yellow. However, the student's description indicates a mismatch, so intervention is needed to clarify the equation.",
+    "confidence": 0.9,
+    "short_rationale": "Step 1 is vague and indicates a potential misunderstanding, even though the computed number 8 is correct. The earliest actionable step is step 1 to ensure the equation matches the problem."
+  },
+  "cache_hit": false
+}

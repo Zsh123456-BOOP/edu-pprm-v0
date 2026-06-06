@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-pro_pilot_gsm8k_synthetic_0008",
+  "model": "deepseek-v4-pro",
+  "raw": {
+    "id": "dca20cd4-0dd1-41f9-bd8b-7c2ae15bc6ac",
+    "object": "chat.completion",
+    "created": 1780736613,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": null,\n  \"earliest_actionable_step\": null,\n  \"intervention_needed\": false,\n  \"minimal_repair_type\": \"no_intervention_needed\",\n  \"repair_target\": null,\n  \"hint_level\": \"none\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": null,\n  \"confidence\": 0.95,\n  \"short_rationale\": \"The student self-corrected the local computation error in step 2, and subsequent steps are correct. No intervention needed.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 828,
+      "completion_tokens": 133,
+      "total_tokens": 961,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 828
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": null,
+    "earliest_actionable_step": null,
+    "intervention_needed": false,
+    "minimal_repair_type": "no_intervention_needed",
+    "repair_target": null,
+    "hint_level": "none",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": null,
+    "confidence": 0.95,
+    "short_rationale": "The student self-corrected the local computation error in step 2, and subsequent steps are correct. No intervention needed."
+  },
+  "cache_hit": false
+}

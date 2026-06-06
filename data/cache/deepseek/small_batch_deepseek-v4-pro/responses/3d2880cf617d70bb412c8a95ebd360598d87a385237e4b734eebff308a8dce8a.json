@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-pro_pilot_gsm8k_synthetic_0004",
+  "model": "deepseek-v4-pro",
+  "raw": {
+    "id": "3cb58546-aa8f-4d3f-8c42-ede2a9d372da",
+    "object": "chat.completion",
+    "created": 1780736594,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 1,\n  \"earliest_actionable_step\": 1,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_reinterpret_given_quantity\",\n  \"repair_target\": \"step 1\",\n  \"hint_level\": \"medium\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"Step 1 is vague and does not compute the correct weekly pages per friend; a tutor should intervene to clarify the quantities.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Step 1 is the first wrong step because it fails to correctly compute the pages per friend per week. It is actionable as it is the earliest error.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 669,
+      "completion_tokens": 171,
+      "total_tokens": 840,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 669
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 1,
+    "earliest_actionable_step": 1,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity",
+    "repair_target": "step 1",
+    "hint_level": "medium",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "Step 1 is vague and does not compute the correct weekly pages per friend; a tutor should intervene to clarify the quantities.",
+    "confidence": 0.95,
+    "short_rationale": "Step 1 is the first wrong step because it fails to correctly compute the pages per friend per week. It is actionable as it is the earliest error."
+  },
+  "cache_hit": false
+}

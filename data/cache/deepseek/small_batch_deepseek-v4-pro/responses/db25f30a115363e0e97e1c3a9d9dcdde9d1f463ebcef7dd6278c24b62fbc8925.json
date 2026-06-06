@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-pro_pilot_gsm8k_synthetic_0003",
+  "model": "deepseek-v4-pro",
+  "raw": {
+    "id": "d1176ed0-6cdb-41b0-a49e-d6870b5bd045",
+    "object": "chat.completion",
+    "created": 1780736590,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": 1,\n  \"earliest_actionable_step\": 1,\n  \"intervention_needed\": true,\n  \"minimal_repair_type\": \"ask_to_reinterpret_given_quantity\",\n  \"repair_target\": \"step 1\",\n  \"hint_level\": \"medium\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"Step 1 is a meta-statement indicating a misinterpretation of a quantity, which is the root cause of the error.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"Step 1 explicitly states a misinterpretation of a given quantity, making it the first wrong step and the earliest actionable point for intervention.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 801,
+      "completion_tokens": 167,
+      "total_tokens": 968,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 801
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": 1,
+    "earliest_actionable_step": 1,
+    "intervention_needed": true,
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity",
+    "repair_target": "step 1",
+    "hint_level": "medium",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "Step 1 is a meta-statement indicating a misinterpretation of a quantity, which is the root cause of the error.",
+    "confidence": 0.95,
+    "short_rationale": "Step 1 explicitly states a misinterpretation of a given quantity, making it the first wrong step and the earliest actionable point for intervention."
+  },
+  "cache_hit": false
+}

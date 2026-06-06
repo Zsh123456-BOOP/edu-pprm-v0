@@ -1,0 +1,45 @@
+{
+  "sample_id": "smallbatch_deepseek-v4-pro_pilot_gsm8k_synthetic_0009",
+  "model": "deepseek-v4-pro",
+  "raw": {
+    "id": "2b1a5ac3-acb8-48a7-9060-2eb2b4a09267",
+    "object": "chat.completion",
+    "created": 1780736617,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"first_wrong_step\": null,\n  \"earliest_actionable_step\": null,\n  \"intervention_needed\": false,\n  \"minimal_repair_type\": \"insufficient_information\",\n  \"repair_target\": null,\n  \"hint_level\": \"none\",\n  \"leakage_constraint\": \"do_not_reveal_final_answer\",\n  \"actionable_diff_reason\": \"The student provided only a final answer with no intermediate steps, making it impossible to identify a specific error or actionable step.\",\n  \"confidence\": 0.95,\n  \"short_rationale\": \"No steps to evaluate; insufficient information to determine correctness or error.\"\n}"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 924,
+      "completion_tokens": 143,
+      "total_tokens": 1067,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 924
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "first_wrong_step": null,
+    "earliest_actionable_step": null,
+    "intervention_needed": false,
+    "minimal_repair_type": "insufficient_information",
+    "repair_target": null,
+    "hint_level": "none",
+    "leakage_constraint": "do_not_reveal_final_answer",
+    "actionable_diff_reason": "The student provided only a final answer with no intermediate steps, making it impossible to identify a specific error or actionable step.",
+    "confidence": 0.95,
+    "short_rationale": "No steps to evaluate; insufficient information to determine correctness or error."
+  },
+  "cache_hit": false
+}

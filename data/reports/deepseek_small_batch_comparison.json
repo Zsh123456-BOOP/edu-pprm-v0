@@ -1,57 +1,37 @@
 {
-  "card": "3.9 Real DeepSeek Throughput + Small-Batch Label Validation",
-  "api_key_logged": false,
-  "compact_prompt": true,
-  "config_fix": "Removed reasoning_effort when thinking.type=disabled; prior HTTP 400 was caused by invalid combination.",
+  "sample_count": 20,
   "models": [
     {
-      "model": "deepseek-v4-flash",
+      "model": "deepseek-v4-pro",
       "input_count": 20,
       "success_count": 20,
       "failure_count": 0,
       "parse_rate": 1.0,
       "schema_validation_pass_rate": 1.0,
-      "total_seconds": 53.171,
-      "avg_latency_seconds": 2.658,
-      "max_latency_seconds": 3.71,
+      "total_seconds": 97.704,
+      "avg_latency_seconds": 4.885,
+      "max_latency_seconds": 7.68,
       "minimal_repair_type_distribution": {
-        "ask_to_recompute_local_expression": 6,
-        "ask_to_reinterpret_given_quantity": 6,
-        "ask_to_check_operation_or_formula": 3,
-        "ask_to_justify_inference": 2,
-        "ask_to_check_unit_conversion": 1,
-        "no_intervention_needed": 2
+        "ask_to_rewrite_equation_or_expression": 2,
+        "ask_to_reinterpret_given_quantity": 11,
+        "ask_to_recompute_local_expression": 2,
+        "ask_clarifying_question": 1,
+        "ask_to_check_operation_or_formula": 1,
+        "no_intervention_needed": 2,
+        "insufficient_information": 1
       },
       "intervention_needed_distribution": {
-        "True": 18,
-        "False": 2
-      },
-      "compact_prompt": true
-    },
-    {
-      "model": "deepseek-v4-pro",
-      "input_count": 2,
-      "success_count": 2,
-      "failure_count": 0,
-      "parse_rate": 1.0,
-      "schema_validation_pass_rate": 1.0,
-      "total_seconds": 8.46,
-      "avg_latency_seconds": 4.23,
-      "max_latency_seconds": 4.611,
-      "minimal_repair_type_distribution": {
-        "ask_to_rewrite_equation_or_expression": 1,
-        "ask_to_recompute_local_expression": 1
-      },
-      "intervention_needed_distribution": {
-        "True": 2
+        "True": 17,
+        "False": 3
       },
       "compact_prompt": true
     }
   ],
-  "recommendation": "Use deepseek-v4-flash for full 240-sample real labeling, then rerun Gate 3 metrics. Keep deepseek-v4-pro for spot-check/adjudication if needed.",
-  "next_command": "export DEEPSEEK_API_KEY=... && python3 -m src.labels.deepseek_labeler --use-api --model deepseek-v4-flash --compact-prompt",
+  "recommended_full_run_model": "deepseek-v4-pro",
+  "api_key_logged": false,
   "notes": [
-    "This run did not overwrite data/pilot/pilot_pool.autolabeled.jsonl.",
-    "Flash was tested on 20 samples; pro was tested on 2 samples to avoid excessive latency."
-  ]
+    "This is a real API small-batch throughput probe.",
+    "It does not overwrite pilot_pool.autolabeled.jsonl."
+  ],
+  "quality_gate_update": "After running pro on the same 20 samples, pro has higher quality_score (0.76 vs 0.665); recommend pro despite higher latency."
 }
