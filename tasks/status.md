@@ -354,3 +354,20 @@
 主要统计结果: deepseek-v4-flash 20/20 成功，平均延迟 2.658s，质量分 0.665；deepseek-v4-pro 20/20 成功，平均延迟 4.885s，质量分 0.76。pro 在 StepVerify first_wrong_step、synthetic earliest_actionable、minimal_repair_type、hint_level 上更好。
 失败或不确定点: 早期小批量尝试因 invalid config 失败，已定位为 reasoning_effort 与 thinking.disabled 冲突并修复；20 条仍是小样本，不能替代全量评估。
 是否需要人工 review: 是，建议下一步用 deepseek-v4-pro 跑全量 240 条真实 auto labels，再重跑 Gate 3。
+
+### Card 3.10 DeepSeek-pro Synthetic 240 Generation + Validation
+- [x] 使用 deepseek-v4-pro 多线程生成 240 条 synthetic traces
+- [x] 按 13 类 synthetic_type 强制均匀覆盖，每类至少 18 条
+- [x] 保存 hidden synthetic_metadata.expected_* 作为自动标准答案
+- [x] 使用 DeepSeek-pro verifier 检查生成 trace 是否真实匹配 synthetic_type
+- [x] 使用 DeepSeek-pro 重新打 pedagogical labels，label prompt 不暴露 expected_*
+- [x] 对 full 240 与 verified 159 子集分别评估
+- [x] 输出 reports/deepseek_synthetic_240_experiment.md
+- [x] 输出 data/reports/deepseek_synthetic_240_experiment_summary.json
+
+完成内容: 使用 deepseek-v4-pro 构建 240 条均衡 synthetic traces，并用同模型完成隐藏标签评估；没有进入训练、没有构建 full dataset。
+生成文件: src/synthetic/deepseek_generate_synthetic_240.py, src/synthetic/deepseek_verify_synthetic_240.py, src/labels/label_deepseek_synthetic_240.py, src/eval/eval_deepseek_synthetic_240.py, reports/deepseek_synthetic_240_experiment.md, data/reports/deepseek_synthetic_240_experiment_summary.json。
+运行命令: python3 -m src.synthetic.deepseek_generate_synthetic_240 --count 240 --model deepseek-v4-pro --workers 6 --fill-existing; python3 -m src.synthetic.deepseek_verify_synthetic_240 --model deepseek-v4-pro --workers 6; python3 -m src.labels.label_deepseek_synthetic_240 --model deepseek-v4-pro --workers 6; python3 -m src.eval.eval_deepseek_synthetic_240。
+主要统计结果: 生成 240/240；类型分布每类 18-19 条；DeepSeek strict verifier 通过 159/240，pass rate 66.25%；DeepSeek relabel parse/schema 240/240；full 240 minimal_repair_type_macro_f1 0.2789；verified 159 minimal_repair_type_macro_f1 0.3533；first_wrong_step != earliest_actionable_step 比例 full 0.0708、verified 0.0503。
+失败或不确定点: 严格验证下约三分之一 synthetic trace 不够可靠；hard types 包括 final_answer_correct_process_wrong、hint_would_leak_answer、equation_setup_error；Go 条件中 repair macro F1 和 earliest-actionable 差异比例未达标。
+是否需要人工 review: 是，建议先修生成器和 verifier，或对 verified 159 做小规模人工抽查；当前不建议训练或扩大 silver 数据。

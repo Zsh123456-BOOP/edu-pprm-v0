@@ -1,0 +1,27 @@
+{
+  "requested_count": 240,
+  "passed_count": 240,
+  "failure_count": 0,
+  "model": "deepseek-v4-pro",
+  "workers": 6,
+  "synthetic_type_distribution": {
+    "arithmetic_error": 19,
+    "sign_error": 19,
+    "wrong_operation": 19,
+    "misread_given_quantity": 19,
+    "unit_conversion_error": 19,
+    "equation_setup_error": 19,
+    "substitution_error": 18,
+    "no_error_correct_trace": 18,
+    "final_answer_correct_process_wrong": 18,
+    "final_answer_wrong_prefix_correct": 18,
+    "self_corrected_error": 18,
+    "sparse_insufficient_trace": 18,
+    "hint_would_leak_answer": 18
+  },
+  "source_distribution": {
+    "gsm8k": 164,
+    "math": 76
+  },
+  "min_per_type": 18
+}

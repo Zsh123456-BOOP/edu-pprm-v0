@@ -15,6 +15,9 @@ data/processed/**
 data/gold/**
 data/synthetic/**
 data/stress/**
+data/cache/deepseek/generate_synth240_*/
+data/cache/deepseek/label_synth240_*/
+data/cache/deepseek/verify_synth240_*/
 
 !data/reports/
 !data/reports/**

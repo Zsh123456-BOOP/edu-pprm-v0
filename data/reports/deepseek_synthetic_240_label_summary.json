@@ -1,0 +1,26 @@
+{
+  "input_count": 240,
+  "output_count": 240,
+  "failure_count": 0,
+  "model": "deepseek-v4-pro",
+  "workers": 6,
+  "compact_prompt": true,
+  "parse_rate": 1.0,
+  "schema_validation_pass_rate": 1.0,
+  "minimal_repair_type_distribution": {
+    "ask_to_recompute_local_expression": 30,
+    "no_intervention_needed": 128,
+    "ask_to_check_operation_or_formula": 24,
+    "ask_to_reinterpret_given_quantity": 33,
+    "ask_to_compare_with_problem_condition": 3,
+    "ask_to_check_unit_conversion": 7,
+    "ask_to_justify_inference": 4,
+    "ask_to_rewrite_equation_or_expression": 1,
+    "insufficient_information": 6,
+    "ask_clarifying_question": 4
+  },
+  "intervention_needed_distribution": {
+    "True": 109,
+    "False": 131
+  }
+}

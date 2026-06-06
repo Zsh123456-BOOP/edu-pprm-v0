@@ -1,0 +1,102 @@
+{
+  "experiment": "deepseek_pro_synthetic_240_generation_and_validation",
+  "model": "deepseek-v4-pro",
+  "threading": {
+    "workers": 6
+  },
+  "scope": {
+    "generated_synthetic_count": 240,
+    "labeled_synthetic_count": 240,
+    "strict_verified_count": 159,
+    "strict_verification_fail_count": 81,
+    "used_mathedu": false,
+    "used_processbench": false,
+    "used_prm800k": false,
+    "used_handwrite": false,
+    "entered_training": false
+  },
+  "generation": {
+    "requested_count": 240,
+    "passed_count": 240,
+    "failure_count": 0,
+    "source_distribution": {
+      "gsm8k": 164,
+      "math": 76
+    },
+    "synthetic_type_distribution": {
+      "arithmetic_error": 19,
+      "sign_error": 19,
+      "wrong_operation": 19,
+      "misread_given_quantity": 19,
+      "unit_conversion_error": 19,
+      "equation_setup_error": 19,
+      "substitution_error": 18,
+      "no_error_correct_trace": 18,
+      "final_answer_correct_process_wrong": 18,
+      "final_answer_wrong_prefix_correct": 18,
+      "self_corrected_error": 18,
+      "sparse_insufficient_trace": 18,
+      "hint_would_leak_answer": 18
+    },
+    "min_per_synthetic_type": 18
+  },
+  "strict_llm_verification": {
+    "input_count": 240,
+    "verified_pass_count": 159,
+    "verified_fail_count": 81,
+    "pass_rate": 0.6625,
+    "hardest_types_by_fail_count": {
+      "final_answer_correct_process_wrong": 13,
+      "hint_would_leak_answer": 13,
+      "equation_setup_error": 10,
+      "sign_error": 9
+    }
+  },
+  "deepseek_relabeling": {
+    "input_count": 240,
+    "output_count": 240,
+    "failure_count": 0,
+    "parse_rate": 1.0,
+    "schema_validation_pass_rate": 1.0
+  },
+  "full_240_eval": {
+    "first_wrong_step_acc": 0.2917,
+    "earliest_actionable_step_acc": 0.325,
+    "intervention_needed_acc": 0.5333,
+    "minimal_repair_type_acc": 0.4083,
+    "minimal_repair_type_macro_f1": 0.2789,
+    "hint_level_acc": 0.3167,
+    "leakage_constraint_acc": 0.3,
+    "first_wrong_step_not_equal_earliest_actionable_step_ratio": 0.0708,
+    "intervention_needed_false_uncertain_ratio": 0.5458,
+    "max_single_repair_type_ratio": 0.5333
+  },
+  "verified_159_eval": {
+    "first_wrong_step_acc": 0.3208,
+    "earliest_actionable_step_acc": 0.3962,
+    "intervention_needed_acc": 0.7925,
+    "minimal_repair_type_acc": 0.5849,
+    "minimal_repair_type_macro_f1": 0.3533,
+    "hint_level_acc": 0.4717,
+    "leakage_constraint_acc": 0.3208,
+    "first_wrong_step_not_equal_earliest_actionable_step_ratio": 0.0503,
+    "intervention_needed_false_uncertain_ratio": 0.3585,
+    "max_single_repair_type_ratio": 0.3522
+  },
+  "go_no_go": {
+    "minimal_repair_type_macro_f1_ge_0_45": false,
+    "first_wrong_step_diff_ratio_ge_0_10": false,
+    "false_uncertain_ratio_ge_0_08": true,
+    "single_repair_type_not_over_0_70": true,
+    "recommendation": "do_not_train_or_scale_yet"
+  },
+  "validation": {
+    "compileall_src": "passed",
+    "schema_raw_240": "passed",
+    "schema_autolabeled_240": "passed",
+    "schema_verified_autolabeled_159": "passed",
+    "secret_scan": "passed",
+    "pytest": "unavailable: No module named pytest"
+  },
+  "conclusion": "DeepSeek v4 pro can generate and label a balanced 240-trace synthetic set, but strict trace validity is only 66.25% and pedagogical repair macro F1 remains below the go threshold even on verified traces. The next step should be prompt/verifier refinement for hard synthetic types or a small human spot-check, not model training."
+}

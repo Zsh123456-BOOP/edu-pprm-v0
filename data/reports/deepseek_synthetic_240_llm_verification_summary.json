@@ -1,0 +1,37 @@
+{
+  "input_count": 240,
+  "verified_pass_count": 159,
+  "verified_fail_count": 81,
+  "model": "deepseek-v4-pro",
+  "pass_rate": 0.6625,
+  "passed_type_distribution": {
+    "arithmetic_error": 12,
+    "wrong_operation": 16,
+    "misread_given_quantity": 15,
+    "unit_conversion_error": 17,
+    "substitution_error": 12,
+    "no_error_correct_trace": 17,
+    "final_answer_wrong_prefix_correct": 12,
+    "self_corrected_error": 17,
+    "final_answer_correct_process_wrong": 5,
+    "sign_error": 10,
+    "equation_setup_error": 9,
+    "sparse_insufficient_trace": 12,
+    "hint_would_leak_answer": 5
+  },
+  "failed_type_distribution": {
+    "sign_error": 9,
+    "equation_setup_error": 10,
+    "final_answer_correct_process_wrong": 13,
+    "substitution_error": 6,
+    "arithmetic_error": 7,
+    "unit_conversion_error": 2,
+    "wrong_operation": 3,
+    "sparse_insufficient_trace": 6,
+    "final_answer_wrong_prefix_correct": 6,
+    "misread_given_quantity": 4,
+    "self_corrected_error": 1,
+    "hint_would_leak_answer": 13,
+    "no_error_correct_trace": 1
+  }
+}

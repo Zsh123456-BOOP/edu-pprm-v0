@@ -18,3 +18,8 @@
 {"sample_id": "smallbatch_deepseek-v4-pro_pilot_stepverify_0000", "error": "HTTP 400: Bad Request"}
 {"sample_id": "smallbatch_deepseek-v4-pro_pilot_gsm8k_synthetic_0000", "error": "HTTP 400: Bad Request"}
 {"sample_id": "smallbatch_deepseek-v4-flash_pilot_gsm8k_synthetic_0000", "error": "HTTP 400: Bad Request: {\"error\":{\"message\":\"thinking options type cannot be disabled when reasoning_effort is set\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_request_error\"}}"}
+{"sample_id": "generate_synth240_0008", "error": "ValueError: no JSON object found"}
+{"sample_id": "generate_synth240_0119", "error": "ValueError: no JSON object found"}
+{"sample_id": "generate_synth240_0176", "error": "ValueError: no JSON object found"}
+{"sample_id": "generate_synth240_0239", "error": "ValueError: no JSON object found"}
+{"sample_id": "label_synth240_deepseek_synth240_0011", "error": "ValueError: no JSON object found"}
