@@ -1,0 +1,122 @@
+[
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0000",
+    "source": "gsm8k",
+    "synthetic_type": "arithmetic_error",
+    "minimal_repair_type": "ask_to_recompute_local_expression"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0001",
+    "source": "gsm8k",
+    "synthetic_type": "sign_error",
+    "minimal_repair_type": "ask_to_check_operation_or_formula"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0002",
+    "source": "gsm8k",
+    "synthetic_type": "wrong_operation",
+    "minimal_repair_type": "ask_to_check_operation_or_formula"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0003",
+    "source": "gsm8k",
+    "synthetic_type": "misread_given_quantity",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0004",
+    "source": "gsm8k",
+    "synthetic_type": "unit_conversion_error",
+    "minimal_repair_type": "ask_to_check_unit_conversion"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0005",
+    "source": "gsm8k",
+    "synthetic_type": "equation_setup_error",
+    "minimal_repair_type": "ask_to_rewrite_equation_or_expression"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0006",
+    "source": "gsm8k",
+    "synthetic_type": "substitution_error",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0007",
+    "source": "gsm8k",
+    "synthetic_type": "no_error_correct_trace",
+    "minimal_repair_type": "no_intervention_needed"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0008",
+    "source": "gsm8k",
+    "synthetic_type": "self_corrected_error",
+    "minimal_repair_type": "no_intervention_needed"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0009",
+    "source": "gsm8k",
+    "synthetic_type": "sparse_insufficient_trace",
+    "minimal_repair_type": "insufficient_information"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0010",
+    "source": "gsm8k",
+    "synthetic_type": "final_answer_correct_process_wrong",
+    "minimal_repair_type": "ask_to_recompute_local_expression"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0011",
+    "source": "gsm8k",
+    "synthetic_type": "final_answer_wrong_prefix_correct",
+    "minimal_repair_type": "ask_to_compare_with_problem_condition"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0012",
+    "source": "gsm8k",
+    "synthetic_type": "hint_would_leak_answer",
+    "minimal_repair_type": "insufficient_information"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0013",
+    "source": "gsm8k",
+    "synthetic_type": "arithmetic_error",
+    "minimal_repair_type": "ask_to_recompute_local_expression"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0014",
+    "source": "gsm8k",
+    "synthetic_type": "sign_error",
+    "minimal_repair_type": "ask_to_check_operation_or_formula"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0015",
+    "source": "gsm8k",
+    "synthetic_type": "wrong_operation",
+    "minimal_repair_type": "ask_to_check_operation_or_formula"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0016",
+    "source": "gsm8k",
+    "synthetic_type": "misread_given_quantity",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0017",
+    "source": "gsm8k",
+    "synthetic_type": "unit_conversion_error",
+    "minimal_repair_type": "ask_to_check_unit_conversion"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0018",
+    "source": "gsm8k",
+    "synthetic_type": "equation_setup_error",
+    "minimal_repair_type": "ask_to_rewrite_equation_or_expression"
+  },
+  {
+    "sample_id": "pilot_gsm8k_synthetic_0019",
+    "source": "gsm8k",
+    "synthetic_type": "substitution_error",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  }
+]

@@ -200,3 +200,140 @@
 主要统计结果: compileall 通过；schema examples 20/20 通过；taxonomy check 通过；pytest unavailable。
 失败或不确定点: 本机无 pytest，无法运行 pytest runner；已在 Review Gate 2 报告中注明。
 是否需要人工 review: 是，Review Gate 2 必须人工决定是否进入 Phase 3。
+
+## Auto-Silver Pilot
+
+### Card 3.0 修复 annotation guideline lint
+- [x] 检查 docs/annotation_guideline.md 和 data/reports/boundary_cases_20.jsonl
+- [x] 修复 Case 1 first_wrong_step 为 null
+- [x] 修复 Case 6 reason/repair_target 指向 7 x 2 = 12
+- [x] 新增 src/labels/lint_boundary_cases.py
+- [x] 输出 data/reports/boundary_lint_report.json
+
+完成内容: 修复 boundary case 逻辑冲突，并新增 lint 工具。
+生成文件: src/labels/lint_boundary_cases.py, data/reports/boundary_lint_report.json。
+运行命令: python3 -m src.labels.lint_boundary_cases。
+主要统计结果: 20/20 boundary cases 通过 lint。
+失败或不确定点: 无。
+是否需要人工 review: 是，确认 Case 6 的 repair_target 粒度。
+
+### Card 3.1 构建 pilot_pool.raw
+- [x] 实现 src/data/build_pilot_pool.py
+- [x] StepVerify 120 条
+- [x] GSM8K synthetic 80 条
+- [x] MATH synthetic 40 条
+- [x] MathEDU/PRM800K/ProcessBench/handwrite 均为 0 条
+- [x] 输出 data/pilot/pilot_pool.raw.jsonl
+- [x] 输出 data/reports/pilot_pool_summary.json
+- [x] 输出 data/reports/pilot_pool_30_examples.jsonl
+
+完成内容: 构建 240 条 raw pilot pool，包含 StepVerify 和 synthetic 样本。
+生成文件: src/data/build_pilot_pool.py, data/pilot/pilot_pool.raw.jsonl, data/reports/pilot_pool_summary.json, data/reports/pilot_pool_30_examples.jsonl。
+运行命令: python3 -m src.data.build_pilot_pool。
+主要统计结果: total 240；StepVerify 120，GSM8K 80，MATH 40；avg student step count 4.688。
+失败或不确定点: StepVerify 从 HF rows API 分页拉取；未读取 MathEDU/ProcessBench/handwrite。
+是否需要人工 review: 是，确认 raw pilot source mix。
+
+### Card 3.2 生成 synthetic pilot traces
+- [x] 实现 src/synthetic/inject_math_errors.py
+- [x] 实现 src/synthetic/generate_pilot_synthetic.py
+- [x] 实现 src/synthetic/verify_synthetic_steps.py
+- [x] 输出 data/pilot/synthetic_pilot.raw.jsonl
+- [x] 输出 data/reports/synthetic_pilot_summary.json
+- [x] 输出 data/reports/synthetic_pilot_40_examples.jsonl
+- [x] 输出 data/reports/synthetic_generation_failures.jsonl
+
+完成内容: 生成 deterministic known-label synthetic traces，覆盖 13 类标准错误和边界情况。
+生成文件: src/synthetic/inject_math_errors.py, src/synthetic/generate_pilot_synthetic.py, src/synthetic/verify_synthetic_steps.py。
+运行命令: python3 -m src.synthetic.generate_pilot_synthetic。
+主要统计结果: synthetic 总数 120；GSM8K 80，MATH 40；每类 synthetic_type 至少 9 条；generation_failures 0。
+失败或不确定点: synthetic 是规则模板，不是 LLM 生成自然学生解法。
+是否需要人工 review: 是，确认 synthetic trace 真实性是否足够 pilot 初筛。
+
+### Card 3.3 DeepSeek API client
+- [x] 实现 src/llm/deepseek_client.py
+- [x] 实现 src/llm/json_repair.py
+- [x] 创建 configs/deepseek.yaml
+- [x] 创建 .env.example
+- [x] 添加 .env ignore
+- [x] 输出 data/reports/deepseek_client_dryrun.json
+
+完成内容: 标准库 urllib 实现 OpenAI-compatible DeepSeek client，支持 dry-run、cache、retry、JSON parse 和失败记录。
+生成文件: src/llm/deepseek_client.py, src/llm/json_repair.py, configs/deepseek.yaml, .env.example, data/reports/deepseek_client_dryrun.json。
+运行命令: python3 -m src.llm.deepseek_client --dry-run；真实 API smoke。
+主要统计结果: dry-run payload 合法；deepseek-v4-pro smoke 成功；全量 labeler 首个 pilot 请求等待数分钟未完成，被中断。
+失败或不确定点: 本轮未完成真实 DeepSeek 全量自动标注；fallback 结果不得当作真实 DeepSeek 指标。
+是否需要人工 review: 是，决定是否改用更快模型或继续 deepseek-v4-pro 长跑。
+
+### Card 3.4 DeepSeek pedagogical label generator
+- [x] 实现 src/labels/deepseek_labeler.py
+- [x] 实现 src/labels/deepseek_prompts.py
+- [x] 实现 src/labels/validate_deepseek_labels.py
+- [x] 输出 data/pilot/pilot_pool.autolabeled.jsonl
+- [x] 输出 data/cache/deepseek/label_requests.jsonl
+- [x] 输出 data/cache/deepseek/label_responses.jsonl
+- [x] 输出 data/reports/deepseek_label_failures.jsonl
+- [x] 输出 data/reports/deepseek_label_summary.json
+
+完成内容: 生成 240 条 auto-silver autolabeled 样本；由于真实全量 API 未完成，当前 autolabeled 为 heuristic fallback，并明确写入 model_name。
+生成文件: src/labels/deepseek_labeler.py, src/labels/deepseek_prompts.py, src/labels/validate_deepseek_labels.py。
+运行命令: python3 -m src.labels.deepseek_labeler; python3 -m src.data.validate_schema --jsonl data/pilot/pilot_pool.autolabeled.jsonl。
+主要统计结果: output 240；parse_rate 1.0；schema pass 1.0；最大 repair 类别 106/240，未超过 70%。
+失败或不确定点: api_available=false in summary；真实 DeepSeek 全量标注未完成。
+是否需要人工 review: 是，不能把 fallback 指标作为模型能力结论。
+
+### Card 3.5 自动评估 DeepSeek labels
+- [x] 实现 src/eval/eval_deepseek_labels.py
+- [x] 实现 src/reports/make_auto_pilot_report.py
+- [x] 输出 deepseek_stepverify_eval.csv
+- [x] 输出 deepseek_synthetic_eval.csv
+- [x] 输出 deepseek_label_distribution.json
+- [x] 输出 reports/auto_pilot_label_report.md
+
+完成内容: 评估 StepVerify first-error、synthetic known labels 和分布可行性。
+生成文件: src/eval/eval_deepseek_labels.py, src/reports/make_auto_pilot_report.py。
+运行命令: python3 -m src.eval.eval_deepseek_labels; python3 -m src.reports.make_auto_pilot_report。
+主要统计结果: fallback StepVerify first_wrong_step_acc 1.0；synthetic repair macro F1 1.0；first_wrong_step != earliest_actionable_step ratio 0.0375，低于 0.10 Go 条件。
+失败或不确定点: 指标来自 fallback，不是完整 DeepSeek API 输出。
+是否需要人工 review: 是，当前不建议进入训练。
+
+### Card 3.6 DeepSeek self-consistency test
+- [x] 实现 src/eval/deepseek_self_consistency.py
+- [x] 输出 data/reports/deepseek_self_consistency.csv
+- [x] 输出 data/reports/deepseek_self_consistency_disagreements.jsonl
+
+完成内容: 对 80 条样本执行 fallback self-consistency 结构测试。
+生成文件: src/eval/deepseek_self_consistency.py。
+运行命令: python3 -m src.eval.deepseek_self_consistency。
+主要统计结果: 80 条；各字段 agreement 1.0；disagreement 0。
+失败或不确定点: fallback deterministic agreement 不能代表真实 DeepSeek 多温度稳定性。
+是否需要人工 review: 是，真实 API 自一致性仍需重跑。
+
+### Card 3.7 自动 tutor feedback 小实验
+- [x] 实现 src/eval/build_tutor_auto_inputs.py
+- [x] 实现 src/eval/run_deepseek_tutor_generation.py
+- [x] 实现 src/eval/eval_tutor_auto.py
+- [x] 输出 data/reports/tutor_auto_eval.csv
+- [x] 输出 data/reports/tutor_t2_t3_examples.jsonl
+- [x] 输出 reports/tutor_auto_ablation_report.md
+
+完成内容: 构造 60 条样本的 T2/T3 输入并用 heuristic fallback 生成/评价 tutor response。
+生成文件: src/eval/build_tutor_auto_inputs.py, src/eval/run_deepseek_tutor_generation.py, src/eval/eval_tutor_auto.py。
+运行命令: python3 -m src.eval.build_tutor_auto_inputs; python3 -m src.eval.run_deepseek_tutor_generation; python3 -m src.eval.eval_tutor_auto。
+主要统计结果: 120 条 T2/T3 response/eval rows。
+失败或不确定点: 不是 DeepSeek tutor generation/evaluator 真实结果，只能验证数据管线。
+是否需要人工 review: 是，真实 T2/T3 ablation 需在 API throughput 可接受后重跑。
+
+### Card 3.8 Auto-Silver Pilot Review Report
+- [x] 创建 reports/review_gate_3_auto.md
+- [x] 创建 data/reports/review_gate_3_auto_summary.json
+- [x] 包含失败案例 30 条
+- [x] 包含成功案例 20 条
+- [x] 更新 tasks/status.md
+
+完成内容: 生成 Gate 3 自动报告，明确本轮停止，不进入训练、不构建 full dataset。
+生成文件: reports/review_gate_3_auto.md, data/reports/review_gate_3_auto_summary.json, data/reports/review_gate_3_failure_cases_30.json, data/reports/review_gate_3_success_cases_20.json。
+运行命令: python3 -m compileall -q src; python3 -m src.labels.lint_boundary_cases; python3 -m src.data.validate_schema --jsonl data/pilot/pilot_pool.autolabeled.jsonl; python3 -m pytest。
+主要统计结果: compileall passed；boundary lint passed；autolabeled schema 240/240 passed；pytest unavailable。
+失败或不确定点: 真实 DeepSeek 全量标注未完成；fallback 新标签差异比例低于 Go 条件。
+是否需要人工 review: 是，决定重跑真实 DeepSeek、切换更快模型，或先做小样本人核查。

@@ -16,6 +16,8 @@ DATA_DIR = ROOT / "data"
 REPORT_DIR = DATA_DIR / "reports"
 INTERIM_DIR = DATA_DIR / "interim"
 EXTERNAL_EVAL_DIR = DATA_DIR / "external_eval"
+PILOT_DIR = DATA_DIR / "pilot"
+CACHE_DIR = DATA_DIR / "cache"
 
 
 def load_json_yaml(path: Path) -> dict[str, Any]:
@@ -36,6 +38,27 @@ def read_url_text(url: str, timeout: int = 30) -> str:
 
 
 def fetch_hf_rows(dataset: str, config: str, split: str, limit: int) -> list[dict[str, Any]]:
+    if limit > 100:
+        rows: list[dict[str, Any]] = []
+        offset = 0
+        while len(rows) < limit:
+            page_length = min(100, limit - len(rows))
+            query = urllib.parse.urlencode(
+                {
+                    "dataset": dataset,
+                    "config": config,
+                    "split": split,
+                    "offset": offset,
+                    "length": page_length,
+                }
+            )
+            payload = read_url_json(f"https://datasets-server.huggingface.co/rows?{query}")
+            page = [item["row"] for item in payload.get("rows", [])]
+            if not page:
+                break
+            rows.extend(page)
+            offset += len(page)
+        return rows
     query = urllib.parse.urlencode(
         {
             "dataset": dataset,
@@ -72,6 +95,16 @@ def write_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> int:
     path.parent.mkdir(parents=True, exist_ok=True)
     count = 0
     with path.open("w", encoding="utf-8") as handle:
+        for row in rows:
+            handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+            count += 1
+    return count
+
+
+def append_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> int:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    count = 0
+    with path.open("a", encoding="utf-8") as handle:
         for row in rows:
             handle.write(json.dumps(row, ensure_ascii=False) + "\n")
             count += 1

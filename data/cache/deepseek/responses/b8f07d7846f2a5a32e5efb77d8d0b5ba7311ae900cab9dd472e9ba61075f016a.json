@@ -1,0 +1,40 @@
+{
+  "sample_id": "deepseek_smoke",
+  "model": "deepseek-v4-pro",
+  "raw": {
+    "id": "f1290469-5edc-4f84-a9f1-06ee0e61d5c7",
+    "object": "chat.completion",
+    "created": 1780734683,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"ok\": true}",
+          "reasoning_content": "We are asked to return {\"ok\": true}. The instruction says: \"Return JSON only. You are a helpful assistant designed to output JSON. Reply with JSON object ONLY.\" So I should just output that JSON. No other text."
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 34,
+      "completion_tokens": 53,
+      "total_tokens": 87,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 47
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 34
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  },
+  "parsed": {
+    "ok": true
+  },
+  "cache_hit": false
+}

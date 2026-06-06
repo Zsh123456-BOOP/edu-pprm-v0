@@ -1,0 +1,47 @@
+{
+  "total_count": 240,
+  "source_distribution": {
+    "stepverify": 120,
+    "gsm8k": 80,
+    "math": 40
+  },
+  "first_wrong_step_distribution": {
+    "1": 81,
+    "2": 57,
+    "3": 41,
+    "4": 25,
+    "5": 6,
+    "6": 1,
+    "7": 2,
+    "None": 27
+  },
+  "error_category_distribution": {
+    "Calculation error easily solved by a calculator": 14,
+    "Extra quantity or Missing quantity": 30,
+    "Missing / Wrong factual knowledge": 27,
+    "Misunderstanding of a question": 31,
+    "None of the above": 7,
+    "Reached correct solution but proceeded further": 6,
+    "Unit conversion error": 5,
+    "arithmetic_error": 11,
+    "sign_error": 10,
+    "wrong_operation": 9,
+    "misread_given_quantity": 9,
+    "unit_conversion_error": 9,
+    "equation_setup_error": 9,
+    "substitution_error": 9,
+    "null": 9,
+    "self_corrected_error": 9,
+    "sparse_insufficient_trace": 9,
+    "final_answer_correct_process_wrong": 9,
+    "final_answer_wrong_prefix_correct": 9,
+    "hint_would_leak_answer": 9
+  },
+  "avg_student_step_count": 4.688,
+  "excluded_source_reason_summary": {
+    "mathedu": "excluded: full audit found 0% recoverable question/problem text",
+    "prm800k": "excluded: baseline/pretrain only, no pedagogical repair labels",
+    "processbench": "excluded: external eval only",
+    "handwrite": "excluded: out of scope and no text process labels"
+  }
+}

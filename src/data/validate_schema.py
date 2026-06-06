@@ -94,8 +94,13 @@ def convert_stepverify(row: dict[str, Any], index: int) -> dict[str, Any]:
             "annotator_ids": [],
             "adjudication_status": "none",
             "excluded_reason": None,
+            "confidence": None,
+            "short_rationale": None,
+            "model_name": None,
+            "raw_label_response_id": None,
         },
         "reserved": _reserved(),
+        "synthetic_metadata": None,
     }
 
 
@@ -132,8 +137,13 @@ def convert_problem_bank(row: dict[str, Any], index: int, source: str) -> dict[s
             "annotator_ids": [],
             "adjudication_status": "none",
             "excluded_reason": "synthetic placeholder only; no student error trace yet",
+            "confidence": None,
+            "short_rationale": None,
+            "model_name": None,
+            "raw_label_response_id": None,
         },
         "reserved": _reserved(),
+        "synthetic_metadata": None,
     }
 
 
@@ -170,8 +180,13 @@ def convert_mathedu_excluded(row: dict[str, Any], index: int, excluded_reason: s
             "annotator_ids": [],
             "adjudication_status": "none",
             "excluded_reason": excluded_reason,
+            "confidence": None,
+            "short_rationale": None,
+            "model_name": None,
+            "raw_label_response_id": None,
         },
         "reserved": _reserved(),
+        "synthetic_metadata": None,
     }
 
 
@@ -207,9 +222,14 @@ def required_paths() -> list[tuple[str, ...]]:
         ("label_metadata", "annotator_ids"),
         ("label_metadata", "adjudication_status"),
         ("label_metadata", "excluded_reason"),
+        ("label_metadata", "confidence"),
+        ("label_metadata", "short_rationale"),
+        ("label_metadata", "model_name"),
+        ("label_metadata", "raw_label_response_id"),
         ("reserved", "budget_data"),
         ("reserved", "distillation_data"),
         ("reserved", "handwrite_data"),
+        ("synthetic_metadata",),
     ]
 
 

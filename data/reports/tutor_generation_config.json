@@ -1,0 +1,10 @@
+{
+  "conditions": [
+    "T2",
+    "T3"
+  ],
+  "sample_pairs": 60,
+  "model": "deepseek-v4-pro",
+  "temperature": 0.0,
+  "max_tokens": 180
+}

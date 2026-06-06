@@ -1,0 +1,141 @@
+# Auto Pilot Label Report
+
+API available: `False`.
+
+## StepVerify
+
+{
+  "count": 120,
+  "first_wrong_step_acc": 1.0,
+  "off_by_one_acc": 1.0,
+  "null_error_rate": 0.0,
+  "overclaim_rate": 0.0
+}
+
+## Synthetic
+
+{
+  "count": 120,
+  "first_wrong_step_acc": 1.0,
+  "earliest_actionable_step_acc": 1.0,
+  "intervention_needed_f1": 1.0,
+  "minimal_repair_type_macro_f1": 1.0,
+  "minimal_repair_type_f1_by_label": {
+    "ask_to_check_operation_or_formula": 1.0,
+    "ask_to_check_unit_conversion": 1.0,
+    "ask_to_compare_with_problem_condition": 1.0,
+    "ask_to_recompute_local_expression": 1.0,
+    "ask_to_reinterpret_given_quantity": 1.0,
+    "ask_to_rewrite_equation_or_expression": 1.0,
+    "insufficient_information": 1.0,
+    "no_intervention_needed": 1.0
+  },
+  "hint_level_acc": 1.0,
+  "leakage_constraint_acc": 1.0
+}
+
+## Distribution
+
+{
+  "count": 240,
+  "first_wrong_step_not_equal_earliest_actionable_step_ratio": 0.0375,
+  "intervention_needed_distribution": {
+    "True": 204,
+    "False": 18,
+    "uncertain": 18
+  },
+  "minimal_repair_type_distribution": {
+    "ask_to_recompute_local_expression": 47,
+    "ask_to_reinterpret_given_quantity": 106,
+    "ask_to_check_unit_conversion": 14,
+    "ask_to_check_operation_or_formula": 19,
+    "ask_to_rewrite_equation_or_expression": 9,
+    "no_intervention_needed": 18,
+    "insufficient_information": 18,
+    "ask_to_compare_with_problem_condition": 9
+  },
+  "hint_level_distribution": {
+    "low": 43,
+    "medium": 170,
+    "none": 18,
+    "forbidden_full_solution": 9
+  },
+  "leakage_constraint_distribution": {
+    "do_not_solve_next_step": 162,
+    "can_show_micro_example": 14,
+    "can_name_error_type": 19,
+    "do_not_reveal_final_answer": 36,
+    "can_point_to_local_step_only": 9
+  },
+  "confidence_distribution": {
+    "avg": 0.7
+  },
+  "source_wise": {
+    "stepverify": {
+      "ask_to_recompute_local_expression": 27,
+      "ask_to_reinterpret_given_quantity": 88,
+      "ask_to_check_unit_conversion": 5
+    },
+    "gsm8k": {
+      "ask_to_recompute_local_expression": 13,
+      "ask_to_check_operation_or_formula": 13,
+      "ask_to_reinterpret_given_quantity": 12,
+      "ask_to_check_unit_conversion": 6,
+      "ask_to_rewrite_equation_or_expression": 6,
+      "no_intervention_needed": 12,
+      "insufficient_information": 12,
+      "ask_to_compare_with_problem_condition": 6
+    },
+    "math": {
+      "ask_to_recompute_local_expression": 7,
+      "ask_to_check_operation_or_formula": 6,
+      "ask_to_reinterpret_given_quantity": 6,
+      "ask_to_check_unit_conversion": 3,
+      "ask_to_rewrite_equation_or_expression": 3,
+      "no_intervention_needed": 6,
+      "insufficient_information": 6,
+      "ask_to_compare_with_problem_condition": 3
+    }
+  },
+  "synthetic_type_wise": {
+    "arithmetic_error": {
+      "ask_to_recompute_local_expression": 11
+    },
+    "sign_error": {
+      "ask_to_check_operation_or_formula": 10
+    },
+    "wrong_operation": {
+      "ask_to_check_operation_or_formula": 9
+    },
+    "misread_given_quantity": {
+      "ask_to_reinterpret_given_quantity": 9
+    },
+    "unit_conversion_error": {
+      "ask_to_check_unit_conversion": 9
+    },
+    "equation_setup_error": {
+      "ask_to_rewrite_equation_or_expression": 9
+    },
+    "substitution_error": {
+      "ask_to_reinterpret_given_quantity": 9
+    },
+    "no_error_correct_trace": {
+      "no_intervention_needed": 9
+    },
+    "self_corrected_error": {
+      "no_intervention_needed": 9
+    },
+    "sparse_insufficient_trace": {
+      "insufficient_information": 9
+    },
+    "final_answer_correct_process_wrong": {
+      "ask_to_recompute_local_expression": 9
+    },
+    "final_answer_wrong_prefix_correct": {
+      "ask_to_compare_with_problem_condition": 9
+    },
+    "hint_would_leak_answer": {
+      "insufficient_information": 9
+    }
+  }
+}

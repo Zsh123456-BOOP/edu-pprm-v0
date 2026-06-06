@@ -1,0 +1,16 @@
+{
+  "deepseek": {
+    "base_url": "https://api.deepseek.com",
+    "model": "deepseek-v4-pro",
+    "temperature": 0.0,
+    "max_tokens": 1200,
+    "stream": false,
+    "reasoning_effort": "high",
+    "thinking": {
+      "type": "enabled"
+    },
+    "timeout_seconds": 90,
+    "max_retries": 3,
+    "cache_dir": "data/cache/deepseek"
+  }
+}

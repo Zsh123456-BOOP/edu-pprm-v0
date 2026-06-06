@@ -1,0 +1,182 @@
+[
+  {
+    "sample_id": "pilot_stepverify_0000",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_recompute_local_expression"
+  },
+  {
+    "sample_id": "pilot_stepverify_0001",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_recompute_local_expression"
+  },
+  {
+    "sample_id": "pilot_stepverify_0002",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_recompute_local_expression"
+  },
+  {
+    "sample_id": "pilot_stepverify_0003",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_recompute_local_expression"
+  },
+  {
+    "sample_id": "pilot_stepverify_0004",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_recompute_local_expression"
+  },
+  {
+    "sample_id": "pilot_stepverify_0005",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_recompute_local_expression"
+  },
+  {
+    "sample_id": "pilot_stepverify_0006",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_recompute_local_expression"
+  },
+  {
+    "sample_id": "pilot_stepverify_0007",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0008",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0009",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0010",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0011",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0012",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0013",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0014",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0015",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0016",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0017",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0018",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0019",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0020",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0021",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0022",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0023",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0024",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0025",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0026",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0027",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0028",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  },
+  {
+    "sample_id": "pilot_stepverify_0029",
+    "reason": "real_deepseek_full_labeling_not_completed; fallback label used",
+    "source": "stepverify",
+    "minimal_repair_type": "ask_to_reinterpret_given_quantity"
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "sample_id": "deepseek_client_dryrun",
+  "dry_run": true,
+  "payload": {
+    "model": "deepseek-v4-pro",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return JSON only."
+      },
+      {
+        "role": "user",
+        "content": "Return {\"ok\": true}."
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 1200,
+    "stream": false,
+    "response_format": {
+      "type": "json_object"
+    },
+    "reasoning_effort": "high",
+    "thinking": {
+      "type": "enabled"
+    }
+  }
+}

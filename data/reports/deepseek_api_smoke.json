@@ -1,0 +1,7 @@
+{
+  "model": "deepseek-v4-pro",
+  "base_url": "https://api.deepseek.com",
+  "smoke_ok": true,
+  "full_label_run": "interrupted_after_first_request_waited_multiple_minutes",
+  "api_key_logged": false
+}

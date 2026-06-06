@@ -1,0 +1,7 @@
+field,agreement
+first_wrong_step,1.0
+earliest_actionable_step,1.0
+intervention_needed,1.0
+minimal_repair_type,1.0
+hint_level,1.0
+leakage_constraint,1.0

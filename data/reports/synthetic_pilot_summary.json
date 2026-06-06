@@ -1,0 +1,25 @@
+{
+  "total_count": 120,
+  "failure_count": 0,
+  "source_distribution": {
+    "gsm8k": 80,
+    "math": 40
+  },
+  "synthetic_type_distribution": {
+    "arithmetic_error": 11,
+    "sign_error": 10,
+    "wrong_operation": 9,
+    "misread_given_quantity": 9,
+    "unit_conversion_error": 9,
+    "equation_setup_error": 9,
+    "substitution_error": 9,
+    "no_error_correct_trace": 9,
+    "self_corrected_error": 9,
+    "sparse_insufficient_trace": 9,
+    "final_answer_correct_process_wrong": 9,
+    "final_answer_wrong_prefix_correct": 9,
+    "hint_would_leak_answer": 9
+  },
+  "min_per_type": 9,
+  "verification_failed_included": 0
+}

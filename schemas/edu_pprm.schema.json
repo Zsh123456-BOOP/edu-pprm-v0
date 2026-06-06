@@ -9,7 +9,8 @@
     "existing_labels",
     "pedagogical_labels",
     "label_metadata",
-    "reserved"
+    "reserved",
+    "synthetic_metadata"
   ],
   "properties": {
     "sample_id": {"type": "string"},
@@ -150,7 +151,11 @@
         "label_source",
         "annotator_ids",
         "adjudication_status",
-        "excluded_reason"
+        "excluded_reason",
+        "confidence",
+        "short_rationale",
+        "model_name",
+        "raw_label_response_id"
       ],
       "properties": {
         "quality_tier": {"enum": ["raw", "silver", "gold", null]},
@@ -160,7 +165,11 @@
           "items": {"type": "string"}
         },
         "adjudication_status": {"enum": ["none", "pending", "adjudicated", null]},
-        "excluded_reason": {"type": ["string", "null"]}
+        "excluded_reason": {"type": ["string", "null"]},
+        "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "short_rationale": {"type": ["string", "null"]},
+        "model_name": {"type": ["string", "null"]},
+        "raw_label_response_id": {"type": ["string", "null"]}
       },
       "additionalProperties": false
     },
@@ -173,6 +182,24 @@
         "handwrite_data": {"type": "null", "default": null}
       },
       "additionalProperties": false
+    },
+    "synthetic_metadata": {
+      "type": ["object", "null"],
+      "properties": {
+        "synthetic_type": {"type": ["string", "null"]},
+        "injected_error_step": {"type": ["integer", "null"]},
+        "injected_error_type": {"type": ["string", "null"]},
+        "expected_first_wrong_step": {"type": ["integer", "null"]},
+        "expected_earliest_actionable_step": {"type": ["integer", "null"]},
+        "expected_intervention_needed": {"enum": [true, false, "uncertain", null]},
+        "expected_minimal_repair_type": {"type": ["string", "null"]},
+        "expected_hint_level": {"type": ["string", "null"]},
+        "expected_leakage_constraint": {"type": ["string", "null"]},
+        "generation_method": {"type": ["string", "null"]},
+        "verification_status": {"type": ["string", "null"]},
+        "parent_problem_id": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
     }
   },
   "additionalProperties": false
