@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Edu-PPRM v0 Reserved Scope Schema Stub",
+  "type": "object",
+  "required": ["reserved"],
+  "properties": {
+    "reserved": {
+      "type": "object",
+      "required": ["budget_data", "distillation_data", "handwrite_data"],
+      "properties": {
+        "budget_data": {"type": ["object", "null"], "default": null},
+        "distillation_data": {"type": ["object", "null"], "default": null},
+        "handwrite_data": {"type": ["object", "null"], "default": null}
+      },
+      "additionalProperties": false
+    }
+  }
+}

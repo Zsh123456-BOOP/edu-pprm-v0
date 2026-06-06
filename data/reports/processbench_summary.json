@@ -1,0 +1,45 @@
+{
+  "source": "processbench",
+  "row_count": 20,
+  "field_coverage": {
+    "problem_text": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "student_solution_raw": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "first_wrong_step_source": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "source_split": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "final_answer_correct": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    }
+  },
+  "mappable_fields": {
+    "first_wrong_step": "label"
+  },
+  "unmappable_fields": {
+    "error_category": "not annotated",
+    "error_description": "not annotated",
+    "earliest_actionable_step": "not annotated",
+    "minimal_repair_type": "not annotated",
+    "hint_level": "not annotated",
+    "leakage_constraint": "not annotated"
+  },
+  "notes": [
+    "External eval only; split guard prevents writing into train/interim outputs."
+  ]
+}

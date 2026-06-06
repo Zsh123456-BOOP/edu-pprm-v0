@@ -1,0 +1,61 @@
+{
+  "source": "mathedu",
+  "row_count": 20,
+  "field_coverage": {
+    "problem_text": {
+      "present": 0,
+      "total": 20,
+      "coverage": 0.0
+    },
+    "student_solution_raw": {
+      "present": 19,
+      "total": 20,
+      "coverage": 0.95
+    },
+    "teacher_feedback": {
+      "present": 5,
+      "total": 20,
+      "coverage": 0.25
+    },
+    "correctness": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "error_type": {
+      "present": 1,
+      "total": 20,
+      "coverage": 0.05
+    },
+    "teacher_advice": {
+      "present": 5,
+      "total": 20,
+      "coverage": 0.25
+    },
+    "has_step_level_info": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "usable_bucket": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    }
+  },
+  "mappable_fields": {
+    "teacher_feedback": "teacher_review / reason fields when present",
+    "error_category": "the_reason_why_student_cant_solve_en/ch when present"
+  },
+  "unmappable_fields": {
+    "first_wrong_step": "not step-index annotated",
+    "earliest_actionable_step": "not annotated",
+    "minimal_repair_type": "not annotated",
+    "hint_level": "not annotated",
+    "leakage_constraint": "not annotated"
+  },
+  "notes": [
+    "Public time_series_split sample has student process and correctness.",
+    "The inspected JSON does not expose a reliable problem_text field in these rows."
+  ]
+}

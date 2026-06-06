@@ -1,0 +1,39 @@
+{
+  "source": "prm800k",
+  "row_count": 20,
+  "field_coverage": {
+    "problem_text": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "solution_steps": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "step_correctness": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "source_split": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    }
+  },
+  "mappable_fields": {},
+  "unmappable_fields": {
+    "first_wrong_step": "step correctness is not the same as first wrong step label",
+    "error_category": "not annotated",
+    "error_description": "not annotated",
+    "earliest_actionable_step": "not annotated",
+    "minimal_repair_type": "not annotated",
+    "hint_level": "not annotated",
+    "leakage_constraint": "not annotated"
+  },
+  "notes": [
+    "PRM800K is generic PRM supervision; do not treat it as pedagogical repair labels."
+  ]
+}

@@ -1,0 +1,14 @@
+[project]
+name = "edu-pprm"
+version = "0.0.1"
+description = "Text-only pedagogical process verification pilot."
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"

@@ -1,0 +1,16 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+
+data/raw/**
+data/external/**
+data/external_eval/**
+data/interim/**
+data/pilot/**
+data/processed/**
+data/gold/**
+data/synthetic/**
+data/stress/**
+
+!data/reports/
+!data/reports/**

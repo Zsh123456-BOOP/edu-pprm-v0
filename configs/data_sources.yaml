@@ -1,0 +1,72 @@
+{
+  "sources": [
+    {
+      "source_name": "stepverify",
+      "url_or_path": "https://huggingface.co/datasets/eth-nlped/stepverify",
+      "license": "unknown_from_registry_check",
+      "role": "core_first_error_student_reasoning",
+      "task_use": ["pilot", "gold_candidate", "baseline"],
+      "allowed_split": ["train"],
+      "release_flag": "public_hf_dataset",
+      "default_loader": "src.data.load_stepverify"
+    },
+    {
+      "source_name": "mathedu",
+      "url_or_path": "https://github.com/NYCU-NLP-Lab/MathEDU",
+      "license": "unknown_from_registry_check",
+      "role": "authentic_student_solution_teacher_feedback",
+      "task_use": ["pilot", "gold_candidate", "full_train"],
+      "allowed_split": ["train", "val", "test"],
+      "release_flag": "public_github_dataset",
+      "default_loader": "src.data.load_mathedu"
+    },
+    {
+      "source_name": "gsm8k",
+      "url_or_path": "https://huggingface.co/datasets/openai/gsm8k",
+      "license": "mit",
+      "role": "problem_bank_for_synthetic_student_errors",
+      "task_use": ["synthetic_train", "synthetic_pilot"],
+      "allowed_split": ["train"],
+      "release_flag": "public_hf_dataset",
+      "default_loader": "src.data.load_gsm8k"
+    },
+    {
+      "source_name": "math",
+      "url_or_path": "https://huggingface.co/datasets/EleutherAI/hendrycks_math",
+      "license": "mit",
+      "role": "problem_bank_for_synthetic_student_errors",
+      "task_use": ["synthetic_train", "synthetic_eval"],
+      "allowed_split": ["train"],
+      "release_flag": "public_hf_dataset",
+      "default_loader": "src.data.load_math"
+    },
+    {
+      "source_name": "prm800k",
+      "url_or_path": "https://github.com/openai/prm800k",
+      "license": "mit",
+      "role": "generic_prm_pretrain_or_baseline",
+      "task_use": ["baseline", "optional_pretrain"],
+      "allowed_split": ["phase1_train", "phase1_test", "phase2_train", "phase2_test"],
+      "release_flag": "public_github_dataset",
+      "default_loader": "src.data.load_prm800k"
+    },
+    {
+      "source_name": "processbench",
+      "url_or_path": "https://huggingface.co/datasets/Qwen/ProcessBench",
+      "license": "unknown_from_registry_check",
+      "role": "external_first_error_benchmark",
+      "task_use": ["external_eval_only"],
+      "allowed_split": ["gsm8k", "math", "olympiadbench", "omnimath"],
+      "release_flag": "external_eval_only",
+      "default_loader": "src.data.load_processbench"
+    }
+  ],
+  "guards": {
+    "external_eval_only_must_not_train": ["processbench"],
+    "reserved_fields_must_remain_optional": [
+      "handwrite_data",
+      "budget_data",
+      "distillation_data"
+    ]
+  }
+}

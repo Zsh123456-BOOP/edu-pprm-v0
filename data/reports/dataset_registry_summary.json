@@ -1,0 +1,99 @@
+{
+  "source_count": 6,
+  "sources": [
+    {
+      "source_name": "stepverify",
+      "role": "core_first_error_student_reasoning",
+      "task_use": [
+        "pilot",
+        "gold_candidate",
+        "baseline"
+      ],
+      "allowed_split": [
+        "train"
+      ],
+      "license": "unknown_from_registry_check",
+      "release_flag": "public_hf_dataset",
+      "url_or_path": "https://huggingface.co/datasets/eth-nlped/stepverify"
+    },
+    {
+      "source_name": "mathedu",
+      "role": "authentic_student_solution_teacher_feedback",
+      "task_use": [
+        "pilot",
+        "gold_candidate",
+        "full_train"
+      ],
+      "allowed_split": [
+        "train",
+        "val",
+        "test"
+      ],
+      "license": "unknown_from_registry_check",
+      "release_flag": "public_github_dataset",
+      "url_or_path": "https://github.com/NYCU-NLP-Lab/MathEDU"
+    },
+    {
+      "source_name": "gsm8k",
+      "role": "problem_bank_for_synthetic_student_errors",
+      "task_use": [
+        "synthetic_train",
+        "synthetic_pilot"
+      ],
+      "allowed_split": [
+        "train"
+      ],
+      "license": "mit",
+      "release_flag": "public_hf_dataset",
+      "url_or_path": "https://huggingface.co/datasets/openai/gsm8k"
+    },
+    {
+      "source_name": "math",
+      "role": "problem_bank_for_synthetic_student_errors",
+      "task_use": [
+        "synthetic_train",
+        "synthetic_eval"
+      ],
+      "allowed_split": [
+        "train"
+      ],
+      "license": "mit",
+      "release_flag": "public_hf_dataset",
+      "url_or_path": "https://huggingface.co/datasets/EleutherAI/hendrycks_math"
+    },
+    {
+      "source_name": "prm800k",
+      "role": "generic_prm_pretrain_or_baseline",
+      "task_use": [
+        "baseline",
+        "optional_pretrain"
+      ],
+      "allowed_split": [
+        "phase1_train",
+        "phase1_test",
+        "phase2_train",
+        "phase2_test"
+      ],
+      "license": "mit",
+      "release_flag": "public_github_dataset",
+      "url_or_path": "https://github.com/openai/prm800k"
+    },
+    {
+      "source_name": "processbench",
+      "role": "external_first_error_benchmark",
+      "task_use": [
+        "external_eval_only"
+      ],
+      "allowed_split": [
+        "gsm8k",
+        "math",
+        "olympiadbench",
+        "omnimath"
+      ],
+      "license": "unknown_from_registry_check",
+      "release_flag": "external_eval_only",
+      "url_or_path": "https://huggingface.co/datasets/Qwen/ProcessBench"
+    }
+  ],
+  "errors": []
+}

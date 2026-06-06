@@ -1,0 +1,55 @@
+{
+  "source": "stepverify",
+  "row_count": 20,
+  "field_coverage": {
+    "problem_text": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "reference_solution_raw": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "student_solution_raw": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "first_wrong_step_source": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "error_category_source": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "error_description_source": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "dialog_history": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    }
+  },
+  "mappable_fields": {
+    "first_wrong_step": "incorrect_index",
+    "error_category": "error_category",
+    "error_description": "error_description"
+  },
+  "unmappable_fields": {
+    "earliest_actionable_step": "not annotated",
+    "minimal_repair_type": "not annotated",
+    "hint_level": "not annotated",
+    "leakage_constraint": "not annotated"
+  },
+  "notes": [
+    "StepVerify maps directly to first-error baseline fields, not new repair labels."
+  ]
+}

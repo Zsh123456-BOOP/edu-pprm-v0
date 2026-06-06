@@ -1,0 +1,54 @@
+{
+  "source": "math",
+  "row_count": 20,
+  "field_coverage": {
+    "problem_text": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "gold_answer": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "gold_solution": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "gold_solution_steps": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "source_split": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "topic": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    },
+    "difficulty": {
+      "present": 20,
+      "total": 20,
+      "coverage": 1.0
+    }
+  },
+  "mappable_fields": {},
+  "unmappable_fields": {
+    "first_wrong_step": "problem bank has no student error trace",
+    "error_category": "problem bank has no student error trace",
+    "error_description": "problem bank has no student error trace",
+    "earliest_actionable_step": "not annotated",
+    "minimal_repair_type": "not annotated",
+    "hint_level": "not annotated",
+    "leakage_constraint": "not annotated"
+  },
+  "notes": [
+    "Uses train split only and samples across MATH subject configs."
+  ]
+}

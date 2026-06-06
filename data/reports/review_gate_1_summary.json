@@ -1,0 +1,329 @@
+{
+  "sources": {
+    "stepverify": {
+      "source": "stepverify",
+      "row_count": 20,
+      "field_coverage": {
+        "problem_text": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "reference_solution_raw": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "student_solution_raw": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "first_wrong_step_source": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "error_category_source": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "error_description_source": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "dialog_history": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        }
+      },
+      "mappable_fields": {
+        "first_wrong_step": "incorrect_index",
+        "error_category": "error_category",
+        "error_description": "error_description"
+      },
+      "unmappable_fields": {
+        "earliest_actionable_step": "not annotated",
+        "minimal_repair_type": "not annotated",
+        "hint_level": "not annotated",
+        "leakage_constraint": "not annotated"
+      },
+      "notes": [
+        "StepVerify maps directly to first-error baseline fields, not new repair labels."
+      ]
+    },
+    "mathedu": {
+      "source": "mathedu",
+      "row_count": 20,
+      "field_coverage": {
+        "problem_text": {
+          "present": 0,
+          "total": 20,
+          "coverage": 0.0
+        },
+        "student_solution_raw": {
+          "present": 19,
+          "total": 20,
+          "coverage": 0.95
+        },
+        "teacher_feedback": {
+          "present": 5,
+          "total": 20,
+          "coverage": 0.25
+        },
+        "correctness": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "error_type": {
+          "present": 1,
+          "total": 20,
+          "coverage": 0.05
+        },
+        "teacher_advice": {
+          "present": 5,
+          "total": 20,
+          "coverage": 0.25
+        },
+        "has_step_level_info": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "usable_bucket": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        }
+      },
+      "mappable_fields": {
+        "teacher_feedback": "teacher_review / reason fields when present",
+        "error_category": "the_reason_why_student_cant_solve_en/ch when present"
+      },
+      "unmappable_fields": {
+        "first_wrong_step": "not step-index annotated",
+        "earliest_actionable_step": "not annotated",
+        "minimal_repair_type": "not annotated",
+        "hint_level": "not annotated",
+        "leakage_constraint": "not annotated"
+      },
+      "notes": [
+        "Public time_series_split sample has student process and correctness.",
+        "The inspected JSON does not expose a reliable problem_text field in these rows."
+      ]
+    },
+    "gsm8k": {
+      "source": "gsm8k",
+      "row_count": 20,
+      "field_coverage": {
+        "problem_text": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "gold_answer": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "gold_solution": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "gold_solution_steps": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "source_split": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        }
+      },
+      "mappable_fields": {},
+      "unmappable_fields": {
+        "first_wrong_step": "problem bank has no student error trace",
+        "error_category": "problem bank has no student error trace",
+        "error_description": "problem bank has no student error trace",
+        "earliest_actionable_step": "not annotated",
+        "minimal_repair_type": "not annotated",
+        "hint_level": "not annotated",
+        "leakage_constraint": "not annotated"
+      },
+      "notes": [
+        "Uses train split only for synthetic problem bank pilot; test split is not used."
+      ]
+    },
+    "math": {
+      "source": "math",
+      "row_count": 20,
+      "field_coverage": {
+        "problem_text": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "gold_answer": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "gold_solution": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "gold_solution_steps": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "source_split": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "topic": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "difficulty": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        }
+      },
+      "mappable_fields": {},
+      "unmappable_fields": {
+        "first_wrong_step": "problem bank has no student error trace",
+        "error_category": "problem bank has no student error trace",
+        "error_description": "problem bank has no student error trace",
+        "earliest_actionable_step": "not annotated",
+        "minimal_repair_type": "not annotated",
+        "hint_level": "not annotated",
+        "leakage_constraint": "not annotated"
+      },
+      "notes": [
+        "Uses train split only and samples across MATH subject configs."
+      ]
+    },
+    "prm800k": {
+      "source": "prm800k",
+      "row_count": 20,
+      "field_coverage": {
+        "problem_text": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "solution_steps": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "step_correctness": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "source_split": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        }
+      },
+      "mappable_fields": {},
+      "unmappable_fields": {
+        "first_wrong_step": "step correctness is not the same as first wrong step label",
+        "error_category": "not annotated",
+        "error_description": "not annotated",
+        "earliest_actionable_step": "not annotated",
+        "minimal_repair_type": "not annotated",
+        "hint_level": "not annotated",
+        "leakage_constraint": "not annotated"
+      },
+      "notes": [
+        "PRM800K is generic PRM supervision; do not treat it as pedagogical repair labels."
+      ]
+    },
+    "processbench": {
+      "source": "processbench",
+      "row_count": 20,
+      "field_coverage": {
+        "problem_text": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "student_solution_raw": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "first_wrong_step_source": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "source_split": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        },
+        "final_answer_correct": {
+          "present": 20,
+          "total": 20,
+          "coverage": 1.0
+        }
+      },
+      "mappable_fields": {
+        "first_wrong_step": "label"
+      },
+      "unmappable_fields": {
+        "error_category": "not annotated",
+        "error_description": "not annotated",
+        "earliest_actionable_step": "not annotated",
+        "minimal_repair_type": "not annotated",
+        "hint_level": "not annotated",
+        "leakage_constraint": "not annotated"
+      },
+      "notes": [
+        "External eval only; split guard prevents writing into train/interim outputs."
+      ]
+    }
+  },
+  "review_gate_1": {
+    "stop": true
+  },
+  "field_mapping_review": {
+    "can_map": {
+      "first_wrong_step": [
+        "stepverify.incorrect_index",
+        "processbench.label (external eval only)"
+      ],
+      "error_category": [
+        "stepverify.error_category",
+        "mathedu.reason fields when present but not step-level"
+      ],
+      "error_description": [
+        "stepverify.error_description"
+      ],
+      "teacher_feedback": [
+        "mathedu.teacher_review / reason fields when present"
+      ]
+    },
+    "cannot_directly_map": {
+      "earliest_actionable_step": "not directly annotated in any inspected source",
+      "minimal_repair_type": "not directly annotated in any inspected source",
+      "hint_level": "not directly annotated in any inspected source",
+      "leakage_constraint": "not directly annotated in any inspected source"
+    }
+  }
+}
