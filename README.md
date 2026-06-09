@@ -56,3 +56,9 @@ Stop after Phase 1 and review:
 - field coverage
 - fields that map to existing first-error labels
 - fields that cannot directly map to pedagogical repair labels
+
+## Current Handoff
+
+For the latest GPT Pro review context, current generated datasets, experiment
+summary, and next-step guidance, see `GPT_PRO_HANDOFF.md`. Keep that file
+updated whenever the pipeline, data, reports, metrics, or conclusion changes.
