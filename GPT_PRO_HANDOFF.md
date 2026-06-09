@@ -210,35 +210,43 @@ Current recommendation: do not train yet. First improve data validity and label 
 
 ## Phase 3.11-3.16 Proxy Human Audit Result
 
-Implemented after the DeepSeek synthetic 240 experiment:
+Implemented after the DeepSeek synthetic 240 experiment and revised as audit v2:
 
 - Audit name: `proxy_human_audit`
 - Candidate label set name: `ai_adjudicated_gold_candidate`
 - Metric samples: 60
 - Calibration samples: 8
-- Codex proxy audit: 68/68 labels produced from blind view only
-- DeepSeek-pro full-prompt audit: 41/68 labels produced, 27/68 failures, 0 pending
+- `heuristic_proxy`: retained only as deterministic baseline, excluded from main metrics
+- `codex_manual_proxy`: 68/68 labels produced from blind view only
+- `deepseek_proxy`: 65/68 labels produced, 3/68 failures, 0 pending
 - Proxy adjudication: 60/60 metric samples
 
 Key agreement metrics on samples where both proxy annotators returned labels:
 
-- `first_wrong_step_exact_agreement`: 0.6829
-- `first_wrong_step_off_by_one_agreement`: 0.7073
-- `intervention_needed_agreement`: 0.7805
-- `minimal_repair_type_exact_agreement`: 0.6341
-- `minimal_repair_type_coarse_agreement`: 0.6585
-- `hint_level_agreement`: 0.7073
-- `leakage_constraint_agreement`: 0.0976
+- `compared_count`: 57/60
+- `first_wrong_step_exact_agreement`: 0.7544
+- `first_wrong_step_off_by_one_agreement`: 0.7895
+- `intervention_needed_agreement`: 0.7193
+- `minimal_repair_type_exact_agreement`: 0.5789
+- `minimal_repair_type_coarse_agreement`: 0.6316
+- `hint_level_agreement`: 0.6316
+- `leakage_constraint_agreement`: 0.2632
 
 Expected-label validity against proxy adjudication:
 
-- `expected_vs_adjudicated_acc`: 0.4267
-- `expected_label_valid_true`: 0.24
-- `expected_label_valid_partial`: 0.34
-- `strict_pass_precision_against_adjudicated`: 0.5667
-- `first_wrong_step != earliest_actionable_step after adjudication`: 0.0
+- `expected_vs_adjudicated_acc`: 0.5067
+- `expected_label_valid_full`: 0.04
+- `expected_label_valid_partial_only`: 0.56
+- `expected_label_valid_partial_or_full`: 0.60
+- `expected_label_valid_false`: 0.40
+- `strict_pass_precision_against_adjudicated`: 0.80
+- `strict_fail_bad_rate`: 0.70
+- `first_wrong_step_diff_ratio`: 0.0
+- `uncertain_rate`: 0.3333
 
-Decision: No-Go. Do not train, do not expand silver data, and do not train a verifier from these expected labels. The audit suggests the current synthetic intent labels and leakage constraints are not stable enough.
+Decision: No-Go. Do not train, do not expand silver data, and do not train a verifier from these expected labels. The audit passed DeepSeek success and strict-pass precision, but failed the new Go thresholds for first-wrong off-by-one, repair coarse agreement, intervention agreement, and expected partial-or-full validity.
+
+Recommended narrowed next step: validate whether the pedagogical repair taxonomy can be stably annotated. Treat `earliest_actionable_step` as a boundary-case metric for now, not the main claim. Focus on `first_wrong_step -> minimal_repair_type / hint_level / leakage_constraint`, with `minimal_repair_type` analyzed mainly through the 6-class coarse taxonomy.
 
 Validation status:
 
@@ -257,36 +265,40 @@ Key files for review:
 - `reports/expected_label_validity_60.md`
 - `data/audit/audit_60_blind.jsonl`
 - `data/audit/audit_60_analysis_private.jsonl`
-- `data/audit/codex_audit_60.labels.jsonl`
+- `data/audit/codex_manual_audit_60.template.jsonl`
+- `data/audit/codex_manual_audit_60.labels.jsonl`
+- `data/audit/heuristic_proxy_baseline.labels.jsonl`
 - `data/audit/deepseek_audit_60.labels.jsonl`
 - `data/audit/proxy_adjudicated_60.jsonl`
+- `data/audit_v2/audit_60_manifest.json`
+- `data/reports/audit_60_sampling_report.json`
 
 ## Suggested GPT Pro Review Questions
 
 Use this concise prompt:
 
 ```text
-Review the Edu-PPRM-v0 Direction 1 pilot after commit 025f99f.
+Review the Edu-PPRM-v0 Direction 1 proxy audit v2 after the latest commit.
 
 Key files:
 - GPT_PRO_HANDOFF.md
-- reports/deepseek_synthetic_240_experiment.md
-- data/reports/deepseek_synthetic_240_experiment_summary.json
-- data/pilot/deepseek_synthetic_240.raw.jsonl
-- data/pilot/deepseek_synthetic_240.autolabeled.jsonl
-- data/pilot/deepseek_synthetic_240.verified.raw.jsonl
-- data/pilot/deepseek_synthetic_240.verified.autolabeled.jsonl
-- src/synthetic/deepseek_generate_synthetic_240.py
-- src/synthetic/deepseek_verify_synthetic_240.py
-- src/labels/label_deepseek_synthetic_240.py
-- src/eval/eval_deepseek_synthetic_240.py
+- reports/proxy_audit_60.md
+- reports/proxy_audit_agreement_60.md
+- reports/proxy_adjudication_60.md
+- reports/expected_label_validity_60.md
+- data/audit/audit_60_blind.jsonl
+- data/audit/codex_manual_audit_60.labels.jsonl
+- data/audit/deepseek_audit_60.labels.jsonl
+- data/audit/proxy_adjudicated_60.jsonl
+- data/reports/audit_60_sampling_report.json
+- src/audit/
 
 Please answer:
-1. Is the current failure mainly a synthetic generation problem, taxonomy problem, prompt problem, or task-definition problem?
-2. Which synthetic types should be fixed first?
-3. Should we add human spot-check before more DeepSeek generation?
-4. What exact next experiment should be run before any model training?
-5. What Go/No-Go thresholds should be revised, if any?
+1. Is the repair taxonomy stable enough at the 6-class coarse level, or should labels be merged further?
+2. Are the remaining failures mainly synthetic generation issues, taxonomy ambiguity, DeepSeek prompt issues, or task-definition issues?
+3. Which synthetic types should be disabled or rewritten first?
+4. Should the next experiment expand to 300-500 silver samples, or first add a small real manual check?
+5. Should `earliest_actionable_step` be retained only as a boundary metric rather than a core label?
 ```
 
 ## Maintenance Rule

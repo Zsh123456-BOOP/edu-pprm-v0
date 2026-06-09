@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from src.audit.common import AUDIT_DIR, BLIND_PATH, MANIFEST_PATH, PRIVATE_PATH, leak_scan_blind_rows
+from src.audit.common import AUDIT_DIR, AUDIT_V2_DIR, BLIND_PATH, MANIFEST_PATH, PRIVATE_PATH, leak_scan_blind_rows
 from src.data.common import PILOT_DIR, REPORT_DIR, read_jsonl_file, write_jsonl
 
 
@@ -127,6 +127,9 @@ def main() -> int:
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
     write_jsonl(BLIND_PATH, blind_rows)
     write_jsonl(PRIVATE_PATH, private_rows)
+    AUDIT_V2_DIR.mkdir(parents=True, exist_ok=True)
+    write_jsonl(AUDIT_V2_DIR / "audit_60_blind.jsonl", blind_rows)
+    write_jsonl(AUDIT_V2_DIR / "audit_60_analysis_private.jsonl", private_rows)
     print(json.dumps({"blind_rows": len(blind_rows), "private_rows": len(private_rows), "leakage_scan": "passed"}, indent=2))
     return 0
 

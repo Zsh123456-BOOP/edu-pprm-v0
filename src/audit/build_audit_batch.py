@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 import json
-from collections import Counter
-from pathlib import Path
+import random
+from collections import Counter, defaultdict
 from typing import Any
 
-from src.audit.common import AUDIT_DIR, MANIFEST_PATH, all_expected_match
+from src.audit.common import AUDIT_DIR, AUDIT_V2_DIR, MANIFEST_PATH, all_expected_match, compare_expected
 from src.data.common import PILOT_DIR, REPORT_DIR, read_jsonl_file, write_json
 
 HARD_TYPES = {
@@ -21,11 +21,43 @@ def by_id(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     return {row["sample_id"]: row for row in rows}
 
 
-def pick(rows: list[dict[str, Any]], count: int) -> list[dict[str, Any]]:
-    rows = sorted(rows, key=lambda row: row["sample_id"])
+SEED = 20260609
+
+
+def stratified_pick(rows: list[dict[str, Any]], count: int, key_fn, *, seed: int = SEED) -> list[dict[str, Any]]:
+    rng = random.Random(seed)
+    buckets: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        buckets[str(key_fn(row))].append(row)
+    for bucket_rows in buckets.values():
+        bucket_rows.sort(key=lambda row: row["sample_id"])
+        rng.shuffle(bucket_rows)
+    selected: list[dict[str, Any]] = []
+    keys = sorted(buckets)
+    while len(selected) < count and any(buckets.values()):
+        for key in keys:
+            if buckets[key] and len(selected) < count:
+                selected.append(buckets[key].pop(0))
+    if len(selected) < count:
+        raise ValueError(f"not enough rows: need {count}, have {len(selected)}")
+    return selected
+
+
+def pick(rows: list[dict[str, Any]], count: int, *, seed: int = SEED) -> list[dict[str, Any]]:
+    rows = list(rows)
+    rows.sort(key=lambda row: row["sample_id"])
+    random.Random(seed).shuffle(rows)
     if len(rows) < count:
         raise ValueError(f"not enough rows: need {count}, have {len(rows)}")
     return rows[:count]
+
+
+def mismatch_field(row: dict[str, Any], autolabeled: dict[str, dict[str, Any]]) -> str:
+    checks = compare_expected(row, autolabeled[row["sample_id"]])
+    for field, ok in checks.items():
+        if not ok:
+            return field
+    return "none"
 
 
 def manifest_item(row: dict[str, Any], subset: str, strict_status: str, included: bool = True) -> dict[str, Any]:
@@ -68,11 +100,20 @@ def main() -> int:
     failed_random = [row for row in strict_failed if row["synthetic_metadata"].get("synthetic_type") not in HARD_TYPES]
 
     selected = []
-    selected.extend((row, "strict_pass_label_expected_match", "passed") for row in pick(pass_match, 12))
-    selected.extend((row, "strict_pass_label_expected_mismatch", "passed") for row in pick(pass_mismatch, 18))
-    selected.extend((row, "strict_failed_hard_types", "failed") for row in pick(failed_hard, 15))
+    selected.extend(
+        (row, "strict_pass_expected_match", "passed")
+        for row in stratified_pick(pass_match, 12, lambda row: row["synthetic_metadata"].get("synthetic_type"))
+    )
+    selected.extend(
+        (row, "strict_pass_expected_mismatch", "passed")
+        for row in stratified_pick(pass_mismatch, 18, lambda row: mismatch_field(row, autolabeled))
+    )
+    selected.extend(
+        (row, "strict_failed_hard_types", "failed")
+        for row in stratified_pick(failed_hard, 15, lambda row: row["synthetic_metadata"].get("synthetic_type"))
+    )
     selected.extend((row, "strict_failed_random_types", "failed") for row in pick(failed_random, 5))
-    selected.extend((row, "stepverify_raw", "not_applicable") for row in pick(stepverify, 10))
+    selected.extend((row, "stepverify_raw", "not_applicable") for row in stratified_pick(stepverify, 10, lambda row: row["existing_labels"].get("error_category")))
 
     items = [manifest_item(row, subset, strict_status) for row, subset, strict_status in selected]
     items.extend(boundary_to_manifest_item(row, index) for index, row in enumerate(boundary[:8]))
@@ -81,6 +122,8 @@ def main() -> int:
     subset_distribution = Counter(item["audit_subset"] for item in items)
     payload = {
         "audit_name": "proxy_human_audit_60",
+        "audit_version": "v2",
+        "sampling_seed": SEED,
         "label_set_name": "ai_adjudicated_gold_candidate",
         "note": "Proxy audit only. These are not human gold labels.",
         "metric_count": metric_count,
@@ -91,6 +134,19 @@ def main() -> int:
     }
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
     write_json(MANIFEST_PATH, payload)
+    AUDIT_V2_DIR.mkdir(parents=True, exist_ok=True)
+    write_json(AUDIT_V2_DIR / "audit_60_manifest.json", payload)
+    selected_rows = [row for row, _, _ in selected]
+    sampling_report = {
+        "audit_version": "v2",
+        "sampling_seed": SEED,
+        "synthetic_type_distribution": dict(Counter((row.get("synthetic_metadata") or {}).get("synthetic_type") for row in selected_rows if row.get("synthetic_metadata"))),
+        "strict_status_distribution": dict(Counter(item["strict_status"] for item in items)),
+        "expected_match_mismatch_distribution": dict(Counter(item["audit_subset"] for item in items if item["audit_subset"].startswith("strict_pass_expected"))),
+        "source_distribution": dict(Counter(item["source"] for item in items)),
+        "subset_distribution": dict(subset_distribution),
+    }
+    write_json(REPORT_DIR / "audit_60_sampling_report.json", sampling_report)
     print(json.dumps(payload, ensure_ascii=False, indent=2))
     return 0
 

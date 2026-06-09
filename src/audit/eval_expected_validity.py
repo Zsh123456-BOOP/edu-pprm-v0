@@ -13,6 +13,7 @@ from src.audit.common import (
     ROOT,
     audit_fields,
     expected_labels_from_private,
+    load_coarse_map,
     metric_sample_ids,
     rows_by_id,
 )
@@ -28,9 +29,9 @@ def compare(expected: dict[str, Any], actual: dict[str, Any]) -> tuple[int, int]
 
 def validity_bucket(correct: int, total: int) -> str:
     if correct == total:
-        return "true"
+        return "full"
     if correct >= 4:
-        return "partial"
+        return "partial_only"
     return "false"
 
 
@@ -51,6 +52,9 @@ def main() -> int:
     }
     diff_after_adj = 0
     synthetic_type_bad = Counter()
+    uncertain_count = 0
+    repair_coarse_pairs = []
+    coarse_map = load_coarse_map()
     for sid in sorted(metric_ids):
         row = private[sid]
         if row.get("source") == "stepverify":
@@ -65,6 +69,10 @@ def main() -> int:
             totals["expected_vs_deepseek"][1] += d_total
         adj = adjudicated_raw[sid]
         adj_actual = audit_fields(adj, prefix="final_")
+        if adj_actual.get("intervention_needed") == "uncertain":
+            uncertain_count += 1
+        if expected.get("minimal_repair_type") and adj_actual.get("minimal_repair_type"):
+            repair_coarse_pairs.append((coarse_map.get(expected["minimal_repair_type"]), coarse_map.get(adj_actual["minimal_repair_type"])))
         a_correct, a_total = compare(expected, adj_actual)
         totals["expected_vs_adjudicated"][0] += a_correct
         totals["expected_vs_adjudicated"][1] += a_total
@@ -74,7 +82,7 @@ def main() -> int:
             diff_after_adj += 1
         if row["strict_status"] == "passed":
             strict_pass_total += 1
-            strict_pass_valid += int(bucket in {"true", "partial"})
+            strict_pass_valid += int(bucket in {"full", "partial_only"})
         elif row["strict_status"] == "failed":
             strict_fail_total += 1
             strict_fail_bad += int(bucket == "false")
@@ -98,11 +106,19 @@ def main() -> int:
         ok, total = totals[key]
         return round(ok / total, 4) if total else None
     synthetic_metric_count = sum(1 for sid in metric_ids if private[sid].get("source") != "stepverify")
-    full_valid = counts["expected_label_valid_true"] / synthetic_metric_count if synthetic_metric_count else 0
-    partial_valid = (counts["expected_label_valid_true"] + counts["expected_label_valid_partial"]) / synthetic_metric_count if synthetic_metric_count else 0
+    full_valid = counts["expected_label_valid_full"] / synthetic_metric_count if synthetic_metric_count else 0
+    partial_only = counts["expected_label_valid_partial_only"] / synthetic_metric_count if synthetic_metric_count else 0
+    partial_or_full = (counts["expected_label_valid_full"] + counts["expected_label_valid_partial_only"]) / synthetic_metric_count if synthetic_metric_count else 0
     strict_pass_precision = strict_pass_valid / strict_pass_total if strict_pass_total else None
     strict_fail_bad_rate = strict_fail_bad / strict_fail_total if strict_fail_total else None
     diff_ratio = diff_after_adj / synthetic_metric_count if synthetic_metric_count else 0
+    agreement_path = REPORT_DIR / "proxy_audit_agreement_60.json"
+    agreement = json.loads(agreement_path.read_text(encoding="utf-8")) if agreement_path.exists() else {}
+    deepseek_success = len(deepseek)
+    fw_off_by_one = agreement.get("first_wrong_step_off_by_one_agreement")
+    repair_coarse = agreement.get("minimal_repair_type_coarse_agreement")
+    intervention_agreement = agreement.get("intervention_needed_agreement")
+    leakage_agreement = agreement.get("leakage_constraint_agreement")
     summary = {
         "status": "completed",
         "synthetic_metric_count": synthetic_metric_count,
@@ -110,36 +126,42 @@ def main() -> int:
         "expected_vs_deepseek_acc": ratio("expected_vs_deepseek"),
         "expected_vs_adjudicated_acc": ratio("expected_vs_adjudicated"),
         "strict_pass_precision_against_adjudicated": round(strict_pass_precision, 4) if strict_pass_precision is not None else None,
-        "strict_fail_actual_bad_rate": round(strict_fail_bad_rate, 4) if strict_fail_bad_rate is not None else None,
-        "expected_label_valid_true": round(full_valid, 4),
-        "expected_label_valid_partial": round(partial_valid, 4),
+        "strict_fail_bad_rate": round(strict_fail_bad_rate, 4) if strict_fail_bad_rate is not None else None,
+        "expected_label_valid_full": round(full_valid, 4),
+        "expected_label_valid_partial_only": round(partial_only, 4),
+        "expected_label_valid_partial_or_full": round(partial_or_full, 4),
         "expected_label_valid_false": round(counts["expected_label_valid_false"] / synthetic_metric_count, 4) if synthetic_metric_count else 0,
-        "first_wrong_step_not_equal_earliest_actionable_step_after_adjudication": round(diff_ratio, 4),
+        "first_wrong_step_diff_ratio": round(diff_ratio, 4),
+        "minimal_repair_type_coarse_agreement_expected_vs_adjudicated": round(sum(a == b for a, b in repair_coarse_pairs) / len(repair_coarse_pairs), 4) if repair_coarse_pairs else None,
+        "uncertain_rate": round(uncertain_count / len(metric_ids), 4) if metric_ids else 0,
         "synthetic_types_with_invalid_cases": dict(synthetic_type_bad),
         "go_no_go": {
-            "expected_vs_adjudicated_full_validity>=0.65": full_valid >= 0.65,
-            "expected_vs_adjudicated_partial_validity>=0.85": partial_valid >= 0.85,
-            "first_wrong_step_diff_ratio>=0.08": diff_ratio >= 0.08,
-            "no_go_expected_full_validity<0.50": full_valid < 0.50,
-            "no_go_first_wrong_step_diff<0.03": diff_ratio < 0.03,
-            "recommendation": "do_not_train_until_proxy_audit_passes",
+            "deepseek_audit_success": f"{deepseek_success}/68",
+            "deepseek_audit_success>=60/68": deepseek_success >= 60,
+            "codex_manual_vs_deepseek_first_wrong_off_by_one>=0.80": fw_off_by_one is not None and fw_off_by_one >= 0.80,
+            "minimal_repair_type_coarse_agreement>=0.70": repair_coarse is not None and repair_coarse >= 0.70,
+            "intervention_needed_agreement_including_uncertain>=0.75": intervention_agreement is not None and intervention_agreement >= 0.75,
+            "expected_vs_adjudicated_partial_or_full>=0.70": partial_or_full >= 0.70,
+            "strict_pass_precision>=0.70": strict_pass_precision is not None and strict_pass_precision >= 0.70,
+            "leakage_agreement_report_only": leakage_agreement,
+            "first_wrong_vs_earliest_diff_report_only": round(diff_ratio, 4),
+            "recommendation": "continue_taxonomy_validation_only_no_training_no_silver_scaling",
         },
     }
     write_json(REPORT_DIR / "expected_label_validity_60.json", summary)
     write_jsonl(REPORT_DIR / "expected_label_invalid_cases.jsonl", invalid_cases)
     report = "# Expected Label Validity 60\n\nThese labels are synthetic intent labels compared against proxy adjudicated labels, not gold labels.\n\n```json\n" + json.dumps(summary, ensure_ascii=False, indent=2) + "\n```\n"
     report += "\n## Required Answers\n\n"
-    report += "1. Hidden expected labels are valid only to the degree shown by `expected_label_valid_true` and `expected_label_valid_partial`.\n"
+    report += "1. Hidden expected labels are valid only to the degree shown by `expected_label_valid_full` and `expected_label_valid_partial_or_full`.\n"
     report += "2. Strict verification improves confidence only if `strict_pass_precision_against_adjudicated` is high.\n"
-    report += "3. Strict failed samples are not assumed bad; use `strict_fail_actual_bad_rate`.\n"
+    report += "3. Strict failed samples are not assumed bad; use `strict_fail_bad_rate`.\n"
     report += "4. Synthetic types with invalid cases are listed in `synthetic_types_with_invalid_cases`.\n"
     report += "5. Labels with low agreement should be considered for coarse merging.\n"
     report += "6. Earliest actionable step is worth retaining only if the adjudicated difference ratio passes the Go threshold.\n"
     (ROOT / "reports" / "expected_label_validity_60.md").write_text(report, encoding="utf-8")
-    agreement_path = REPORT_DIR / "proxy_audit_agreement_60.json"
     adjudication_path = REPORT_DIR / "proxy_adjudication_summary.json"
     deepseek_path = REPORT_DIR / "deepseek_audit_60_summary.json"
-    agreement = json.loads(agreement_path.read_text(encoding="utf-8")) if agreement_path.exists() else {"status": "missing"}
+    agreement = agreement if agreement else {"status": "missing"}
     adjudication = json.loads(adjudication_path.read_text(encoding="utf-8")) if adjudication_path.exists() else {"status": "missing"}
     deepseek_summary = json.loads(deepseek_path.read_text(encoding="utf-8")) if deepseek_path.exists() else {"status": "missing"}
     total_report = f"""# Proxy Audit 60
@@ -160,7 +182,8 @@ The manifest contains 60 metric samples plus 8 calibration boundary cases.
 
 ## 4. Codex Annotation Protocol
 
-Codex first pass used the blind view only and wrote `data/audit/codex_audit_60.labels.jsonl`.
+Codex manual proxy first pass used the blind view only and wrote `data/audit/codex_manual_audit_60.labels.jsonl`.
+The deterministic `heuristic_proxy` baseline is retained separately at `data/audit/heuristic_proxy_baseline.labels.jsonl` and is not the main result.
 
 ## 5. DeepSeek Annotation Protocol
 
@@ -198,7 +221,7 @@ No training or silver scaling is allowed unless the proxy audit Go standards pas
 
 ## 11. Recommended Next Step
 
-If pending, run the DeepSeek full-prompt audit with a valid API key. If completed and thresholds fail, refine generation, verifier, or taxonomy before scaling.
+If thresholds fail, refine generation, verifier, or taxonomy before scaling. The next stable subproblem is validating `first_wrong_step -> minimal_repair_type / hint_level / leakage_constraint`; `earliest_actionable_step` is retained as a boundary-case metric rather than the main Go criterion.
 
 ## Validation
 

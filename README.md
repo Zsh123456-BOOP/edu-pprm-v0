@@ -36,6 +36,8 @@ Explicitly out of scope for this phase:
 
 DeepSeek synthetic expected labels are synthetic intent labels, not gold labels.
 The project is not yet in model training.
+Latest proxy audit v2 result: No-Go for silver scaling or verifier training;
+continue by validating the repair taxonomy stability first.
 
 The unified schema reserves `handwrite_data`, `budget_data`, and
 `distillation_data` as nullable placeholders. Phase 0/1 scripts must not depend

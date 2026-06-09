@@ -1,27 +1,3 @@
-{"sample_id": "calibration_01_bc01_expression_only_not_actionable", "error": "ValueError: repair_target must be string"}
-{"sample_id": "calibration_02_bc02_self_corrected", "error": "pending_after_retries: DeepSeek request did not complete in repeated full-prompt runs"}
-{"sample_id": "calibration_03_bc03_correct_skip", "error": "ValueError: repair_target must be string"}
-{"sample_id": "calibration_04_bc04_alternative_correct_method", "error": "ValueError: repair_target must be string; confidence must be number in [0, 1]"}
-{"sample_id": "calibration_05_bc05_problem_misread", "error": "pending_after_retries: DeepSeek request did not complete in repeated full-prompt runs"}
-{"sample_id": "calibration_06_bc06_local_arithmetic", "error": "pending_after_retries: DeepSeek request did not complete in repeated full-prompt runs"}
-{"sample_id": "calibration_07_bc07_correct_answer_wrong_process", "error": "pending_after_retries: DeepSeek request did not complete in repeated full-prompt runs"}
-{"sample_id": "calibration_08_bc08_wrong_answer_correct_prefix", "error": "pending_after_retries: DeepSeek request did not complete in repeated full-prompt runs"}
-{"sample_id": "deepseek_synth240_0002", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "deepseek_synth240_0004", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "deepseek_synth240_0011", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "deepseek_synth240_0015", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "deepseek_synth240_0016", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "deepseek_synth240_0029", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "deepseek_synth240_0032", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "deepseek_synth240_0053", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "deepseek_synth240_0062", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "pilot_stepverify_0000", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "pilot_stepverify_0001", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "pilot_stepverify_0002", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "pilot_stepverify_0003", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "pilot_stepverify_0004", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "pilot_stepverify_0005", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "pilot_stepverify_0006", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "pilot_stepverify_0007", "error": "RuntimeError: ValueError: no JSON object found"}
-{"sample_id": "pilot_stepverify_0008", "error": "pending_after_retries: DeepSeek request did not complete in repeated full-prompt runs"}
-{"sample_id": "pilot_stepverify_0009", "error": "pending_after_retries: DeepSeek request did not complete in repeated full-prompt runs"}
+{"sample_id": "pilot_stepverify_0057", "failure_type": "timeout", "error": "Terminated after extended retry wait with no label written; no DeepSeek label fabricated."}
+{"sample_id": "pilot_stepverify_0073", "failure_type": "no_json", "error": "RuntimeError: ValueError: no JSON object found"}
+{"sample_id": "pilot_stepverify_0112", "failure_type": "timeout", "error": "Terminated after extended retry wait with no label written; no DeepSeek label fabricated."}

@@ -379,41 +379,51 @@
 - [x] 创建 configs/minimal_repair_coarse_map.yaml
 - [x] 创建 reports/proxy_audit_protocol.md
 - [x] 实现 build_audit_batch.py 和 export_blind_view.py
+- [x] 重建 audit batch v2，使用 fixed-seed stratified sampling
 - [x] 输出 audit_60_manifest.json、audit_60_blind.jsonl、audit_60_analysis_private.jsonl
+- [x] 输出 data/audit_v2/audit_60_manifest.json
+- [x] 输出 data/reports/audit_60_sampling_report.json
 
-完成内容: 构建 60 条 metric samples + 8 条 calibration boundary cases 的 proxy audit batch，并导出 blind/private 双视图。
-主要统计结果: metric_count 60；calibration_count 8；blind leakage scan passed。
+完成内容: 构建 60 条 metric samples + 8 条 calibration boundary cases 的 proxy audit v2 batch，并导出 blind/private 双视图。
+主要统计结果: metric_count 60；calibration_count 8；source_distribution: GSM8K 36, MATH 14, StepVerify 10, boundary 8；blind leakage scan passed。
 
 ### Phase 3.12 Codex blind audit
-- [x] Codex 只读取 blind view、guideline、taxonomy
-- [x] 输出 codex_audit_60.labels.jsonl
-- [x] 输出 codex_audit_60.notes.md
+- [x] 修正 audit schema，intervention_needed 支持 true/false/uncertain
+- [x] repair_target 支持 string or null
+- [x] 废弃旧 Codex heuristic 主结果，保留 heuristic_proxy baseline
+- [x] Codex manual proxy 只读取 blind view、guideline、taxonomy
+- [x] 输出 codex_manual_audit_60.template.jsonl
+- [x] 输出 codex_manual_audit_60.labels.jsonl
+- [x] 输出 codex_manual_audit_60.notes.md
 - [x] 通过 import_codex_audit.py 校验
 
-完成内容: Codex proxy first-pass audit 68/68 输出并通过 audit label 校验；未读取 private expected labels。
+完成内容: Codex manual proxy first-pass audit 68/68 输出并通过 audit label 校验；未读取 private expected labels。heuristic_proxy 仅作为 baseline，不进入主 agreement。
 
 ### Phase 3.13 DeepSeek full-prompt blind audit
 - [x] 实现 run_deepseek_audit.py
 - [x] 使用 full prompt，不使用 compact prompt 作为主实验
 - [x] 输出 deepseek_audit_60.labels.jsonl 或 dry-run pending prompts
 - [x] 输出 deepseek_audit_60_summary.json
+- [x] 补跑失败样本，max_retries=3，timeout_seconds=180，workers=1/2，max_tokens=1800
 
-完成内容: DeepSeek-pro full-prompt blind audit 使用 .env 中 DEEPSEEK_API_KEY 运行；成功 41/68，失败 27/68，pending 0；失败样本未伪造。
-失败或不确定点: full prompt 下多条返回无 JSON 或不符合 schema；已做安全格式规范化和失败记录。
+完成内容: DeepSeek-pro full-prompt blind audit 使用本地 .env 中 DEEPSEEK_API_KEY 运行；最终成功 65/68，失败 3/68，pending 0；失败样本未伪造。
+失败或不确定点: 3 条 StepVerify 样本仍未得到有效 JSON；已记录 no_json/timeout failure。
 
 ### Phase 3.14 Proxy annotator agreement
 - [x] 实现 compare_proxy_annotators.py
 - [x] 输出 proxy_audit_agreement_60.json/md
 - [x] 输出 proxy_audit_disagreements.jsonl
 
-主要统计结果: compared_count 41；first_wrong_step exact 0.6829；off-by-one 0.7073；intervention_needed 0.7805；minimal_repair_type exact 0.6341；coarse 0.6585；hint_level 0.7073；leakage_constraint 0.0976。
+主要统计结果: compared_count 57/60；first_wrong_step exact 0.7544；off-by-one 0.7895；intervention_needed 0.7193；minimal_repair_type exact 0.5789；coarse 0.6316；hint_level 0.6316；leakage_constraint 0.2632。
 
 ### Phase 3.15 Proxy adjudication
 - [x] 实现 adjudicate_proxy_labels.py
 - [x] 输出 proxy_adjudicated_60.jsonl
 - [x] 输出 proxy_adjudication_summary.json/md
+- [x] 重新裁决，不使用 confidence 自动合并
+- [x] 支持 neither_uncertain
 
-主要统计结果: proxy adjudication 60/60；decision distribution: hybrid 26, codex_preferred 19, deepseek_preferred 15。
+主要统计结果: proxy adjudication 60/60；decision distribution: hybrid 34, neither_uncertain 16, codex_preferred 10。
 
 ### Phase 3.16 Expected-label validity audit
 - [x] 实现 eval_expected_validity.py
@@ -422,5 +432,6 @@
 - [x] 输出 reports/proxy_audit_60.md
 - [x] 明确这些是 proxy adjudicated labels，不是 human gold labels
 
-主要统计结果: expected_vs_adjudicated_acc 0.4267；expected_label_valid_true 0.24；expected_label_valid_partial 0.34；strict_pass_precision_against_adjudicated 0.5667；first_wrong_step != earliest_actionable_step after adjudication 0.0。
-Go/No-Go: No-Go。不得进入 model training、verifier training 或 silver scaling。
+主要统计结果: expected_vs_adjudicated_acc 0.5067；expected_label_valid_full 0.04；expected_label_valid_partial_only 0.56；expected_label_valid_partial_or_full 0.60；strict_pass_precision_against_adjudicated 0.80；strict_fail_bad_rate 0.70；first_wrong_step_diff_ratio 0.0；uncertain_rate 0.3333。
+Go/No-Go: No-Go。通过 DeepSeek success 和 strict pass precision，但未通过 first_wrong_step off-by-one、minimal_repair_type coarse agreement、intervention_needed agreement、expected partial-or-full。不得进入 model training、verifier training 或 silver scaling。
+下一步建议: 先验证 pedagogical repair taxonomy 是否能稳定标注；主目标收缩为 first_wrong_step -> minimal_repair_type / hint_level / leakage_constraint，earliest_actionable_step 仅作为边界案例指标。

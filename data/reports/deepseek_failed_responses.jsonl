@@ -83,3 +83,10 @@
 {"sample_id": "audit_60_pilot_stepverify_0004", "error": "ValueError: no JSON object found"}
 {"sample_id": "audit_60_pilot_stepverify_0005", "error": "ValueError: no JSON object found"}
 {"sample_id": "audit_60_pilot_stepverify_0006", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0218", "error": "JSONDecodeError: Unterminated string starting at: line 12 column 16 (char 358)"}
+{"sample_id": "audit_60_deepseek_synth240_0257", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0064", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0073", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0057", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0112", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0073", "error": "ValueError: no JSON object found"}

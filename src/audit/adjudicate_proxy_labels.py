@@ -18,15 +18,30 @@ from src.data.common import write_json, write_jsonl
 
 def choose_label(codex: dict, deepseek: dict | None) -> tuple[dict, str, str]:
     if deepseek is None:
-        return codex, "codex_preferred", "DeepSeek proxy label unavailable; Codex first-pass proxy label retained."
+        uncertain = dict(codex)
+        uncertain["intervention_needed"] = "uncertain"
+        if uncertain["minimal_repair_type"] != "no_intervention_needed":
+            uncertain["minimal_repair_type"] = "insufficient_information"
+        return uncertain, "neither_uncertain", "DeepSeek proxy label unavailable; keep a conservative uncertain proxy adjudication rather than selecting by confidence."
     if codex["minimal_repair_type"] == deepseek["minimal_repair_type"] and codex["first_wrong_step"] == deepseek["first_wrong_step"]:
-        chosen = dict(codex if codex["confidence"] >= deepseek["confidence"] else deepseek)
-        return chosen, "hybrid", "Both proxy annotators agree on the main error location and repair type; higher-confidence wording was retained."
-    if codex["confidence"] >= deepseek["confidence"] + 0.1:
-        return codex, "codex_preferred", "Codex proxy label had materially higher confidence and a more conservative rationale."
-    if deepseek["confidence"] >= codex["confidence"] + 0.1:
-        return deepseek, "deepseek_preferred", "DeepSeek proxy label had materially higher confidence."
-    return codex, "uncertain", "Proxy annotators disagreed without a clear confidence advantage; Codex conservative label retained pending human review."
+        chosen = dict(codex)
+        chosen["rationale"] = f"Codex: {codex['rationale']} DeepSeek: {deepseek['rationale']}"
+        return chosen, "hybrid", "Both proxy annotators agree on the main error location and repair type; Codex wording retained and DeepSeek rationale considered."
+    if codex["intervention_needed"] == "uncertain" or codex["minimal_repair_type"] == "insufficient_information":
+        return codex, "codex_preferred", "Codex identified insufficient information, which is safer for blind audit than forcing a repair label."
+    if deepseek["intervention_needed"] == "uncertain" or deepseek["minimal_repair_type"] == "insufficient_information":
+        return deepseek, "deepseek_preferred", "DeepSeek identified insufficient information, which is safer for blind audit than forcing a repair label."
+    if codex["first_wrong_step"] == deepseek["first_wrong_step"] and codex["intervention_needed"] == deepseek["intervention_needed"]:
+        chosen = dict(codex)
+        chosen["minimal_repair_type"] = codex["minimal_repair_type"]
+        return chosen, "hybrid", "Proxy annotators agree on intervention and location but differ on repair granularity; Codex repair retained for consistency with manual pass."
+    uncertain = dict(codex)
+    uncertain["first_wrong_step"] = codex["first_wrong_step"] if codex["first_wrong_step"] == deepseek["first_wrong_step"] else None
+    uncertain["earliest_actionable_step"] = None
+    uncertain["intervention_needed"] = "uncertain"
+    uncertain["minimal_repair_type"] = "insufficient_information"
+    uncertain["hint_level"] = "low"
+    return uncertain, "neither_uncertain", "Proxy annotators disagreed on location or intervention need; adjudication remains uncertain instead of selecting by confidence."
 
 
 def main() -> int:

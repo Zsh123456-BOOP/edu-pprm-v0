@@ -20,7 +20,7 @@
     "annotator": {"type": "string"},
     "first_wrong_step": {"type": ["integer", "null"]},
     "earliest_actionable_step": {"type": ["integer", "null"]},
-    "intervention_needed": {"type": "boolean"},
+    "intervention_needed": {"enum": [true, false, "uncertain"]},
     "minimal_repair_type": {
       "enum": [
         "no_intervention_needed",
@@ -36,7 +36,7 @@
         "insufficient_information"
       ]
     },
-    "repair_target": {"type": "string"},
+    "repair_target": {"type": ["string", "null"]},
     "hint_level": {
       "enum": ["none", "low", "medium", "high", "forbidden_full_solution"]
     },

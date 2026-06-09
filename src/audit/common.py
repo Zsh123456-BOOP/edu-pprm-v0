@@ -11,11 +11,14 @@ from src.data.common import DATA_DIR, REPORT_DIR, ROOT, load_json_yaml, read_jso
 from src.data.validate_schema import HINT_LEVELS, LEAKAGE_CONSTRAINTS, MINIMAL_REPAIR_TYPES
 
 AUDIT_DIR = DATA_DIR / "audit"
+AUDIT_V2_DIR = DATA_DIR / "audit_v2"
 AUDIT_SCHEMA_PATH = ROOT / "schemas" / "audit_label.schema.json"
 MANIFEST_PATH = AUDIT_DIR / "audit_60_manifest.json"
 BLIND_PATH = AUDIT_DIR / "audit_60_blind.jsonl"
 PRIVATE_PATH = AUDIT_DIR / "audit_60_analysis_private.jsonl"
-CODEX_LABELS_PATH = AUDIT_DIR / "codex_audit_60.labels.jsonl"
+CODEX_LABELS_PATH = AUDIT_DIR / "codex_manual_audit_60.labels.jsonl"
+CODEX_TEMPLATE_PATH = AUDIT_DIR / "codex_manual_audit_60.template.jsonl"
+HEURISTIC_LABELS_PATH = AUDIT_DIR / "heuristic_proxy_baseline.labels.jsonl"
 DEEPSEEK_LABELS_PATH = AUDIT_DIR / "deepseek_audit_60.labels.jsonl"
 ADJUDICATED_PATH = AUDIT_DIR / "proxy_adjudicated_60.jsonl"
 
@@ -86,14 +89,14 @@ def validate_audit_label(label: dict[str, Any], *, expected_annotator: str | Non
     for key in ["first_wrong_step", "earliest_actionable_step"]:
         if label[key] is not None and (not isinstance(label[key], int) or label[key] <= 0):
             errors.append(f"{key} must be positive integer or null")
-    if not isinstance(label["intervention_needed"], bool):
-        errors.append("intervention_needed must be boolean")
+    if label["intervention_needed"] not in {True, False, "uncertain"}:
+        errors.append("intervention_needed must be true, false, or uncertain")
     allowed = audit_label_allowed_values()
     for key, values in allowed.items():
         if label[key] not in values:
             errors.append(f"invalid {key}: {label[key]}")
-    if not isinstance(label["repair_target"], str):
-        errors.append("repair_target must be string")
+    if label["repair_target"] is not None and not isinstance(label["repair_target"], str):
+        errors.append("repair_target must be string or null")
     if not isinstance(label["rationale"], str) or not label["rationale"].strip():
         errors.append("rationale must be non-empty string")
     confidence = label["confidence"]

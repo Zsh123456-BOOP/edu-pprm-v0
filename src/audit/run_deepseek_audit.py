@@ -55,7 +55,7 @@ def build_messages(row: dict[str, Any]) -> list[dict[str, str]]:
                 "intervention_needed, earliest_actionable_step, minimal_repair_type, hint_level, leakage_constraint, confidence, rationale.\n"
                 "Return exactly these keys: sample_id, annotator, first_wrong_step, earliest_actionable_step, intervention_needed, "
                 "minimal_repair_type, repair_target, hint_level, leakage_constraint, confidence, rationale. "
-                "Use annotator='deepseek_proxy'. intervention_needed must be boolean. "
+                "Use annotator='deepseek_proxy'. intervention_needed must be true, false, or uncertain. "
                 "repair_target must be a string, using an empty string if there is no target. "
                 "confidence must be a numeric value from 0 to 1, not a percent string.\n\nBLIND_SAMPLE\n"
                 + json.dumps(payload, ensure_ascii=False)
@@ -99,7 +99,7 @@ def normalize_label(parsed: dict[str, Any], sample_id: str) -> dict[str, Any]:
         elif value in {"false", "no"}:
             label["intervention_needed"] = False
         elif value == "uncertain":
-            label["intervention_needed"] = True
+            label["intervention_needed"] = "uncertain"
     for key in ["first_wrong_step", "earliest_actionable_step"]:
         if isinstance(label.get(key), str):
             value = label[key].strip().lower()
@@ -110,12 +110,12 @@ def normalize_label(parsed: dict[str, Any], sample_id: str) -> dict[str, Any]:
 def label_one(row: dict[str, Any], model: str) -> dict[str, Any]:
     config = load_config(model=model, cache_suffix=f"audit_60_{model}")
     config["temperature"] = 0.0
-    config["max_tokens"] = 1200
-    config["timeout_seconds"] = 90
-    config["max_retries"] = 1
+    config["max_tokens"] = 1800
+    config["timeout_seconds"] = 180
+    config["max_retries"] = 3
     client = DeepSeekClient(config=config)
     started = time.monotonic()
-    result = client.chat_json(build_messages(row), sample_id=f"audit_60_{row['sample_id']}", temperature=0.0, max_tokens=1200)
+    result = client.chat_json(build_messages(row), sample_id=f"audit_60_{row['sample_id']}", temperature=0.0, max_tokens=1800)
     parsed = normalize_label(result["parsed"], row["sample_id"])
     errors = validate_audit_label(parsed, expected_annotator="deepseek_proxy")
     if errors:
@@ -145,8 +145,9 @@ def main() -> int:
     parser.add_argument("--input", default=str(BLIND_PATH))
     parser.add_argument("--output", default=str(DEEPSEEK_LABELS_PATH))
     parser.add_argument("--model", default="deepseek-v4-pro")
-    parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--workers", type=int, default=2)
     parser.add_argument("--full-prompt", action="store_true")
+    parser.add_argument("--retry-failures", action="store_true")
     args = parser.parse_args()
     if not args.full_prompt:
         raise SystemExit("--full-prompt is required for the main proxy audit")
@@ -157,9 +158,12 @@ def main() -> int:
         write_dry_run(rows, args.model, output)
         print(json.dumps({"status": "pending", "dryrun_prompt_count": len(rows)}, indent=2))
         return 0
-    existing_labels = {row["sample_id"]: row for row in read_jsonl_file(output)}
+    current_ids = {row["sample_id"] for row in rows}
+    existing_labels = {row["sample_id"]: row for row in read_jsonl_file(output) if row.get("sample_id") in current_ids}
     failure_path = REPORT_DIR / "deepseek_audit_60_failures.jsonl"
-    existing_failures = {row["sample_id"]: row for row in read_jsonl_file(failure_path)}
+    existing_failures = {row["sample_id"]: row for row in read_jsonl_file(failure_path) if row.get("sample_id") in current_ids}
+    if args.retry_failures:
+        existing_failures = {}
     labels: list[dict[str, Any]] = list(existing_labels.values())
     failures: list[dict[str, Any]] = list(existing_failures.values())
     rows_to_run = [
@@ -176,7 +180,16 @@ def main() -> int:
                 existing_labels[label["sample_id"]] = label
                 existing_failures.pop(label["sample_id"], None)
             except Exception as exc:
-                existing_failures[row["sample_id"]] = {"sample_id": row["sample_id"], "error": f"{type(exc).__name__}: {exc}"}
+                error = f"{type(exc).__name__}: {exc}"
+                if "timed out" in error.lower() or "timeout" in error.lower():
+                    failure_type = "timeout"
+                elif "no JSON object" in error:
+                    failure_type = "no_json"
+                elif "invalid" in error or "must be" in error:
+                    failure_type = "schema_error"
+                else:
+                    failure_type = "invalid_label"
+                existing_failures[row["sample_id"]] = {"sample_id": row["sample_id"], "failure_type": failure_type, "error": error}
             labels = sorted(existing_labels.values(), key=lambda item: item["sample_id"])
             failures = sorted(existing_failures.values(), key=lambda item: item["sample_id"])
             write_jsonl(output, labels)

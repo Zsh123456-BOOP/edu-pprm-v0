@@ -1,0 +1,41 @@
+{
+  "audit_version": "v2",
+  "sampling_seed": 20260609,
+  "synthetic_type_distribution": {
+    "no_error_correct_trace": 12,
+    "hint_would_leak_answer": 6,
+    "sign_error": 4,
+    "wrong_operation": 3,
+    "arithmetic_error": 3,
+    "final_answer_wrong_prefix_correct": 4,
+    "final_answer_correct_process_wrong": 4,
+    "sparse_insufficient_trace": 6,
+    "equation_setup_error": 5,
+    "self_corrected_error": 1,
+    "unit_conversion_error": 1,
+    "misread_given_quantity": 1
+  },
+  "strict_status_distribution": {
+    "passed": 30,
+    "failed": 20,
+    "not_applicable": 18
+  },
+  "expected_match_mismatch_distribution": {
+    "strict_pass_expected_match": 12,
+    "strict_pass_expected_mismatch": 18
+  },
+  "source_distribution": {
+    "math": 14,
+    "gsm8k": 36,
+    "stepverify": 10,
+    "boundary_cases_20": 8
+  },
+  "subset_distribution": {
+    "strict_pass_expected_match": 12,
+    "strict_pass_expected_mismatch": 18,
+    "strict_failed_hard_types": 15,
+    "strict_failed_random_types": 5,
+    "stepverify_raw": 10,
+    "calibration_boundary_case": 8
+  }
+}

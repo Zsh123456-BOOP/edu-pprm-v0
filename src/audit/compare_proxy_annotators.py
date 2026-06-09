@@ -88,7 +88,13 @@ def main() -> int:
     }
     write_json(REPORT_DIR / "proxy_audit_agreement_60.json", summary)
     write_jsonl(REPORT_DIR / "proxy_audit_disagreements.jsonl", disagreements)
-    report = "# Proxy Audit Agreement 60\n\nThese labels are proxy labels, not human gold labels.\n\n```json\n" + json.dumps(summary, ensure_ascii=False, indent=2) + "\n```\n"
+    report = (
+        "# Proxy Audit Agreement 60\n\n"
+        "These labels are proxy labels, not human gold labels. Metrics compare `codex_manual_proxy` against `deepseek_proxy`; "
+        "the `heuristic_proxy` baseline is excluded from the main agreement metrics.\n\n```json\n"
+        + json.dumps(summary, ensure_ascii=False, indent=2)
+        + "\n```\n"
+    )
     (ROOT / "reports" / "proxy_audit_agreement_60.md").write_text(report, encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0

@@ -7,9 +7,9 @@ These labels are proxy adjudicated labels, not human gold labels.
   "status": "completed",
   "count": 60,
   "decision_distribution": {
-    "hybrid": 26,
-    "codex_preferred": 19,
-    "deepseek_preferred": 15
+    "hybrid": 34,
+    "neither_uncertain": 16,
+    "codex_preferred": 10
   },
   "note": "proxy_adjudicated_60.jsonl is proxy adjudicated labels only, not human gold labels."
 }

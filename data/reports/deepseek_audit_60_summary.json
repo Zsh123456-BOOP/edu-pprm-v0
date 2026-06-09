@@ -1,16 +1,20 @@
 {
   "status": "completed_with_failures",
   "input_count": 68,
-  "output_count": 41,
-  "failure_count": 27,
+  "output_count": 65,
+  "failure_count": 3,
   "pending_count": 0,
   "model": "deepseek-v4-pro",
-  "workers": 4,
+  "workers": 1,
   "prompt": "full",
   "repair_distribution": {
-    "ask_to_recompute_local_expression": 5,
-    "no_intervention_needed": 33,
-    "ask_to_reinterpret_given_quantity": 2,
-    "ask_to_check_operation_or_formula": 1
-  }
+    "no_intervention_needed": 41,
+    "ask_to_reinterpret_given_quantity": 8,
+    "ask_to_recompute_local_expression": 7,
+    "ask_to_compare_with_problem_condition": 3,
+    "ask_to_check_operation_or_formula": 3,
+    "ask_to_substitute_back": 1,
+    "insufficient_information": 2
+  },
+  "note": "No labels were fabricated for failed samples; remaining missing rows are recorded as failures."
 }
