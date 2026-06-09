@@ -1,0 +1,16 @@
+{
+  "status": "completed_with_failures",
+  "input_count": 68,
+  "output_count": 41,
+  "failure_count": 27,
+  "pending_count": 0,
+  "model": "deepseek-v4-pro",
+  "workers": 4,
+  "prompt": "full",
+  "repair_distribution": {
+    "ask_to_recompute_local_expression": 5,
+    "no_intervention_needed": 33,
+    "ask_to_reinterpret_given_quantity": 2,
+    "ask_to_check_operation_or_formula": 1
+  }
+}

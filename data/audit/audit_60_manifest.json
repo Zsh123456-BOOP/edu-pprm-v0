@@ -1,0 +1,502 @@
+{
+  "audit_name": "proxy_human_audit_60",
+  "label_set_name": "ai_adjudicated_gold_candidate",
+  "note": "Proxy audit only. These are not human gold labels.",
+  "metric_count": 60,
+  "calibration_count": 8,
+  "total_count": 68,
+  "subset_distribution": {
+    "strict_pass_label_expected_match": 12,
+    "strict_pass_label_expected_mismatch": 18,
+    "strict_failed_hard_types": 15,
+    "strict_failed_random_types": 5,
+    "stepverify_raw": 10,
+    "calibration_boundary_case": 8
+  },
+  "items": [
+    {
+      "sample_id": "deepseek_synth240_0007",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0020",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "math",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0033",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0046",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0059",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "math",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0072",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0085",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0098",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "math",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0111",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0124",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0137",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "math",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0150",
+      "audit_subset": "strict_pass_label_expected_match",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0000",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0002",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "math",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0003",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0004",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0006",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0011",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "math",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0013",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0015",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0016",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0017",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "math",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0021",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0023",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "math",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0024",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0028",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0029",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "math",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0034",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0037",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0039",
+      "audit_subset": "strict_pass_label_expected_mismatch",
+      "source": "gsm8k",
+      "strict_status": "passed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0001",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0005",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "math",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0010",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0014",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "math",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0018",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0027",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0031",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0036",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0048",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0053",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "math",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0057",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0062",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "math",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0066",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0075",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0079",
+      "audit_subset": "strict_failed_hard_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0019",
+      "audit_subset": "strict_failed_random_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0026",
+      "audit_subset": "strict_failed_random_types",
+      "source": "math",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0030",
+      "audit_subset": "strict_failed_random_types",
+      "source": "gsm8k",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0032",
+      "audit_subset": "strict_failed_random_types",
+      "source": "math",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "deepseek_synth240_0041",
+      "audit_subset": "strict_failed_random_types",
+      "source": "math",
+      "strict_status": "failed",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "pilot_stepverify_0000",
+      "audit_subset": "stepverify_raw",
+      "source": "stepverify",
+      "strict_status": "not_applicable",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "pilot_stepverify_0001",
+      "audit_subset": "stepverify_raw",
+      "source": "stepverify",
+      "strict_status": "not_applicable",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "pilot_stepverify_0002",
+      "audit_subset": "stepverify_raw",
+      "source": "stepverify",
+      "strict_status": "not_applicable",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "pilot_stepverify_0003",
+      "audit_subset": "stepverify_raw",
+      "source": "stepverify",
+      "strict_status": "not_applicable",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "pilot_stepverify_0004",
+      "audit_subset": "stepverify_raw",
+      "source": "stepverify",
+      "strict_status": "not_applicable",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "pilot_stepverify_0005",
+      "audit_subset": "stepverify_raw",
+      "source": "stepverify",
+      "strict_status": "not_applicable",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "pilot_stepverify_0006",
+      "audit_subset": "stepverify_raw",
+      "source": "stepverify",
+      "strict_status": "not_applicable",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "pilot_stepverify_0007",
+      "audit_subset": "stepverify_raw",
+      "source": "stepverify",
+      "strict_status": "not_applicable",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "pilot_stepverify_0008",
+      "audit_subset": "stepverify_raw",
+      "source": "stepverify",
+      "strict_status": "not_applicable",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "pilot_stepverify_0009",
+      "audit_subset": "stepverify_raw",
+      "source": "stepverify",
+      "strict_status": "not_applicable",
+      "included_in_metrics": true
+    },
+    {
+      "sample_id": "calibration_01_bc01_expression_only_not_actionable",
+      "audit_subset": "calibration_boundary_case",
+      "source": "boundary_cases_20",
+      "strict_status": "not_applicable",
+      "included_in_metrics": false,
+      "boundary_case_id": "bc01_expression_only_not_actionable"
+    },
+    {
+      "sample_id": "calibration_02_bc02_self_corrected",
+      "audit_subset": "calibration_boundary_case",
+      "source": "boundary_cases_20",
+      "strict_status": "not_applicable",
+      "included_in_metrics": false,
+      "boundary_case_id": "bc02_self_corrected"
+    },
+    {
+      "sample_id": "calibration_03_bc03_correct_skip",
+      "audit_subset": "calibration_boundary_case",
+      "source": "boundary_cases_20",
+      "strict_status": "not_applicable",
+      "included_in_metrics": false,
+      "boundary_case_id": "bc03_correct_skip"
+    },
+    {
+      "sample_id": "calibration_04_bc04_alternative_correct_method",
+      "audit_subset": "calibration_boundary_case",
+      "source": "boundary_cases_20",
+      "strict_status": "not_applicable",
+      "included_in_metrics": false,
+      "boundary_case_id": "bc04_alternative_correct_method"
+    },
+    {
+      "sample_id": "calibration_05_bc05_problem_misread",
+      "audit_subset": "calibration_boundary_case",
+      "source": "boundary_cases_20",
+      "strict_status": "not_applicable",
+      "included_in_metrics": false,
+      "boundary_case_id": "bc05_problem_misread"
+    },
+    {
+      "sample_id": "calibration_06_bc06_local_arithmetic",
+      "audit_subset": "calibration_boundary_case",
+      "source": "boundary_cases_20",
+      "strict_status": "not_applicable",
+      "included_in_metrics": false,
+      "boundary_case_id": "bc06_local_arithmetic"
+    },
+    {
+      "sample_id": "calibration_07_bc07_correct_answer_wrong_process",
+      "audit_subset": "calibration_boundary_case",
+      "source": "boundary_cases_20",
+      "strict_status": "not_applicable",
+      "included_in_metrics": false,
+      "boundary_case_id": "bc07_correct_answer_wrong_process"
+    },
+    {
+      "sample_id": "calibration_08_bc08_wrong_answer_correct_prefix",
+      "audit_subset": "calibration_boundary_case",
+      "source": "boundary_cases_20",
+      "strict_status": "not_applicable",
+      "included_in_metrics": false,
+      "boundary_case_id": "bc08_wrong_answer_correct_prefix"
+    }
+  ]
+}

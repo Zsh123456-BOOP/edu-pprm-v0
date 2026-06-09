@@ -1,7 +1,8 @@
 # Edu-PPRM-v0
 
 This repository is for Direction 1 only: a text-only pedagogical process
-verification pilot.
+verification pilot. The current stage is proxy human audit before silver scaling
+or training.
 
 The goal is to test whether tutor-facing intervention labels add value beyond
 existing first-error detection:
@@ -18,6 +19,7 @@ existing first-error detection:
 Current scope:
 
 - text-only Edu-PPRM-v0 data source registry and pilot data inspection
+- Codex-DeepSeek proxy human audit before silver scaling or training
 - small-sample source loaders for field coverage checks
 - no large-scale dataset construction before Review Gate 1
 
@@ -28,7 +30,12 @@ Explicitly out of scope for this phase:
 - no direction 2 budget sweep
 - no direction 3 scaffold distillation
 - no full model training
+- no verifier training
+- no silver scaling until proxy audit passes
 - no claim that first-error detection alone is the contribution
+
+DeepSeek synthetic expected labels are synthetic intent labels, not gold labels.
+The project is not yet in model training.
 
 The unified schema reserves `handwrite_data`, `budget_data`, and
 `distillation_data` as nullable placeholders. Phase 0/1 scripts must not depend

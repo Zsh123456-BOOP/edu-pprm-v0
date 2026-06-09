@@ -1,4 +1,10 @@
 {
+  "_metadata": {
+    "allowed_values_reference": "The keys under intervention_needed, minimal_repair_type, hint_level, and leakage_constraint are the only allowed values for proxy audit labels.",
+    "short_definitions_reference": "Each label entry includes definition plus examples; proxy audit docs may use these as short definitions.",
+    "boundary_examples_reference": "Boundary examples are maintained in docs/annotation_guideline.md and data/reports/boundary_cases_20.jsonl.",
+    "coarse_category_mapping_reference": "See configs/minimal_repair_coarse_map.yaml for the 6-class minimal_repair_type mapping used in proxy agreement."
+  },
   "intervention_needed": {
     "true": {
       "definition": "Tutor should intervene now because the current trace contains an actionable error or unsafe ambiguity.",

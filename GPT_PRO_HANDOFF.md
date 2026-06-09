@@ -7,6 +7,8 @@ This file is the persistent handoff/worklog for GPT Pro review. Keep it updated 
 ## Current State
 
 Direction 1 is still in data/pilot validation. Do not move to model training yet.
+Current next step: Codex-DeepSeek proxy human audit 60. Do not call synthetic
+expected labels gold. Do not train until proxy audit passes.
 
 Recent committed work:
 
@@ -205,6 +207,59 @@ Ask GPT Pro to review the current pipeline and decide between these options:
    - If the labels rarely differ, the project may need to focus on repair taxonomy quality rather than claiming a new intervention-timing signal.
 
 Current recommendation: do not train yet. First improve data validity and label definitions, then rerun the 240-trace experiment.
+
+## Phase 3.11-3.16 Proxy Human Audit Result
+
+Implemented after the DeepSeek synthetic 240 experiment:
+
+- Audit name: `proxy_human_audit`
+- Candidate label set name: `ai_adjudicated_gold_candidate`
+- Metric samples: 60
+- Calibration samples: 8
+- Codex proxy audit: 68/68 labels produced from blind view only
+- DeepSeek-pro full-prompt audit: 41/68 labels produced, 27/68 failures, 0 pending
+- Proxy adjudication: 60/60 metric samples
+
+Key agreement metrics on samples where both proxy annotators returned labels:
+
+- `first_wrong_step_exact_agreement`: 0.6829
+- `first_wrong_step_off_by_one_agreement`: 0.7073
+- `intervention_needed_agreement`: 0.7805
+- `minimal_repair_type_exact_agreement`: 0.6341
+- `minimal_repair_type_coarse_agreement`: 0.6585
+- `hint_level_agreement`: 0.7073
+- `leakage_constraint_agreement`: 0.0976
+
+Expected-label validity against proxy adjudication:
+
+- `expected_vs_adjudicated_acc`: 0.4267
+- `expected_label_valid_true`: 0.24
+- `expected_label_valid_partial`: 0.34
+- `strict_pass_precision_against_adjudicated`: 0.5667
+- `first_wrong_step != earliest_actionable_step after adjudication`: 0.0
+
+Decision: No-Go. Do not train, do not expand silver data, and do not train a verifier from these expected labels. The audit suggests the current synthetic intent labels and leakage constraints are not stable enough.
+
+Validation status:
+
+- Audit command chain completed.
+- `compileall` passed.
+- Taxonomy check passed.
+- Blind leakage scan passed.
+- Secret scan excluding local `.env` passed.
+- `pytest` unavailable in the local Python environment.
+
+Key files for review:
+
+- `reports/proxy_audit_60.md`
+- `reports/proxy_audit_agreement_60.md`
+- `reports/proxy_adjudication_60.md`
+- `reports/expected_label_validity_60.md`
+- `data/audit/audit_60_blind.jsonl`
+- `data/audit/audit_60_analysis_private.jsonl`
+- `data/audit/codex_audit_60.labels.jsonl`
+- `data/audit/deepseek_audit_60.labels.jsonl`
+- `data/audit/proxy_adjudicated_60.jsonl`
 
 ## Suggested GPT Pro Review Questions
 

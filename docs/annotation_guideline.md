@@ -19,6 +19,34 @@
 6. Choose hint level and leakage constraint to avoid giving away the solution.
 7. If the problem, trace, or intent is missing or ambiguous, mark uncertainty instead of guessing.
 
+## Proxy Audit Clarifications
+
+These rules apply to the Codex-DeepSeek proxy human audit. Proxy labels are not human gold labels.
+
+### first_wrong_step vs earliest_actionable_step
+
+`first_wrong_step` is the first step that is mathematically wrong. `earliest_actionable_step` is the earliest step where a tutor should intervene with useful feedback. They can be equal, but must be judged independently.
+
+Do not set `earliest_actionable_step = first_wrong_step` by default. If a trace is too sparse, the first wrong step may be unknown while a tutor can still ask for more work. If the student self-corrects before a tutor would act, `earliest_actionable_step` can be null even if an earlier draft-like step looked wrong.
+
+### minimal_repair_type Boundaries
+
+Use `ask_to_recompute_local_expression` only when the setup is right and a local expression such as `48 / 2 = 22` is wrong. Use `ask_to_reinterpret_given_quantity` when the student misunderstood what a number or condition means. Use `ask_to_rewrite_equation_or_expression` when the representation itself does not match the problem. Use `ask_to_check_operation_or_formula` when the operation, theorem, or formula choice is wrong.
+
+Use `ask_clarifying_question` when notation or the problem interpretation is ambiguous. Use `insufficient_information` when there is not enough trace evidence to select a safe repair.
+
+### hint_level Selection
+
+Use `none` only when no intervention is needed. Use `low` to point to a local step without naming the issue. Use `medium` to name the issue type or ask a targeted question. Use `high` for a scaffold or micro-example that still avoids solving the student's actual next step. Use `forbidden_full_solution` only when any useful hint would effectively reveal the full solution or final answer.
+
+### leakage_constraint Selection
+
+Use `do_not_reveal_final_answer` when feedback risks giving away the target answer. Use `do_not_solve_next_step` when the repair would compute the student's immediate next action. Use `can_point_to_local_step_only` for low hints. Use `can_name_error_type` when naming the error category is safe. Use `can_show_micro_example` when a parallel example can help without mirroring the target numbers.
+
+### Insufficient Information
+
+If problem text, trace steps, or notation are insufficient, do not invent a hidden error. In the original pedagogical schema, use `intervention_needed=uncertain` with `insufficient_information` or `ask_clarifying_question`. In the proxy audit schema, `intervention_needed` is boolean; use `true` when a tutor should ask for more work or clarification, and document uncertainty in `rationale`.
+
 ## Boundary Cases
 
 

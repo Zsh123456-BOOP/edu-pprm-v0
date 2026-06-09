@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Edu-PPRM Proxy Audit Label",
+  "type": "object",
+  "required": [
+    "sample_id",
+    "annotator",
+    "first_wrong_step",
+    "earliest_actionable_step",
+    "intervention_needed",
+    "minimal_repair_type",
+    "repair_target",
+    "hint_level",
+    "leakage_constraint",
+    "confidence",
+    "rationale"
+  ],
+  "properties": {
+    "sample_id": {"type": "string"},
+    "annotator": {"type": "string"},
+    "first_wrong_step": {"type": ["integer", "null"]},
+    "earliest_actionable_step": {"type": ["integer", "null"]},
+    "intervention_needed": {"type": "boolean"},
+    "minimal_repair_type": {
+      "enum": [
+        "no_intervention_needed",
+        "ask_to_recompute_local_expression",
+        "ask_to_reinterpret_given_quantity",
+        "ask_to_rewrite_equation_or_expression",
+        "ask_to_check_operation_or_formula",
+        "ask_to_check_unit_conversion",
+        "ask_to_justify_inference",
+        "ask_to_compare_with_problem_condition",
+        "ask_to_substitute_back",
+        "ask_clarifying_question",
+        "insufficient_information"
+      ]
+    },
+    "repair_target": {"type": "string"},
+    "hint_level": {
+      "enum": ["none", "low", "medium", "high", "forbidden_full_solution"]
+    },
+    "leakage_constraint": {
+      "enum": [
+        "do_not_reveal_final_answer",
+        "do_not_solve_next_step",
+        "can_point_to_local_step_only",
+        "can_name_error_type",
+        "can_show_micro_example"
+      ]
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "rationale": {"type": "string"}
+  },
+  "additionalProperties": false,
+  "not": {
+    "anyOf": [
+      {"required": ["expected_first_wrong_step"]},
+      {"required": ["expected_earliest_actionable_step"]},
+      {"required": ["expected_minimal_repair_type"]},
+      {"required": ["synthetic_type"]},
+      {"required": ["injected_error_type"]},
+      {"required": ["injected_error_step"]}
+    ]
+  }
+}

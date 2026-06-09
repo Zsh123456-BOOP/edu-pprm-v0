@@ -32,6 +32,8 @@ def validate_taxonomy(taxonomy: dict[str, Any]) -> list[str]:
     if missing_sections:
         errors.append(f"missing sections: {sorted(missing_sections)}")
     for section, entries in taxonomy.items():
+        if section.startswith("_"):
+            continue
         if not isinstance(entries, dict):
             errors.append(f"{section} must be an object")
             continue

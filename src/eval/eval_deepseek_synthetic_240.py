@@ -9,6 +9,8 @@ from typing import Any
 
 from src.data.common import PILOT_DIR, REPORT_DIR, ROOT, read_jsonl_file, write_json
 
+WARNING = "WARNING: expected labels are synthetic intent labels, not gold labels."
+
 
 FIELDS = [
     ("first_wrong_step", ("existing_labels", "first_wrong_step"), ("synthetic_metadata", "expected_first_wrong_step")),
@@ -91,6 +93,7 @@ def evaluate(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     repair_dist = Counter(row["pedagogical_labels"]["minimal_repair_type"] for row in rows)
     max_repair = max(repair_dist.values()) / len(rows) if rows else 1
     report = {
+        "warning": WARNING,
         "metrics": metrics,
         "per_synthetic_type": per_type,
         "minimal_repair_type_confusion": {gold: dict(preds) for gold, preds in confusion.items()},
@@ -116,7 +119,7 @@ def write_outputs(report: dict[str, Any], detail_rows: list[dict[str, Any]], tag
         writer.writeheader()
         writer.writerows(detail_rows)
     title = "DeepSeek Synthetic 240 Evaluation" if not tag else f"DeepSeek Synthetic 240 Evaluation ({tag})"
-    lines = [f"# {title}", "", json.dumps(report, ensure_ascii=False, indent=2)]
+    lines = [f"# {title}", "", WARNING, "", json.dumps(report, ensure_ascii=False, indent=2)]
     (ROOT / "reports" / f"deepseek_synthetic_240_eval{suffix}.md").write_text("\n".join(lines), encoding="utf-8")
 
 

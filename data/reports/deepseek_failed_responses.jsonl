@@ -23,3 +23,63 @@
 {"sample_id": "generate_synth240_0176", "error": "ValueError: no JSON object found"}
 {"sample_id": "generate_synth240_0239", "error": "ValueError: no JSON object found"}
 {"sample_id": "label_synth240_deepseek_synth240_0011", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0002", "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>"}
+{"sample_id": "audit_60_deepseek_synth240_0003", "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>"}
+{"sample_id": "audit_60_deepseek_synth240_0004", "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>"}
+{"sample_id": "audit_60_deepseek_synth240_0006", "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>"}
+{"sample_id": "audit_60_deepseek_synth240_0011", "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>"}
+{"sample_id": "audit_60_deepseek_synth240_0015", "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>"}
+{"sample_id": "audit_60_deepseek_synth240_0013", "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>"}
+{"sample_id": "audit_60_deepseek_synth240_0016", "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>"}
+{"sample_id": "audit_60_deepseek_synth240_0029", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0028", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0006", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0002", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0004", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0015", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0029", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0016", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0048", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0053", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0026", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0032", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0000", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0001", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0002", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0002", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0004", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0015", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0016", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0029", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0053", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0000", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0001", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0002", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0003", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0004", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0005", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0006", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0007", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0020", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0002", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0004", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0011", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0015", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0016", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0029", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0011", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0002", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0004", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0015", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0016", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0029", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0053", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0062", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_deepseek_synth240_0032", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0000", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0001", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0002", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0003", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0004", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0005", "error": "ValueError: no JSON object found"}
+{"sample_id": "audit_60_pilot_stepverify_0006", "error": "ValueError: no JSON object found"}

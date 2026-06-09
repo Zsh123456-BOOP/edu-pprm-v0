@@ -1,0 +1,16 @@
+# Proxy Adjudication 60
+
+These labels are proxy adjudicated labels, not human gold labels.
+
+```json
+{
+  "status": "completed",
+  "count": 60,
+  "decision_distribution": {
+    "hybrid": 26,
+    "codex_preferred": 19,
+    "deepseek_preferred": 15
+  },
+  "note": "proxy_adjudicated_60.jsonl is proxy adjudicated labels only, not human gold labels."
+}
+```

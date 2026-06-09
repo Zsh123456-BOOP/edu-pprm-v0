@@ -1,0 +1,27 @@
+{
+  "coarse_categories": {
+    "no_intervention": [
+      "no_intervention_needed"
+    ],
+    "local_computation": [
+      "ask_to_recompute_local_expression"
+    ],
+    "quantity_or_condition": [
+      "ask_to_reinterpret_given_quantity",
+      "ask_to_compare_with_problem_condition"
+    ],
+    "equation_or_formula": [
+      "ask_to_rewrite_equation_or_expression",
+      "ask_to_check_operation_or_formula",
+      "ask_to_check_unit_conversion"
+    ],
+    "verification_check": [
+      "ask_to_substitute_back",
+      "ask_to_justify_inference"
+    ],
+    "insufficient_or_clarify": [
+      "ask_clarifying_question",
+      "insufficient_information"
+    ]
+  }
+}

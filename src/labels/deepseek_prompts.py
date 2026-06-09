@@ -34,7 +34,8 @@ def build_label_messages(sample: dict[str, Any]) -> list[dict[str, str]]:
             "role": "system",
             "content": (
                 "You label math student traces for Edu-PPRM. Return JSON only. "
-                "Do not include markdown or prose outside JSON. Independently judge first_wrong_step before pedagogical labels."
+                "Do not include markdown or prose outside JSON. Independently judge first_wrong_step before pedagogical labels. "
+                "Use the full taxonomy and annotation guideline; compact prompts are only for debug or ablation."
             ),
         },
         {
@@ -65,6 +66,7 @@ def build_label_messages(sample: dict[str, Any]) -> list[dict[str, str]]:
 
 
 def build_compact_label_messages(sample: dict[str, Any]) -> list[dict[str, str]]:
+    """Build a debug/ablation prompt. Do not use as the main proxy audit prompt."""
     allowed = {
         "minimal_repair_type": [
             "no_intervention_needed",

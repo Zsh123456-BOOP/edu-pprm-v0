@@ -1,0 +1,48 @@
+# Expected Label Validity 60
+
+These labels are synthetic intent labels compared against proxy adjudicated labels, not gold labels.
+
+```json
+{
+  "status": "completed",
+  "synthetic_metric_count": 50,
+  "expected_vs_codex_acc": 0.3367,
+  "expected_vs_deepseek_acc": 0.4472,
+  "expected_vs_adjudicated_acc": 0.4267,
+  "strict_pass_precision_against_adjudicated": 0.5667,
+  "strict_fail_actual_bad_rate": 1.0,
+  "expected_label_valid_true": 0.24,
+  "expected_label_valid_partial": 0.34,
+  "expected_label_valid_false": 0.66,
+  "first_wrong_step_not_equal_earliest_actionable_step_after_adjudication": 0.0,
+  "synthetic_types_with_invalid_cases": {
+    "sign_error": 6,
+    "wrong_operation": 2,
+    "misread_given_quantity": 3,
+    "unit_conversion_error": 3,
+    "equation_setup_error": 4,
+    "substitution_error": 3,
+    "final_answer_correct_process_wrong": 5,
+    "final_answer_wrong_prefix_correct": 3,
+    "arithmetic_error": 3,
+    "sparse_insufficient_trace": 1
+  },
+  "go_no_go": {
+    "expected_vs_adjudicated_full_validity>=0.65": false,
+    "expected_vs_adjudicated_partial_validity>=0.85": false,
+    "first_wrong_step_diff_ratio>=0.08": false,
+    "no_go_expected_full_validity<0.50": true,
+    "no_go_first_wrong_step_diff<0.03": true,
+    "recommendation": "do_not_train_until_proxy_audit_passes"
+  }
+}
+```
+
+## Required Answers
+
+1. Hidden expected labels are valid only to the degree shown by `expected_label_valid_true` and `expected_label_valid_partial`.
+2. Strict verification improves confidence only if `strict_pass_precision_against_adjudicated` is high.
+3. Strict failed samples are not assumed bad; use `strict_fail_actual_bad_rate`.
+4. Synthetic types with invalid cases are listed in `synthetic_types_with_invalid_cases`.
+5. Labels with low agreement should be considered for coarse merging.
+6. Earliest actionable step is worth retaining only if the adjudicated difference ratio passes the Go threshold.
