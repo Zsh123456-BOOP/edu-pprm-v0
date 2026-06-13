@@ -1,27 +1,36 @@
 # Phase 3.17 Synthetic Type Policy
 
-Status: pending
-
-Human labels are not complete; fill the 24-row template before evaluation.
-
-## Teacher-Facing Files
-
-- `docs/phase3_17_human_review_instructions.md`
-- `data/manual/phase3_17_human_pack_24.blind.jsonl`
-- `data/manual/phase3_17_human_template_24.csv`
-- `data/manual/phase3_17_human_template_24.jsonl`
-
-## Private Files
-
-Do not send these to reviewers:
-
-- `data/manual/phase3_17_human_analysis_private.jsonl`
-- `data/manual/phase3_17_human_manifest.json`
-
-## Next Command
-
-After labels are returned, write them to `data/manual/phase3_17_human_labels_24.jsonl` or pass the filled CSV via `--labels`, then run:
-
-```bash
-python3 -m src.audit.eval_manual_taxonomy_check
+```json
+{
+  "status": "completed",
+  "type_validity_distribution": {
+    "sign_error": {
+      "as_intended": 2
+    },
+    "equation_setup_error": {
+      "as_intended": 2
+    },
+    "no_error_correct_trace": {
+      "as_intended": 2
+    },
+    "final_answer_correct_process_wrong": {
+      "as_intended": 2
+    },
+    "final_answer_wrong_prefix_correct": {
+      "visible_but_other_error": 1,
+      "as_intended": 1
+    },
+    "unit_conversion_error": {
+      "as_intended": 1
+    },
+    "sparse_insufficient_trace": {
+      "as_intended": 2,
+      "insufficient_trace": 1
+    },
+    "hint_would_leak_answer": {
+      "insufficient_trace": 2
+    }
+  },
+  "retained_types_trace_validity": 0.9375
+}
 ```

@@ -1,5 +1,32 @@
 {
-  "status": "pending",
-  "label_count": 0,
-  "reason": "Human labels are not complete; fill the 24-row template before evaluation."
+  "status": "completed",
+  "type_validity_distribution": {
+    "sign_error": {
+      "as_intended": 2
+    },
+    "equation_setup_error": {
+      "as_intended": 2
+    },
+    "no_error_correct_trace": {
+      "as_intended": 2
+    },
+    "final_answer_correct_process_wrong": {
+      "as_intended": 2
+    },
+    "final_answer_wrong_prefix_correct": {
+      "visible_but_other_error": 1,
+      "as_intended": 1
+    },
+    "unit_conversion_error": {
+      "as_intended": 1
+    },
+    "sparse_insufficient_trace": {
+      "as_intended": 2,
+      "insufficient_trace": 1
+    },
+    "hint_would_leak_answer": {
+      "insufficient_trace": 2
+    }
+  },
+  "retained_types_trace_validity": 0.9375
 }

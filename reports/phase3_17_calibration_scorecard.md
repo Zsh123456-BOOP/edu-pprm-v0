@@ -1,27 +1,150 @@
 # Phase 3.17 Calibration Scorecard
 
-Status: pending
-
-Human labels are not complete; fill the 24-row template before evaluation.
-
-## Teacher-Facing Files
-
-- `docs/phase3_17_human_review_instructions.md`
-- `data/manual/phase3_17_human_pack_24.blind.jsonl`
-- `data/manual/phase3_17_human_template_24.csv`
-- `data/manual/phase3_17_human_template_24.jsonl`
-
-## Private Files
-
-Do not send these to reviewers:
-
-- `data/manual/phase3_17_human_analysis_private.jsonl`
-- `data/manual/phase3_17_human_manifest.json`
-
-## Next Command
-
-After labels are returned, write them to `data/manual/phase3_17_human_labels_24.jsonl` or pass the filled CSV via `--labels`, then run:
-
-```bash
-python3 -m src.audit.eval_manual_taxonomy_check
+```json
+{
+  "status": "completed",
+  "calibration_count": 8,
+  "calibration_pass_count": 8,
+  "calibration_pass_rate": 1.0,
+  "calibration_checks": [
+    {
+      "sample_id": "phase3_17_001",
+      "passed": true,
+      "checks": {
+        "first_wrong_step": true,
+        "intervention_needed": true,
+        "minimal_repair_coarse_6": true
+      },
+      "accepted_options": [
+        {
+          "first_wrong_step": null,
+          "intervention_needed": false,
+          "minimal_repair_coarse_6": "no_intervention"
+        }
+      ]
+    },
+    {
+      "sample_id": "phase3_17_002",
+      "passed": true,
+      "checks": {
+        "first_wrong_step": true,
+        "intervention_needed": true,
+        "minimal_repair_coarse_6": true
+      },
+      "accepted_options": [
+        {
+          "first_wrong_step": 1,
+          "intervention_needed": false,
+          "minimal_repair_coarse_6": "no_intervention"
+        }
+      ]
+    },
+    {
+      "sample_id": "phase3_17_003",
+      "passed": true,
+      "checks": {
+        "first_wrong_step": true,
+        "intervention_needed": true,
+        "minimal_repair_coarse_6": true
+      },
+      "accepted_options": [
+        {
+          "first_wrong_step": null,
+          "intervention_needed": false,
+          "minimal_repair_coarse_6": "no_intervention"
+        }
+      ]
+    },
+    {
+      "sample_id": "phase3_17_004",
+      "passed": true,
+      "checks": {
+        "first_wrong_step": true,
+        "intervention_needed": true,
+        "minimal_repair_coarse_6": true
+      },
+      "accepted_options": [
+        {
+          "first_wrong_step": null,
+          "intervention_needed": false,
+          "minimal_repair_coarse_6": "no_intervention"
+        }
+      ]
+    },
+    {
+      "sample_id": "phase3_17_005",
+      "passed": true,
+      "checks": {
+        "first_wrong_step": true,
+        "intervention_needed": true,
+        "minimal_repair_coarse_6": true
+      },
+      "accepted_options": [
+        {
+          "first_wrong_step": 1,
+          "intervention_needed": true,
+          "minimal_repair_coarse_6": "quantity_or_condition"
+        },
+        {
+          "first_wrong_step": 1,
+          "intervention_needed": "uncertain",
+          "minimal_repair_coarse_6": "insufficient_or_clarify"
+        }
+      ]
+    },
+    {
+      "sample_id": "phase3_17_006",
+      "passed": true,
+      "checks": {
+        "first_wrong_step": true,
+        "intervention_needed": true,
+        "minimal_repair_coarse_6": true
+      },
+      "accepted_options": [
+        {
+          "first_wrong_step": 2,
+          "intervention_needed": true,
+          "minimal_repair_coarse_6": "local_computation"
+        }
+      ]
+    },
+    {
+      "sample_id": "phase3_17_007",
+      "passed": true,
+      "checks": {
+        "first_wrong_step": true,
+        "intervention_needed": true,
+        "minimal_repair_coarse_6": true
+      },
+      "accepted_options": [
+        {
+          "first_wrong_step": 1,
+          "intervention_needed": true,
+          "minimal_repair_coarse_6": "local_computation"
+        }
+      ]
+    },
+    {
+      "sample_id": "phase3_17_008",
+      "passed": true,
+      "checks": {
+        "first_wrong_step": true,
+        "intervention_needed": true,
+        "minimal_repair_coarse_6": true
+      },
+      "accepted_options": [
+        {
+          "first_wrong_step": 4,
+          "intervention_needed": true,
+          "minimal_repair_coarse_6": "quantity_or_condition"
+        },
+        {
+          "first_wrong_step": 4,
+          "intervention_needed": true,
+          "minimal_repair_coarse_6": "verification_check"
+        }
+      ]
+    }
+  ]
+}
 ```
