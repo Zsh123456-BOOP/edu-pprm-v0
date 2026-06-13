@@ -1,0 +1,43 @@
+{
+  "phase": "3.17",
+  "name": "repair_taxonomy_human_check_24",
+  "sampling_seed": 20260613,
+  "total_count": 24,
+  "calibration_count": 8,
+  "core_count": 16,
+  "teacher_visible_files": [
+    "data/manual/phase3_17_human_pack_24.blind.jsonl",
+    "data/manual/phase3_17_human_template_24.jsonl",
+    "data/manual/phase3_17_human_template_24.csv"
+  ],
+  "private_do_not_send_to_teacher": [
+    "data/manual/phase3_17_human_analysis_private.jsonl",
+    "data/manual/phase3_17_human_manifest.json"
+  ],
+  "core_synthetic_type_targets": {
+    "sign_error": 2,
+    "equation_setup_error": 2,
+    "no_error_correct_trace": 2,
+    "final_answer_correct_process_wrong": 2,
+    "final_answer_wrong_prefix_correct": 2,
+    "unit_conversion_error": 1,
+    "sparse_insufficient_trace": 3,
+    "hint_would_leak_answer": 2
+  },
+  "core_synthetic_type_distribution": {
+    "sign_error": 2,
+    "equation_setup_error": 2,
+    "no_error_correct_trace": 2,
+    "final_answer_correct_process_wrong": 2,
+    "final_answer_wrong_prefix_correct": 2,
+    "unit_conversion_error": 1,
+    "sparse_insufficient_trace": 3,
+    "hint_would_leak_answer": 2
+  },
+  "reviewer_instructions": [
+    "Do not use hidden expected labels, synthetic_type, DeepSeek labels, or proxy adjudicated labels during review.",
+    "Fill phase3_17_human_template_24.csv or convert it to phase3_17_human_labels_24.jsonl.",
+    "Use 6-class minimal_repair_coarse_6 as the main repair label.",
+    "Treat earliest_actionable_step_optional and leakage_risk_binary as optional diagnostics."
+  ]
+}

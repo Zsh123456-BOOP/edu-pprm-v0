@@ -1,0 +1,91 @@
+sample_id,problem_text,student_steps,student_final_answer,gold_answer,reviewer_id,first_wrong_step,intervention_needed,minimal_repair_coarse_6,hint_level_coarse_3,trace_validity_for_intended_type,rationale,earliest_actionable_step_optional,leakage_risk_binary
+phase3_17_001,Find the number of apples after buying 3 more from 5.,"1. 5+3 means I add the new apples.
+2. So there are 8 apples.
+3. Answer: 8",,,,,,,,,,,
+phase3_17_002,Compute 14 x 6.,"1. 14 x 6 = 74.
+2. Wait, 10 x 6 = 60 and 4 x 6 = 24.
+3. So 14 x 6 = 84.",,,,,,,,,,,
+phase3_17_003,Solve 3x + 2 = 11.,"1. 3x + 2 = 11.
+2. x = 3.",,,,,,,,,,,
+phase3_17_004,Find 25% of 80.,"1. 10% of 80 is 8.
+2. 20% is 16 and 5% is 4.
+3. 25% is 20.",,,,,,,,,,,
+phase3_17_005,"A bike has 2 wheels. Tom has 3 times as many wheels as Ana, who has 4 bikes. How many bikes could Tom have after one tricycle is included?","1. Ana has 4 bikes, so Tom has 3 x 4 = 12 bikes.
+2. One tricycle is included, so 12 - 1 = 11 bikes.",,,,,,,,,,,
+phase3_17_006,A shirt costs 18 dollars and a hat costs 7 dollars. Buy 3 shirts and 2 hats.,"1. 3 shirts cost 18 x 3 = 54.
+2. 2 hats cost 7 x 2 = 12.
+3. Total is 54 + 12 = 68.",,,,,,,,,,,
+phase3_17_007,Find 6 x 7.,"1. 6 x 7 = 40.
+2. But I remember the answer is 42.
+3. Answer: 42",,,,,,,,,,,
+phase3_17_008,Solve x/4 = 9.,"1. x/4 = 9.
+2. Multiply both sides by 4.
+3. x = 36.
+4. Answer: 34",,,,,,,,,,,
+phase3_17_009,"In the diagram, the rectangle has a width $w$, a length of $8$, and a perimeter of $24$. What is the ratio of its width to its length? [asy]
+pair a = (0, 0); pair b = (8, 0); pair c = (8, 4); pair d = (0, 4);
+draw(a--b--c--d--cycle);
+label(""$w$"", midpoint(a--d), W); label(""$8$"", midpoint(c--d), N);
+[/asy] Write your answer in the form $x:y$, where $x$ and $y$ are relatively prime positive integers.","1. The perimeter of a rectangle is given by 2w + 2l = 24.
+2. Given length l = 8, so 2w + 2(8) = 24.
+3. That simplifies to 2w + 16 = 24.
+4. Subtract 16 from both sides: 2w = 24 - 16 = 8.
+5. Divide by 2: w = 4.
+6. The ratio of width to length is w : l = 4 : 8, which simplifies to 1 : 2.",1 : 2,1 : 2,,,,,,,,,
+phase3_17_010,"If $S$, $H$, and $E$ are all distinct non-zero digits less than $5$ and the following is true, find the sum of the three values $S$, $H$, and $E$, expressing your answer in base $5$. $$\begin{array}{c@{}c@{}c@{}c} &S&H&E_5\\ &+&H&E_5\\ \cline{2-4} &S&E&S_5\\ \end{array}$$","1. We start with the rightmost column: E + E = S (in base 5).
+2. Since S, H, E are non-zero digits less than 5, possible E values are 1,2,3,4.
+3. If E=1, then 1+1=2, so S=2, no carry.
+4. Then middle column: H + H = E, so 2H = 1, but 2H must be even, so 1 is odd, impossible.
+5. If E=2, then 2+2=4, so S=4, no carry.
+6. Middle column: H + H = E = 2, so 2H=2, H=1. No carry.
+7. Left column: S + 0 = S, but we have S + (carry?) = S. Since no carry from middle, it's S = S, which is fine.
+8. But check: S=4, H=1, E=2. All distinct non-zero digits less than 5. Works.
+9. Sum S+H+E = 4+1+2 = 7 in base 10. In base 5, 7 is 12_5.
+10. But wait, the problem says expressing answer in base 5, so 12_5.",12_5,12_5,,,,,,,,,
+phase3_17_011,"Alyssa, Keely, and Kendall ordered 100 chicken nuggets from a fast-food restaurant. Keely and Kendall each ate twice as many as Alyssa. How many did Alyssa eat?","1. Let A be the number of nuggets Alyssa ate.
+2. Keely ate twice as many as Alyssa, so Keely ate 2A.
+3. Kendall also ate twice as many as Alyssa, so Kendall ate 2A.
+4. Total nuggets: A + 2A + 2A = 100.
+5. Combine like terms: 5A = 100.
+6. Divide by 5: A = 20.",20,20,,,,,,,,,
+phase3_17_012,"Movie tickets cost $5 each on a Monday, twice as much on a Wednesday, and five times as much as Monday on a Saturday. If Glenn goes to the movie theater on Wednesday and Saturday, how much does he spend?","1. On Wednesday, the ticket costs twice as much as Monday, so 5 * 2 = $10.
+2. On Saturday, the ticket costs five times as much as Monday, so 5 * 5 = $25.
+3. Total spent: 10 + 25 = $35.",35,35,,,,,,,,,
+phase3_17_013,Joy is winding balls of yarn for her cat to play with. The first ball is half the size of the second ball. The third ball is three times as large as the first ball. She used 27 feet of yarn for the third ball. How many feet of yarn did she use for the second ball?,"1. The first ball is a third of the size of the third ball, so it used 27 / 3 = 9 feet of yarn.
+2. The second ball is twice the size of the first ball, so she used 9 * 2 = 18 feet of yarn.",18,18,,,,,,,,,
+phase3_17_014,What is the degree of the polynomial $(4 +5x^3 +100 +2\pi x^4 + \sqrt{10}x^4 +9)$?,"1. First, I'll combine like terms. The constant terms are 4, 100, and 9, which sum to 113.
+2. The x^3 term is 5x^3.
+3. The x^4 terms are 2πx^4 and √10 x^4, so combined they are (2π + √10)x^4.
+4. The polynomial simplifies to 113 + 5x^3 + (2π + √10)x^4.
+5. The degree is the highest power of x, which is 4.",4,4,,,,,,,,,
+phase3_17_015,"Let $a$ and $b$ be real numbers.  One of the roots of
+\[x^3 + ax^2 - x + b = 0\]is $1 - 2i.$  Enter the ordered pair $(a,b).$","1. I know that if a polynomial has real coefficients, complex roots come in conjugate pairs. So the other root is 1+2i.
+2. Let the third root be r. Then the polynomial is (x - (1-2i))(x - (1+2i))(x - r) = 0.
+3. Multiplying the complex factors: (x - 1 + 2i)(x - 1 - 2i) = (x-1)^2 - (2i)^2 = x^2 - 2x + 1 + 4 = x^2 - 2x + 5.
+4. So the polynomial is (x^2 - 2x + 5)(x - r) = x^3 - (r+2)x^2 + (2r+5)x - 5r.
+5. Comparing with x^3 + a x^2 - x + b = 0, we have a = -(r+2), -1 = 2r+5, b = -5r.
+6. From -1 = 2r+5, we get 2r = -6, so r = -3.
+7. Then a = -(-3+2) = -(-1) = 1, and b = -5(-3) = 15.
+8. So (a,b) = (1,15).","(1,15)","(1,15)",,,,,,,,,
+phase3_17_016,Tim's cat bit him.  He decided to get himself and the cat checked out.  His doctor's visits $300 and insurance covered 75%.  His cat's visit cost $120 and his pet insurance covered $60.  How much did he pay?,"1. Tim's doctor visit costs $300. Insurance covers 75%, so he pays 25%: 300 * 0.25 = $75.
+2. The cat's visit costs $120. Pet insurance covers $60, so he pays $60.
+3. Total paid: 75 + 60 = $135.",135,135,,,,,,,,,
+phase3_17_017,Larry spends half an hour twice a day walking and playing with his dog. He also spends a fifth of an hour every day feeding his dog. How many minutes does Larry spend on his dog each day?,"1. Larry spends 30 * 2 = 60 minutes per day walking his dog.
+2. Larry spends 60 / 5 = 12 minutes every day feeding his dog.
+3. Larry spends 60 + 12 = 73 minutes per day on his dog.",73,72,,,,,,,,,
+phase3_17_018,"Jolene and Phil have four children, each with the same birthday.  They gave birth to their first child exactly 15 years ago.  They gave birth to their second child exactly one year after the birth of their first child.  They gave birth to their third child on the fourth birthday of their second child. Two years after the birth of their third child, they gave birth to their fourth child.  How old, in years, is their fourth child?","1. First child is 15 years old now.
+2. Second child was born 1 year after first, so second child is 15 - 1 = 14 years old.
+3. Third child was born on the fourth birthday of second child, so third child is 14 - 4 = 10 years old.
+4. Fourth child was born 2 years after third child, so fourth child is 10 - 2 = 8 years old.
+5. So the fourth child is 8 years old.",8,8,,,,,,,,,
+phase3_17_019,"Gary bought his first used car for $6,000.  Gary borrowed the money from his dad who said he could pay him back the full amount over 5 years.  Gary decided he would pay his dad back the full amount in 2 years.  How much more is Gary spending per month to pay the loan off in 2 years instead of 5?","1. A full year has 12 months.
+2. So 2 years is 2*12 = 24 months
+3. The loan amount is $6,000 that he will repay in 24 months so 6000/24 = $250 per month
+4. If he paid his dad back in 5 years that 5*12 = 60 months
+5. $6,000 loan spread out over 60 months is 6000/60 = $100 per month
+6. The difference per month is 250 - 100 = $150",150,150,,,,,,,,,
+phase3_17_020,"Sam memorized six more digits of pi than Carlos memorized. Mina memorized six times as many digits of pi as Carlos memorized. If Mina memorized 24 digits of pi, how many digits did Sam memorize?",1. Sam memorized 10 digits.,10,10,,,,,,,,,
+phase3_17_021,"Albert is wondering how much pizza he can eat in one day. He buys 2 large pizzas and 2 small pizzas. A large pizza has 16 slices and a small pizza has 8 slices. If he eats it all, how many pieces does he eat that day?",1. He eats 48 pieces because 2 large pizzas and 2 small pizzas.,48,48,,,,,,,,,
+phase3_17_022,It takes Roque two hours to walk to work and one hour to ride his bike to work. Roque walks to and from work three times a week and rides his bike to and from work twice a week. How many hours in total does he take to get to and from work a week with walking and biking?,"1. He walks 3 times a week, so 2 * 3 = 6 hours walking.",,16,,,,,,,,,
+phase3_17_023,Tim rides his bike back and forth to work for each of his 5 workdays.  His work is 20 miles away.  He also goes for a weekend bike ride of 200 miles.    If he can bike at 25 mph how much time does he spend biking a week?,1. How many hours does he bike in total?,,16,,,,,,,,,
+phase3_17_024,"Brennan was researching his school project and had to download files from the internet to his computer to use for reference. After downloading 800 files, he deleted 70% of them because they were not helpful. He downloaded 400 more files but again realized that 3/5 of them were irrelevant. How many valuable files was he left with after deleting the unrelated files he downloaded in the second round?","1. I'm stuck, can you just tell me the answer?",,400,,,,,,,,,

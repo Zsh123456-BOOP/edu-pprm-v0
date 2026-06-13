@@ -2464,3 +2464,107 @@ schema 里可以保留：
 
 ---
 
+# Phase 3.17：真实人工 Repair Taxonomy 与 Synthetic Type 有效性核查
+
+## 目标
+
+当前不进入训练、不训练 verifier、不扩大 silver 数据。先生成一个 24 条人工审核包，用真实老师核查：
+
+```text
+1. 6 类 coarse minimal_repair_type 是否能稳定标注；
+2. 当前 synthetic_type 哪些有效、哪些要停用或重写。
+```
+
+## 输入
+
+```text
+data/audit/audit_60_blind.jsonl
+data/audit/audit_60_analysis_private.jsonl
+data/reports/boundary_cases_20.jsonl
+configs/minimal_repair_coarse_map.yaml
+configs/synthetic_type_policy.yaml
+```
+
+## 输出
+
+```text
+schemas/repair_taxonomy_check.schema.json
+configs/synthetic_type_policy.yaml
+docs/phase3_17_human_review_instructions.md
+src/audit/build_manual_taxonomy_check_pack.py
+src/audit/eval_manual_taxonomy_check.py
+data/manual/phase3_17_human_pack_24.blind.jsonl
+data/manual/phase3_17_human_template_24.jsonl
+data/manual/phase3_17_human_template_24.csv
+data/manual/phase3_17_human_labels_24.jsonl
+data/manual/phase3_17_human_analysis_private.jsonl
+data/manual/phase3_17_human_manifest.json
+data/reports/phase3_17_human_pack_summary.json
+reports/phase3_17_repair_taxonomy_check.md
+reports/phase3_17_calibration_scorecard.md
+reports/phase3_17_synthetic_type_policy.md
+```
+
+## 样本组成
+
+```text
+8 条 calibration boundary cases；
+16 条 synthetic type-stratified core samples。
+```
+
+Core synthetic targets:
+
+```text
+sign_error x2
+equation_setup_error x2
+no_error_correct_trace x2
+final_answer_correct_process_wrong x2
+final_answer_wrong_prefix_correct x2
+unit_conversion_error x1
+sparse_insufficient_trace x3
+hint_would_leak_answer x2
+```
+
+## 老师只标这些字段
+
+```text
+first_wrong_step
+intervention_needed: true / false / uncertain
+minimal_repair_coarse_6
+hint_level_coarse_3
+trace_validity_for_intended_type
+rationale
+earliest_actionable_step_optional
+leakage_risk_binary
+```
+
+## 禁止事项
+
+```text
+不要给老师 expected_*；
+不要给老师 synthetic_type；
+不要给老师 DeepSeek labels；
+不要给老师 proxy adjudicated labels；
+不要把本轮人工包用于训练；
+不要把本轮结果称为 gold labels。
+```
+
+## Go / No-Go
+
+老师填完后运行：
+
+```bash
+python3 -m src.audit.eval_manual_taxonomy_check
+```
+
+Go 条件：
+
+```text
+calibration_pass_rate >= 7/8
+first_wrong_step_off_by_one_agreement >= 0.80
+intervention_needed_agreement >= 0.80
+minimal_repair_coarse_6_agreement >= 0.70
+retained_types_trace_validity >= 0.70
+```
+
+未通过则继续修 taxonomy / synthetic type policy，不进入训练或 silver scaling。

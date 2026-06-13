@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Phase 3.17 Repair Taxonomy Human Check Label",
+  "type": "object",
+  "required": [
+    "sample_id",
+    "reviewer_id",
+    "first_wrong_step",
+    "intervention_needed",
+    "minimal_repair_coarse_6",
+    "hint_level_coarse_3",
+    "trace_validity_for_intended_type",
+    "rationale",
+    "earliest_actionable_step_optional",
+    "leakage_risk_binary"
+  ],
+  "properties": {
+    "sample_id": {"type": "string"},
+    "reviewer_id": {"type": "string"},
+    "first_wrong_step": {"type": ["integer", "null"], "minimum": 1},
+    "intervention_needed": {"enum": [true, false, "uncertain"]},
+    "minimal_repair_coarse_6": {
+      "enum": [
+        "no_intervention",
+        "local_computation",
+        "quantity_or_condition",
+        "equation_or_formula",
+        "verification_check",
+        "insufficient_or_clarify"
+      ]
+    },
+    "hint_level_coarse_3": {
+      "enum": ["none", "nudge", "targeted_or_scaffolded"]
+    },
+    "trace_validity_for_intended_type": {
+      "enum": [
+        "as_intended",
+        "visible_but_other_error",
+        "no_visible_error",
+        "insufficient_trace"
+      ]
+    },
+    "rationale": {"type": "string", "minLength": 1},
+    "earliest_actionable_step_optional": {"type": ["integer", "null"], "minimum": 1},
+    "leakage_risk_binary": {"enum": ["yes", "no", null]}
+  },
+  "additionalProperties": false
+}

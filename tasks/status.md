@@ -435,3 +435,30 @@
 主要统计结果: expected_vs_adjudicated_acc 0.5067；expected_label_valid_full 0.04；expected_label_valid_partial_only 0.56；expected_label_valid_partial_or_full 0.60；strict_pass_precision_against_adjudicated 0.80；strict_fail_bad_rate 0.70；first_wrong_step_diff_ratio 0.0；uncertain_rate 0.3333。
 Go/No-Go: No-Go。通过 DeepSeek success 和 strict pass precision，但未通过 first_wrong_step off-by-one、minimal_repair_type coarse agreement、intervention_needed agreement、expected partial-or-full。不得进入 model training、verifier training 或 silver scaling。
 下一步建议: 先验证 pedagogical repair taxonomy 是否能稳定标注；主目标收缩为 first_wrong_step -> minimal_repair_type / hint_level / leakage_constraint，earliest_actionable_step 仅作为边界案例指标。
+
+## Phase 3.17 Human Repair Taxonomy Check Pack
+
+### Phase 3.17 生成 24 条真实人工审核包
+- [x] 新增 schemas/repair_taxonomy_check.schema.json
+- [x] 新增 configs/synthetic_type_policy.yaml
+- [x] 新增 docs/phase3_17_human_review_instructions.md
+- [x] 新增 src/audit/build_manual_taxonomy_check_pack.py
+- [x] 新增 src/audit/eval_manual_taxonomy_check.py
+- [x] 生成 data/manual/phase3_17_human_pack_24.blind.jsonl
+- [x] 生成 data/manual/phase3_17_human_template_24.jsonl
+- [x] 生成 data/manual/phase3_17_human_template_24.csv
+- [x] 生成空占位 data/manual/phase3_17_human_labels_24.jsonl
+- [x] 生成 data/manual/phase3_17_human_analysis_private.jsonl
+- [x] 生成 data/manual/phase3_17_human_manifest.json
+- [x] 生成 reports/phase3_17_repair_taxonomy_check.md
+- [x] 生成 reports/phase3_17_calibration_scorecard.md
+- [x] 生成 reports/phase3_17_synthetic_type_policy.md
+- [x] 将误导性的 Codex manual 生成脚本改名为 seed_codex_proxy_labels.py，避免继续把规则代理称作 manual
+- [x] 将 proxy candidate label-set 名称改为 proxy_adjudicated_candidate_labels
+
+完成内容: 生成 24 条老师人工审核包，老师可见文件只包含 blind sample 与填写模板；private 文件保留 original_sample_id 和 synthetic_type 供后续评估使用。
+生成文件: data/manual/phase3_17_human_pack_24.blind.jsonl, data/manual/phase3_17_human_template_24.csv, data/manual/phase3_17_human_template_24.jsonl, data/manual/phase3_17_human_labels_24.jsonl, data/manual/phase3_17_human_analysis_private.jsonl, data/manual/phase3_17_human_manifest.json, data/reports/phase3_17_human_pack_summary.json。
+运行命令: python3 -m src.audit.build_manual_taxonomy_check_pack; python3 -m src.audit.eval_manual_taxonomy_check; python3 -m compileall -q src/audit。
+主要统计结果: total 24；calibration 8；core synthetic 16；core 类型分布 sign_error 2, equation_setup_error 2, no_error_correct_trace 2, final_answer_correct_process_wrong 2, final_answer_wrong_prefix_correct 2, unit_conversion_error 1, sparse_insufficient_trace 3, hint_would_leak_answer 2；teacher-visible leakage scan passed；human labels 当前 pending 0/24。
+失败或不确定点: 老师尚未填写 labels；Phase 3.17 评估报告当前为 pending。
+是否需要人工 review: 是，把 data/manual/phase3_17_human_template_24.csv 和 docs/phase3_17_human_review_instructions.md 发给老师填写。

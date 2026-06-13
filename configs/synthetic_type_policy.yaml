@@ -1,0 +1,69 @@
+{
+  "policy_version": "phase3_17_initial",
+  "status_values": [
+    "disable_now",
+    "rewrite_before_reuse",
+    "keep_core",
+    "stress_only",
+    "observe_only"
+  ],
+  "notes": [
+    "This policy is not a training policy.",
+    "Phase 3.17 uses it to build a 24-row human review pack.",
+    "Synthetic expected labels remain synthetic intent labels, not gold labels."
+  ],
+  "synthetic_types": {
+    "sign_error": {
+      "status": "disable_now",
+      "reason": "Current traces often do not make the sign error visibly diagnosable."
+    },
+    "equation_setup_error": {
+      "status": "rewrite_before_reuse",
+      "reason": "Needs explicit representation-layer error before reuse."
+    },
+    "no_error_correct_trace": {
+      "status": "rewrite_before_reuse",
+      "reason": "Keep only after deterministic correctness scan confirms no visible local error."
+    },
+    "final_answer_correct_process_wrong": {
+      "status": "disable_now",
+      "reason": "Current traces often do not make the process error visible when final answer is correct."
+    },
+    "final_answer_wrong_prefix_correct": {
+      "status": "rewrite_before_reuse",
+      "reason": "Useful boundary type, but should be hand-selected or regenerated with visible final-step mismatch."
+    },
+    "unit_conversion_error": {
+      "status": "rewrite_before_reuse",
+      "reason": "Only retain when unit, conversion direction, and dimension change are explicit."
+    },
+    "sparse_insufficient_trace": {
+      "status": "keep_core",
+      "reason": "Useful uncertainty-handling subset; should not be treated as ordinary repair error."
+    },
+    "hint_would_leak_answer": {
+      "status": "stress_only",
+      "reason": "Feedback-safety stress case, not a core repair taxonomy sample."
+    },
+    "arithmetic_error": {
+      "status": "observe_only",
+      "reason": "Not central to Phase 3.17 but may be useful later as local computation baseline."
+    },
+    "wrong_operation": {
+      "status": "observe_only",
+      "reason": "Not central to Phase 3.17; revisit after coarse taxonomy check."
+    },
+    "misread_given_quantity": {
+      "status": "observe_only",
+      "reason": "Potential quantity_or_condition sample but underrepresented in current audit batch."
+    },
+    "substitution_error": {
+      "status": "observe_only",
+      "reason": "Not present in the v2 audit subset; revisit after pack review."
+    },
+    "self_corrected_error": {
+      "status": "observe_only",
+      "reason": "Important boundary type but underrepresented in current audit batch."
+    }
+  }
+}

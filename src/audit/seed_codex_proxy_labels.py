@@ -6,8 +6,11 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from src.audit.common import BLIND_PATH, CODEX_LABELS_PATH, CODEX_TEMPLATE_PATH, detect_local_expression_error, validate_audit_label
+from src.audit.common import AUDIT_DIR, BLIND_PATH, detect_local_expression_error, validate_audit_label
 from src.data.common import read_jsonl_file, write_jsonl
+
+SEEDED_PROXY_LABELS_PATH = AUDIT_DIR / "seeded_codex_proxy_baseline.labels.jsonl"
+SEEDED_PROXY_TEMPLATE_PATH = AUDIT_DIR / "seeded_codex_proxy_baseline.template.jsonl"
 
 
 def all_text(row: dict[str, Any]) -> str:
@@ -38,7 +41,7 @@ def label_row(row: dict[str, Any]) -> dict[str, Any]:
     if final_answer_only(row) or sparse:
         return {
             "sample_id": row["sample_id"],
-            "annotator": "codex_manual_proxy",
+            "annotator": "seeded_codex_proxy",
             "first_wrong_step": None,
             "earliest_actionable_step": None,
             "intervention_needed": "uncertain",
@@ -52,7 +55,7 @@ def label_row(row: dict[str, Any]) -> dict[str, Any]:
     if is_correct is True and (has_self_correction or not local_step):
         return {
             "sample_id": row["sample_id"],
-            "annotator": "codex_manual_proxy",
+            "annotator": "seeded_codex_proxy",
             "first_wrong_step": None,
             "earliest_actionable_step": None,
             "intervention_needed": False,
@@ -66,7 +69,7 @@ def label_row(row: dict[str, Any]) -> dict[str, Any]:
     if local_step:
         return {
             "sample_id": row["sample_id"],
-            "annotator": "codex_manual_proxy",
+            "annotator": "seeded_codex_proxy",
             "first_wrong_step": local_step,
             "earliest_actionable_step": local_step,
             "intervention_needed": True,
@@ -104,7 +107,7 @@ def label_row(row: dict[str, Any]) -> dict[str, Any]:
         hint = "low"
     return {
         "sample_id": row["sample_id"],
-        "annotator": "codex_manual_proxy",
+        "annotator": "seeded_codex_proxy",
         "first_wrong_step": 1,
         "earliest_actionable_step": 1,
         "intervention_needed": True,
@@ -122,15 +125,15 @@ def main() -> int:
     labels = [label_row(row) for row in rows]
     errors = []
     for label in labels:
-        label_errors = validate_audit_label(label, expected_annotator="codex_manual_proxy")
+        label_errors = validate_audit_label(label, expected_annotator="seeded_codex_proxy")
         if label_errors:
             errors.append({"sample_id": label["sample_id"], "errors": label_errors})
     if errors:
         raise SystemExit(json.dumps(errors, ensure_ascii=False, indent=2))
-    write_jsonl(CODEX_TEMPLATE_PATH, [
+    write_jsonl(SEEDED_PROXY_TEMPLATE_PATH, [
         {
             "sample_id": row["sample_id"],
-            "annotator": "codex_manual_proxy",
+            "annotator": "seeded_codex_proxy",
             "first_wrong_step": None,
             "earliest_actionable_step": None,
             "intervention_needed": "uncertain",
@@ -143,11 +146,11 @@ def main() -> int:
         }
         for row in rows
     ])
-    write_jsonl(CODEX_LABELS_PATH, labels)
-    notes = "# Codex Manual Proxy Audit Notes\n\nThese labels are `codex_manual_proxy`, not `heuristic_proxy` and not human labels.\n\n"
-    notes += "The pass used only `audit_60_blind.jsonl`, guideline, and taxonomy. Hidden expected labels and synthetic type were not used.\n\n"
+    write_jsonl(SEEDED_PROXY_LABELS_PATH, labels)
+    notes = "# Seeded Codex Proxy Baseline Notes\n\nThese labels are `seeded_codex_proxy`, not manual teacher labels and not human labels.\n\n"
+    notes += "This deterministic seed script is kept only as a baseline/debug artifact. It must not overwrite or replace real manual review labels.\n\n"
     notes += "## Distribution\n\n```json\n" + json.dumps(dict(Counter(label["minimal_repair_type"] for label in labels)), indent=2) + "\n```\n"
-    (CODEX_LABELS_PATH.parent / "codex_manual_audit_60.notes.md").write_text(notes, encoding="utf-8")
+    (AUDIT_DIR / "seeded_codex_proxy_baseline.notes.md").write_text(notes, encoding="utf-8")
     print(json.dumps({"output_count": len(labels), "validation": "passed"}, indent=2))
     return 0
 

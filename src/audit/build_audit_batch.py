@@ -124,7 +124,7 @@ def main() -> int:
         "audit_name": "proxy_human_audit_60",
         "audit_version": "v2",
         "sampling_seed": SEED,
-        "label_set_name": "ai_adjudicated_gold_candidate",
+        "label_set_name": "proxy_adjudicated_candidate_labels",
         "note": "Proxy audit only. These are not human gold labels.",
         "metric_count": metric_count,
         "calibration_count": calibration_count,

@@ -38,6 +38,8 @@ DeepSeek synthetic expected labels are synthetic intent labels, not gold labels.
 The project is not yet in model training.
 Latest proxy audit v2 result: No-Go for silver scaling or verifier training;
 continue by validating the repair taxonomy stability first.
+Phase 3.17 has generated a 24-row real teacher review pack for the 6-class
+repair taxonomy; evaluation is pending returned teacher labels.
 
 The unified schema reserves `handwrite_data`, `budget_data`, and
 `distillation_data` as nullable placeholders. Phase 0/1 scripts must not depend

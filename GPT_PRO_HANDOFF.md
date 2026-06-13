@@ -213,7 +213,7 @@ Current recommendation: do not train yet. First improve data validity and label 
 Implemented after the DeepSeek synthetic 240 experiment and revised as audit v2:
 
 - Audit name: `proxy_human_audit`
-- Candidate label set name: `ai_adjudicated_gold_candidate`
+- Candidate label set name: `proxy_adjudicated_candidate_labels`
 - Metric samples: 60
 - Calibration samples: 8
 - `heuristic_proxy`: retained only as deterministic baseline, excluded from main metrics
@@ -247,6 +247,48 @@ Expected-label validity against proxy adjudication:
 Decision: No-Go. Do not train, do not expand silver data, and do not train a verifier from these expected labels. The audit passed DeepSeek success and strict-pass precision, but failed the new Go thresholds for first-wrong off-by-one, repair coarse agreement, intervention agreement, and expected partial-or-full validity.
 
 Recommended narrowed next step: validate whether the pedagogical repair taxonomy can be stably annotated. Treat `earliest_actionable_step` as a boundary-case metric for now, not the main claim. Focus on `first_wrong_step -> minimal_repair_type / hint_level / leakage_constraint`, with `minimal_repair_type` analyzed mainly through the 6-class coarse taxonomy.
+
+## Phase 3.17 Human Repair Taxonomy Check Pack
+
+Implemented after GPT Pro review of proxy audit v2:
+
+- Goal: prepare a 24-row real teacher review pack, not train and not expand silver.
+- Teacher-visible samples: 24 blind rows.
+- Calibration samples: 8.
+- Core synthetic samples: 16.
+- Core target distribution:
+  - `sign_error`: 2
+  - `equation_setup_error`: 2
+  - `no_error_correct_trace`: 2
+  - `final_answer_correct_process_wrong`: 2
+  - `final_answer_wrong_prefix_correct`: 2
+  - `unit_conversion_error`: 1
+  - `sparse_insufficient_trace`: 3
+  - `hint_would_leak_answer`: 2
+- Teacher-visible IDs are opaque `phase3_17_###`; original sample IDs and synthetic types are private only.
+- `data/manual/phase3_17_human_labels_24.jsonl` is intentionally empty until teacher labels are returned.
+- The misleading Codex manual-generation script was renamed to `seed_codex_proxy_labels.py`; it is a seeded proxy baseline, not manual review.
+- The proxy candidate label-set name is now `proxy_adjudicated_candidate_labels`.
+
+Teacher-facing files:
+
+- `docs/phase3_17_human_review_instructions.md`
+- `data/manual/phase3_17_human_pack_24.blind.jsonl`
+- `data/manual/phase3_17_human_template_24.csv`
+- `data/manual/phase3_17_human_template_24.jsonl`
+
+Private files, do not send to teachers:
+
+- `data/manual/phase3_17_human_analysis_private.jsonl`
+- `data/manual/phase3_17_human_manifest.json`
+
+Evaluation command after teacher labels are filled:
+
+```bash
+python3 -m src.audit.eval_manual_taxonomy_check
+```
+
+Current Phase 3.17 status: pending teacher labels. No training, verifier training, or silver scaling is allowed.
 
 Validation status:
 
