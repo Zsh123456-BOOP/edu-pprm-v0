@@ -1,0 +1,62 @@
+{
+  "reader_type": "focused_multi-paper_reader",
+  "note": "This is a focused source-grounded reading artifact for research-decision support, not a full-paper bilingual translation.",
+  "blocks": [
+    {
+      "id": "S001",
+      "paper_id": "lightman_2024_lets_verify",
+      "source": "literature/edu_pprm_related/text/lets_verify_step_by_step_iclr2024.txt",
+      "location": "page 1 abstract and page 2 contributions",
+      "topic": "process supervision and PRM800K"
+    },
+    {
+      "id": "S002",
+      "paper_id": "wang_2024_math_shepherd",
+      "source": "literature/edu_pprm_related/text/math_shepherd_acl2024.txt",
+      "location": "page 1 abstract and introduction",
+      "topic": "automatic process supervision"
+    },
+    {
+      "id": "S003",
+      "paper_id": "zheng_2025_processbench",
+      "source": "literature/edu_pprm_related/text/processbench_acl2025.txt",
+      "location": "page 1 abstract and introduction",
+      "topic": "earliest erroneous step benchmark"
+    },
+    {
+      "id": "S004",
+      "paper_id": "daheim_2024_stepwise_remediation",
+      "source": "literature/edu_pprm_related/text/stepwise_verification_remediation_emnlp2024.txt",
+      "location": "page 1 abstract and introduction",
+      "topic": "verification-grounded remediation"
+    },
+    {
+      "id": "S005",
+      "paper_id": "macina_2023_mathdial",
+      "source": "literature/edu_pprm_related/text/mathdial_findings_emnlp2023.txt",
+      "location": "page 1 abstract and introduction",
+      "topic": "scaffolding and answer leakage"
+    },
+    {
+      "id": "S006",
+      "paper_id": "maurya_2025_mrbench",
+      "source": "literature/edu_pprm_related/text/mrbench_naacl2025.txt",
+      "location": "page 1 abstract and introduction",
+      "topic": "AI tutor evaluation dimensions"
+    },
+    {
+      "id": "S007",
+      "paper_id": "shi_2026_kmp_bench",
+      "source": "literature/edu_pprm_related/text/kmp_bench_aaai2026.txt",
+      "location": "page 1 abstract and introduction",
+      "topic": "solver-to-tutor gap"
+    },
+    {
+      "id": "S008",
+      "paper_id": "ross_2024_in_context_teaching",
+      "source": "literature/edu_pprm_related/text/toward_in_context_teaching_acl2024.txt",
+      "location": "page 1 abstract and introduction",
+      "topic": "misconception-aware adaptive teaching"
+    }
+  ]
+}

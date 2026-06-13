@@ -1,0 +1,26 @@
+{
+  "phase": "3.18",
+  "count": 24,
+  "sampling_seed": 20260613,
+  "teacher_visible_files": [
+    "/Users/zhongsuhua/Desktop/CodexProjects/LLM过程奖励与推理验证/data/manual/phase3_18_teacher_spotcheck_24.blind.jsonl",
+    "/Users/zhongsuhua/Desktop/CodexProjects/LLM过程奖励与推理验证/data/manual/phase3_18_teacher_spotcheck_24.template.csv",
+    "/Users/zhongsuhua/Desktop/CodexProjects/LLM过程奖励与推理验证/data/manual/phase3_18_teacher_spotcheck_24.template.jsonl"
+  ],
+  "private_do_not_send_to_teacher": [
+    "/Users/zhongsuhua/Desktop/CodexProjects/LLM过程奖励与推理验证/data/manual/phase3_18_teacher_spotcheck_24.private.jsonl"
+  ],
+  "synthetic_type_distribution": {
+    "arithmetic_error": 3,
+    "wrong_operation": 2,
+    "misread_given_quantity": 2,
+    "equation_setup_error": 2,
+    "unit_conversion_error": 3,
+    "substitution_error": 2,
+    "no_error_correct_trace": 2,
+    "self_corrected_error": 2,
+    "final_answer_wrong_prefix_correct": 2,
+    "sparse_insufficient_trace": 2,
+    "hint_would_leak_answer": 2
+  }
+}

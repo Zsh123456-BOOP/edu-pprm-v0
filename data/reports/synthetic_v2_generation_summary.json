@@ -1,0 +1,33 @@
+{
+  "phase": "3.18",
+  "warning": "expected labels are synthetic intent labels, not gold labels",
+  "target_count": 150,
+  "output_count": 111,
+  "failure_count": 39,
+  "model": "deepseek-v4-pro",
+  "type_distribution": {
+    "arithmetic_error": 13,
+    "wrong_operation": 9,
+    "misread_given_quantity": 7,
+    "equation_setup_error": 7,
+    "unit_conversion_error": 10,
+    "substitution_error": 8,
+    "no_error_correct_trace": 15,
+    "self_corrected_error": 11,
+    "final_answer_wrong_prefix_correct": 13,
+    "sparse_insufficient_trace": 14,
+    "hint_would_leak_answer": 4
+  },
+  "source_distribution": {
+    "gsm8k": 90,
+    "math": 21
+  },
+  "expected_coarse_repair_distribution": {
+    "local_computation": 13,
+    "equation_or_formula": 26,
+    "quantity_or_condition": 20,
+    "verification_check": 8,
+    "no_intervention": 26,
+    "insufficient_or_clarify": 18
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "phase": "3.18",
+  "warning": "expected labels are synthetic intent labels, not gold labels",
+  "input_count": 111,
+  "verified_pass_count": 103,
+  "verified_fail_count": 8,
+  "pass_rate": 0.9279,
+  "go_minimum_100_verified": true,
+  "passed_type_distribution": {
+    "arithmetic_error": 13,
+    "wrong_operation": 9,
+    "misread_given_quantity": 7,
+    "equation_setup_error": 7,
+    "unit_conversion_error": 10,
+    "substitution_error": 8,
+    "no_error_correct_trace": 15,
+    "self_corrected_error": 10,
+    "final_answer_wrong_prefix_correct": 13,
+    "sparse_insufficient_trace": 8,
+    "hint_would_leak_answer": 3
+  },
+  "failed_type_distribution": {
+    "self_corrected_error": 1,
+    "sparse_insufficient_trace": 6,
+    "hint_would_leak_answer": 1
+  }
+}

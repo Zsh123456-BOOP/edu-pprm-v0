@@ -10,8 +10,17 @@
   "notes": [
     "This policy is not a training policy.",
     "Phase 3.17 uses it to build a 24-row human review pack.",
-    "Synthetic expected labels remain synthetic intent labels, not gold labels."
+    "Synthetic expected labels remain synthetic intent labels, not gold labels.",
+    "Phase 3.18 automatic validation is not enough for silver scaling; teacher spot-check is required before any expansion."
   ],
+  "phase3_18_auto_eval": {
+    "status": "pause_for_teacher_spotcheck",
+    "verified_count": 103,
+    "first_wrong_step_off_by_one_acc": 0.8738,
+    "intervention_needed_acc": 0.8835,
+    "minimal_repair_coarse_6_acc": 0.6505,
+    "decision": "Do not train or expand silver. Run teacher spot-check on 24 synthetic v2 rows."
+  },
   "synthetic_types": {
     "sign_error": {
       "status": "disable_now",
@@ -46,24 +55,24 @@
       "reason": "Feedback-safety stress case, not a core repair taxonomy sample."
     },
     "arithmetic_error": {
-      "status": "observe_only",
-      "reason": "Not central to Phase 3.17 but may be useful later as local computation baseline."
+      "status": "keep_core",
+      "reason": "Phase 3.18 automatic eval was strong for local computation: coarse repair acc 0.9231."
     },
     "wrong_operation": {
-      "status": "observe_only",
-      "reason": "Not central to Phase 3.17; revisit after coarse taxonomy check."
+      "status": "rewrite_before_reuse",
+      "reason": "Phase 3.18 first_wrong_step was stable, but coarse repair was often confused with quantity_or_condition."
     },
     "misread_given_quantity": {
-      "status": "observe_only",
-      "reason": "Potential quantity_or_condition sample but underrepresented in current audit batch."
+      "status": "keep_core",
+      "reason": "Phase 3.18 automatic eval was acceptable: coarse repair acc 0.8571."
     },
     "substitution_error": {
-      "status": "observe_only",
-      "reason": "Not present in the v2 audit subset; revisit after pack review."
+      "status": "rewrite_before_reuse",
+      "reason": "Phase 3.18 DeepSeek consistently mapped these away from verification_check; needs clearer substitution-back templates."
     },
     "self_corrected_error": {
-      "status": "observe_only",
-      "reason": "Important boundary type but underrepresented in current audit batch."
+      "status": "keep_boundary",
+      "reason": "Useful for intervention_needed=false, but first_wrong_step comparison is unstable because labelers may ignore corrected temporary errors."
     }
   }
 }

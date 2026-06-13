@@ -462,3 +462,50 @@ Go/No-Go: No-Go。通过 DeepSeek success 和 strict pass precision，但未通�
 主要统计结果: total 24；calibration 8；core synthetic 16；core 类型分布 sign_error 2, equation_setup_error 2, no_error_correct_trace 2, final_answer_correct_process_wrong 2, final_answer_wrong_prefix_correct 2, unit_conversion_error 1, sparse_insufficient_trace 3, hint_would_leak_answer 2；teacher-visible leakage scan passed；human labels 当前 pending 0/24。
 失败或不确定点: 老师尚未填写 labels；Phase 3.17 评估报告当前为 pending。
 是否需要人工 review: 是，把 data/manual/phase3_17_human_template_24.csv 和 docs/phase3_17_human_review_instructions.md 发给老师填写。
+
+### Phase 3.17 老师结果回收与评估
+- [x] 导入老师修订后的 24 条人工标签
+- [x] 运行 src.audit.eval_manual_taxonomy_check
+- [x] 输出 data/reports/phase3_17_calibration_scorecard.json
+- [x] 输出 data/reports/phase3_17_repair_taxonomy_summary.json
+- [x] 输出 data/reports/phase3_17_type_validity_summary.json
+- [x] 更新 reports/phase3_17_repair_taxonomy_check.md
+
+主要统计结果: calibration_pass_rate 8/8；first_wrong_step_off_by_one_agreement 0.9375；intervention_needed_agreement 0.9375；minimal_repair_coarse_6_agreement 0.9375；hint_level_coarse_3_agreement 0.75；retained_types_trace_validity 0.9375。
+Go/No-Go: Go for synthetic v2 small rewrite only。仍然不进入训练、不训练 verifier、不扩 300-500 silver。
+
+## Phase 3.18 Synthetic v2 Repair Taxonomy Validation
+
+### Phase 3.18 生成、验证、自动标注 100-150 条 synthetic v2
+- [x] 新增 src/synthetic/deepseek_generate_synthetic_v2.py
+- [x] 新增 src/synthetic/deepseek_verify_synthetic_v2.py
+- [x] 新增 src/labels/label_synthetic_v2.py
+- [x] 新增 src/eval/eval_synthetic_v2_repair_taxonomy.py
+- [x] 使用 DeepSeek-pro 生成 synthetic v2 traces
+- [x] 使用 DeepSeek-pro strict verifier 过滤
+- [x] 使用 DeepSeek-pro blind label，不暴露 expected_*
+- [x] 生成 data/pilot/synthetic_v2_150.raw.jsonl
+- [x] 生成 data/pilot/synthetic_v2_150.verified.raw.jsonl
+- [x] 生成 data/pilot/synthetic_v2_150.autolabeled.jsonl
+- [x] 输出 data/reports/synthetic_v2_generation_summary.json
+- [x] 输出 data/reports/synthetic_v2_strict_verification_summary.json
+- [x] 输出 data/reports/synthetic_v2_label_summary.json
+- [x] 输出 data/reports/synthetic_v2_repair_taxonomy_eval_summary.json
+- [x] 输出 reports/phase3_18_synthetic_v2.md
+
+完成内容: 生成目标 150 条，基础生成成功 111 条；strict verifier 通过 103 条；DeepSeek blind label 103/103 通过 schema。expected labels 仍是 synthetic intent labels，不是 gold labels。
+主要统计结果: first_wrong_step_off_by_one_acc 0.8738；intervention_needed_acc 0.8835；minimal_repair_coarse_6_acc 0.6505；minimal_repair_type_exact_acc 0.5825；hint_level_acc 0.7379；leakage_constraint_acc 0.1748；first_wrong_step != earliest_actionable_step 0.0485。
+Go/No-Go: 自动 gate 未完全通过，因为 minimal_repair_coarse_6_acc 低于 0.70。暂停扩展，进入老师 spot-check；不得训练、不得 verifier training、不得扩 300-500 silver。
+
+### Phase 3.18 老师 spot-check 包
+- [x] 新增 docs/phase3_18_teacher_spotcheck_instructions.md
+- [x] 新增 src/audit/build_phase3_18_teacher_spotcheck_pack.py
+- [x] 生成 data/manual/phase3_18_teacher_spotcheck_24.blind.jsonl
+- [x] 生成 data/manual/phase3_18_teacher_spotcheck_24.template.csv
+- [x] 生成 data/manual/phase3_18_teacher_spotcheck_24.template.jsonl
+- [x] 生成 private 对照文件 data/manual/phase3_18_teacher_spotcheck_24.private.jsonl
+- [x] 输出 data/reports/phase3_18_teacher_spotcheck_pack_summary.json
+
+老师可见文件: docs/phase3_18_teacher_spotcheck_instructions.md, data/manual/phase3_18_teacher_spotcheck_24.blind.jsonl, data/manual/phase3_18_teacher_spotcheck_24.template.csv, data/manual/phase3_18_teacher_spotcheck_24.template.jsonl。
+不要发给老师: data/manual/phase3_18_teacher_spotcheck_24.private.jsonl。
+下一步: 老师填写 24 条 spot-check，判断 coarse repair 低于 gate 是 synthetic intent 错、taxonomy 边界错，还是 DeepSeek label 错。

@@ -288,7 +288,72 @@ Evaluation command after teacher labels are filled:
 python3 -m src.audit.eval_manual_taxonomy_check
 ```
 
-Current Phase 3.17 status: pending teacher labels. No training, verifier training, or silver scaling is allowed.
+Current Phase 3.17 status: completed and passed for synthetic v2 small rewrite. No training, verifier training, or silver scaling is allowed. Current Phase 3.18 status: pause for teacher spot-check.
+
+## Phase 3.17 Teacher Results
+
+Teacher labels were returned and evaluated.
+
+Results:
+
+- `calibration_pass_rate`: 8/8
+- `first_wrong_step_off_by_one_agreement`: 0.9375
+- `intervention_needed_agreement`: 0.9375
+- `minimal_repair_coarse_6_agreement`: 0.9375
+- `hint_level_coarse_3_agreement`: 0.75
+- `retained_types_trace_validity`: 0.9375
+
+Decision: Go for **synthetic v2 small rewrite only**. Still no model training,
+no verifier training, and no 300-500 silver scaling.
+
+## Phase 3.18 Synthetic v2
+
+Implemented a 100-150 row synthetic v2 validation pass using DeepSeek-pro.
+
+Generated/validated files:
+
+- `src/synthetic/deepseek_generate_synthetic_v2.py`
+- `src/synthetic/deepseek_verify_synthetic_v2.py`
+- `src/labels/label_synthetic_v2.py`
+- `src/eval/eval_synthetic_v2_repair_taxonomy.py`
+- `src/audit/build_phase3_18_teacher_spotcheck_pack.py`
+- `data/pilot/synthetic_v2_150.raw.jsonl`
+- `data/pilot/synthetic_v2_150.verified.raw.jsonl`
+- `data/pilot/synthetic_v2_150.autolabeled.jsonl`
+- `reports/phase3_18_synthetic_v2.md`
+
+Automatic results:
+
+- target generation count: 150
+- basic generated rows: 111
+- strict verified rows: 103
+- DeepSeek blind label rows: 103/103
+- `first_wrong_step_off_by_one_acc`: 0.8738
+- `intervention_needed_acc`: 0.8835
+- `minimal_repair_coarse_6_acc`: 0.6505
+- `minimal_repair_type_exact_acc`: 0.5825
+- `hint_level_acc`: 0.7379
+- `leakage_constraint_acc`: 0.1748
+- `first_wrong_step != earliest_actionable_step`: 0.0485
+
+Decision: **Pause for teacher spot-check.** The automatic gate failed
+`minimal_repair_coarse_6_acc >= 0.70`, so do not train, do not train a verifier,
+and do not expand to 300-500 silver.
+
+Teacher-visible Phase 3.18 files:
+
+- `docs/phase3_18_teacher_spotcheck_instructions.md`
+- `data/manual/phase3_18_teacher_spotcheck_24.blind.jsonl`
+- `data/manual/phase3_18_teacher_spotcheck_24.template.csv`
+- `data/manual/phase3_18_teacher_spotcheck_24.template.jsonl`
+
+Private file, do not send to teachers:
+
+- `data/manual/phase3_18_teacher_spotcheck_24.private.jsonl`
+
+The teacher spot-check should decide whether the failed coarse repair gate is
+mainly caused by synthetic intent label errors, 6-class taxonomy ambiguity, or
+DeepSeek blind labeling errors.
 
 Validation status:
 

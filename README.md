@@ -1,8 +1,8 @@
 # Edu-PPRM-v0
 
 This repository is for Direction 1 only: a text-only pedagogical process
-verification pilot. The current stage is proxy human audit before silver scaling
-or training.
+verification pilot. The current stage is synthetic v2 repair-taxonomy validation
+before silver scaling or training.
 
 The goal is to test whether tutor-facing intervention labels add value beyond
 existing first-error detection:
@@ -20,6 +20,7 @@ Current scope:
 
 - text-only Edu-PPRM-v0 data source registry and pilot data inspection
 - Codex-DeepSeek proxy human audit before silver scaling or training
+- Phase 3.18 synthetic v2 validation for `first_wrong_step -> 6-class coarse repair`
 - small-sample source loaders for field coverage checks
 - no large-scale dataset construction before Review Gate 1
 
@@ -36,10 +37,11 @@ Explicitly out of scope for this phase:
 
 DeepSeek synthetic expected labels are synthetic intent labels, not gold labels.
 The project is not yet in model training.
-Latest proxy audit v2 result: No-Go for silver scaling or verifier training;
-continue by validating the repair taxonomy stability first.
-Phase 3.17 has generated a 24-row real teacher review pack for the 6-class
-repair taxonomy; evaluation is pending returned teacher labels.
+Latest proxy audit v2 result: No-Go for silver scaling or verifier training.
+Phase 3.17 teacher check passed on 24 rows. Phase 3.18 generated and verified
+103 synthetic v2 rows, but automatic DeepSeek-vs-intent coarse repair accuracy
+is 0.6505, below the 0.70 gate. The current next step is teacher spot-check on
+24 Phase 3.18 rows, not training or 300-500 silver expansion.
 
 The unified schema reserves `handwrite_data`, `budget_data`, and
 `distillation_data` as nullable placeholders. Phase 0/1 scripts must not depend

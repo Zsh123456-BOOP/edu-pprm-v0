@@ -19,6 +19,13 @@ data/cache/deepseek/generate_synth240_*/
 data/cache/deepseek/label_synth240_*/
 data/cache/deepseek/verify_synth240_*/
 data/cache/deepseek/audit_60_*/
+data/cache/deepseek/generate_synthetic_v2_*/
+data/cache/deepseek/label_synthetic_v2_*/
+data/cache/deepseek/verify_synthetic_v2_*/
+
+!data/pilot/synthetic_v2_150.raw.jsonl
+!data/pilot/synthetic_v2_150.verified.raw.jsonl
+!data/pilot/synthetic_v2_150.autolabeled.jsonl
 
 !data/reports/
 !data/reports/**

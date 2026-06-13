@@ -2568,3 +2568,56 @@ retained_types_trace_validity >= 0.70
 ```
 
 未通过则继续修 taxonomy / synthetic type policy，不进入训练或 silver scaling。
+
+---
+
+# Phase 3.18：Synthetic v2 小规模 Repair Taxonomy 验证
+
+## 目标
+
+当前仍然不进入训练、不训练 verifier、不扩大到 300-500 silver。先用 DeepSeek-pro
+生成 100-150 条更干净 synthetic v2 traces，验证：
+
+```text
+first_wrong_step -> 6 类 coarse minimal_repair_type
+```
+
+是否能在小规模扩展后继续稳定。
+
+## 输出
+
+```text
+src/synthetic/deepseek_generate_synthetic_v2.py
+src/synthetic/deepseek_verify_synthetic_v2.py
+src/labels/label_synthetic_v2.py
+src/eval/eval_synthetic_v2_repair_taxonomy.py
+src/audit/build_phase3_18_teacher_spotcheck_pack.py
+data/pilot/synthetic_v2_150.raw.jsonl
+data/pilot/synthetic_v2_150.verified.raw.jsonl
+data/pilot/synthetic_v2_150.autolabeled.jsonl
+data/manual/phase3_18_teacher_spotcheck_24.blind.jsonl
+data/manual/phase3_18_teacher_spotcheck_24.template.csv
+data/manual/phase3_18_teacher_spotcheck_24.template.jsonl
+data/manual/phase3_18_teacher_spotcheck_24.private.jsonl
+data/reports/synthetic_v2_generation_summary.json
+data/reports/synthetic_v2_strict_verification_summary.json
+data/reports/synthetic_v2_label_summary.json
+data/reports/synthetic_v2_repair_taxonomy_eval_summary.json
+reports/phase3_18_synthetic_v2.md
+```
+
+## Go / No-Go
+
+自动 gate:
+
+```text
+verified_count >= 100
+DeepSeek blind label parse/schema = 1.0
+first_wrong_step_off_by_one_acc >= 0.80
+intervention_needed_acc >= 0.80
+minimal_repair_coarse_6_acc >= 0.70
+single repair class <= 70%
+```
+
+若 `minimal_repair_coarse_6_acc < 0.70`，不得扩 silver，不得训练；进入老师
+spot-check，判断是 synthetic intent 错、类型定义错，还是 DeepSeek label 错。

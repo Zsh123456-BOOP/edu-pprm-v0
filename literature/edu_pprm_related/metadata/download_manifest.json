@@ -1,0 +1,92 @@
+[
+  {
+    "id": "lightman_2024_lets_verify",
+    "title": "Let's Verify Step by Step",
+    "venue": "ICLR 2024",
+    "status_note": "top AI conference; check exact local CCF catalogue if needed",
+    "source_url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/aca97732e30bcf1303bc22ac3924fd16-Paper-Conference.pdf",
+    "local_pdf": "literature/edu_pprm_related/pdfs/lets_verify_step_by_step_iclr2024.pdf",
+    "local_text": "literature/edu_pprm_related/text/lets_verify_step_by_step_iclr2024.txt",
+    "relevance": "process supervision and PRM800K baseline"
+  },
+  {
+    "id": "wang_2024_math_shepherd",
+    "title": "Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations",
+    "venue": "ACL 2024 Long Papers",
+    "status_note": "ACL is commonly treated as CCF-A in NLP",
+    "source_url": "https://aclanthology.org/2024.acl-long.510.pdf",
+    "local_pdf": "literature/edu_pprm_related/pdfs/math_shepherd_acl2024.pdf",
+    "local_text": "literature/edu_pprm_related/text/math_shepherd_acl2024.txt",
+    "relevance": "automatic process supervision and step-wise verifier training"
+  },
+  {
+    "id": "zheng_2025_processbench",
+    "title": "PROCESSBENCH: Identifying Process Errors in Mathematical Reasoning",
+    "venue": "ACL 2025 Long Papers",
+    "status_note": "ACL is commonly treated as CCF-A in NLP",
+    "source_url": "https://aclanthology.org/2025.acl-long.50.pdf",
+    "local_pdf": "literature/edu_pprm_related/pdfs/processbench_acl2025.pdf",
+    "local_text": "literature/edu_pprm_related/text/processbench_acl2025.txt",
+    "relevance": "first-error benchmark and external evaluation anchor"
+  },
+  {
+    "id": "ross_2024_in_context_teaching",
+    "title": "Toward In-Context Teaching: Adapting Examples to Students' Misconceptions",
+    "venue": "ACL 2024 Long Papers",
+    "status_note": "ACL is commonly treated as CCF-A in NLP",
+    "source_url": "https://aclanthology.org/2024.acl-long.718.pdf",
+    "local_pdf": "literature/edu_pprm_related/pdfs/toward_in_context_teaching_acl2024.pdf",
+    "local_text": "literature/edu_pprm_related/text/toward_in_context_teaching_acl2024.txt",
+    "relevance": "adaptive teaching and misconception-aware interventions"
+  },
+  {
+    "id": "shi_2026_kmp_bench",
+    "title": "From Solver to Tutor: Evaluating the Pedagogical Intelligence of LLMs with KMP-Bench",
+    "venue": "AAAI 2026",
+    "status_note": "AAAI is commonly treated as CCF-A in AI",
+    "source_url": "https://ojs.aaai.org/index.php/AAAI/article/view/40578/44539",
+    "local_pdf": "literature/edu_pprm_related/pdfs/kmp_bench_aaai2026.pdf",
+    "local_text": "literature/edu_pprm_related/text/kmp_bench_aaai2026.txt",
+    "relevance": "solver-vs-tutor gap and pedagogical evaluation"
+  },
+  {
+    "id": "daheim_2024_stepwise_remediation",
+    "title": "Stepwise Verification and Remediation of Student Reasoning Errors with Large Language Model Tutors",
+    "venue": "EMNLP 2024 Main",
+    "status_note": "strongly relevant supplement; verify CCF status by local catalogue",
+    "source_url": "https://aclanthology.org/2024.emnlp-main.478.pdf",
+    "local_pdf": "literature/edu_pprm_related/pdfs/stepwise_verification_remediation_emnlp2024.pdf",
+    "local_text": "literature/edu_pprm_related/text/stepwise_verification_remediation_emnlp2024.txt",
+    "relevance": "closest prior work on verify-then-generate tutoring feedback"
+  },
+  {
+    "id": "macina_2023_mathdial",
+    "title": "MATHDIAL: A Dialogue Tutoring Dataset with Rich Pedagogical Properties Grounded in Math Reasoning Problems",
+    "venue": "Findings of EMNLP 2023",
+    "status_note": "strongly relevant supplement; not treated as CCF-A core here",
+    "source_url": "https://aclanthology.org/2023.findings-emnlp.372.pdf",
+    "local_pdf": "literature/edu_pprm_related/pdfs/mathdial_findings_emnlp2023.pdf",
+    "local_text": "literature/edu_pprm_related/text/mathdial_findings_emnlp2023.txt",
+    "relevance": "teacher moves, scaffolding, non-leakage, and tutoring dialogue data"
+  },
+  {
+    "id": "maurya_2025_mrbench",
+    "title": "Unifying AI Tutor Evaluation: An Evaluation Taxonomy for Pedagogical Ability Assessment of LLM-Powered AI Tutors",
+    "venue": "NAACL 2025 Long Papers",
+    "status_note": "strongly relevant supplement; verify CCF status by local catalogue",
+    "source_url": "https://aclanthology.org/2025.naacl-long.57.pdf",
+    "local_pdf": "literature/edu_pprm_related/pdfs/mrbench_naacl2025.pdf",
+    "local_text": "literature/edu_pprm_related/text/mrbench_naacl2025.txt",
+    "relevance": "pedagogical evaluation dimensions including mistake location and answer revealing"
+  },
+  {
+    "id": "uesato_2022_process_outcome",
+    "title": "Solving math word problems with process- and outcome-based feedback",
+    "venue": "arXiv 2022",
+    "status_note": "important precursor; not venue-ranked here",
+    "source_url": "https://arxiv.org/pdf/2211.14275",
+    "local_pdf": "literature/edu_pprm_related/pdfs/process_outcome_feedback_arxiv2022.pdf",
+    "local_text": "literature/edu_pprm_related/text/process_outcome_feedback_arxiv2022.txt",
+    "relevance": "process-vs-outcome supervision precursor"
+  }
+]
